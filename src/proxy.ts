@@ -31,6 +31,7 @@ export async function proxy(request: NextRequest) {
   const token = await getToken({
     req: request,
     secret: process.env.NEXTAUTH_SECRET,
+    secureCookie: isProduction,
   });
 
   // 2. If Admin or Agent is logged into the landing page, send them to the admin portal
