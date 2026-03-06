@@ -108,7 +108,7 @@ export default function BlogCard({ post, className }: BlogCardProps) {
                 {authorName}
               </span>
               <span className="text-[9px] text-gray-400 font-bold uppercase tracking-tight mt-0.5">
-                Verified
+                Author
               </span>
             </div>
           </div>

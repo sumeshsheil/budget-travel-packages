@@ -14,23 +14,23 @@ interface KanbanColumnProps {
 const STAGE_COLORS: Record<LeadStage, string> = {
   new: "bg-blue-500",
   contacted: "bg-yellow-500",
-  qualified: "bg-purple-500",
+  booked: "bg-purple-500",
   proposal_sent: "bg-indigo-500",
   negotiation: "bg-orange-500",
   won: "bg-emerald-500",
-  lost: "bg-red-500",
-  stale: "bg-gray-500",
+  dropped: "bg-red-500",
+  abandoned: "bg-gray-500",
 };
 
 const STAGE_LABELS: Record<LeadStage, string> = {
   new: "New",
   contacted: "Contacted",
-  qualified: "Qualified",
+  booked: "Pre-Booked",
   proposal_sent: "Proposal",
-  negotiation: "Negotiation",
-  won: "Won",
-  lost: "Lost",
-  stale: "Stale",
+  negotiation: "Quote Sent",
+  won: "Booked",
+  dropped: "Dropped",
+  abandoned: "Abandoned",
 };
 
 export function KanbanColumn({ stage, leads }: KanbanColumnProps) {

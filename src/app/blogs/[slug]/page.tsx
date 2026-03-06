@@ -67,8 +67,38 @@ export default async function BlogPostPage({ params }: PageProps) {
     day: "numeric",
   });
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title.rendered,
+    description: post.excerpt.rendered.replace(/<[^>]+>/g, "").slice(0, 160),
+    image: featuredImage || "https://budgettravelpackages.in/images/logo/logo.svg",
+    datePublished: post.date,
+    dateModified: (post as any).modified || post.date,
+    author: {
+      "@type": "Person",
+      name: author?.name || "Budget Travel Team",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Budget Travel Packages",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://budgettravelpackages.in/images/logo/logo.svg",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://budgettravelpackages.in/blogs/${slug}`,
+    },
+  };
+
   return (
-    <>
+    <div className="bg-white min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <article className="container-box px-4 py-8 lg:py-12 max-w-4xl mx-auto">
         {/* Breadcrumb */}
         <nav className="text-sm text-gray-500 mb-6 flex items-center gap-2">
@@ -172,6 +202,6 @@ export default async function BlogPostPage({ params }: PageProps) {
       <div className="mb-20">
         <Newsletter />
       </div>
-    </>
+    </div>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useDraggable } from "@dnd-kit/core";
 import Image from "next/image";
-import { format } from "date-fns";
+import { format, differenceInDays } from "date-fns";
 import { MapPin, Calendar, User as UserIcon, Banknote } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -26,6 +26,11 @@ export function KanbanCard({ lead }: KanbanCardProps) {
         transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
       }
     : undefined;
+
+  const isTerminal = ["won", "dropped", "abandoned"].includes(lead.stage);
+  const daysInactive = differenceInDays(new Date(), new Date(lead.stageUpdatedAt || lead.updatedAt));
+  const daysLeft = Math.max(0, 30 - daysInactive);
+  const isExpiringSoon = daysLeft <= 7;
 
   return (
     <div
@@ -88,9 +93,23 @@ export function KanbanCard({ lead }: KanbanCardProps) {
       </div>
 
       <div className="flex items-center justify-between pt-2 border-t">
-        <span className="text-[10px] text-muted-foreground">
-          {format(new Date(lead.createdAt), "MMM d")}
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] text-muted-foreground">
+            {format(new Date(lead.createdAt), "MMM d")}
+          </span>
+          {!isTerminal && (
+            <span
+              className={cn(
+                "px-1.5 py-0.5 rounded text-[9px] font-medium leading-none",
+                isExpiringSoon
+                  ? "bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400"
+                  : "bg-orange-50 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400"
+              )}
+            >
+              {daysLeft}d left
+            </span>
+          )}
+        </div>
 
         {lead.agentId ? (
           <Avatar className="h-5 w-5">

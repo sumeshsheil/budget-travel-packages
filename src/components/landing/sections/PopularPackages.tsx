@@ -42,14 +42,14 @@ const PopularPackages: React.FC = () => {
       <div className="container-box px-4">
         {/* Header */}
         <header className="text-center mb-12 md:mb-16">
-          <h2
+          <h3
             id="popular-packages-heading"
             className="text-3xl md:text-4xl lg:text-[40px] font-inter font-bold text-black mb-4 leading-tight"
           >
             Popular Travel Packages For
             <br className="hidden md:block" /> Every{" "}
             <span className="text-secondary">Purpose & Budget</span>
-          </h2>
+          </h3>
         </header>
 
         {/* Packages Grid */}

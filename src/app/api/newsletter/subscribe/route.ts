@@ -6,10 +6,11 @@ import { headers } from "next/headers";
 import { z } from "zod";
 import crypto from "crypto";
 import bcryptjs from "bcryptjs";
-import { sendWelcomeEmail } from "@/lib/email";
+import { sendWelcomeEmail, sendSetPasswordEmail } from "@/lib/email";
 
 const subscribeSchema = z.object({
   email: z.string().email(),
+  captchaToken: z.string().min(1, "Captcha is required"),
 });
 
 export async function POST(request: Request) {
@@ -19,12 +20,31 @@ export async function POST(request: Request) {
 
     if (!validation.success) {
       return NextResponse.json(
-        { error: "Please enter a valid email address." },
+        { error: validation.error.issues[0].message || "Invalid input." },
         { status: 400 },
       );
     }
 
-    const { email } = validation.data;
+    const { email, captchaToken } = validation.data;
+
+    // Verify Cloudflare Turnstile
+    const verifyResponse = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `secret=${process.env.CLOUDFLARE_TURNSTILE_SECRET_KEY}&response=${captchaToken}`,
+      },
+    );
+
+    const verifyData = await verifyResponse.json();
+    if (!verifyData.success) {
+      return NextResponse.json(
+        { error: "Captcha verification failed. Please try again." },
+        { status: 403 },
+      );
+    }
+
     const customerEmail = email.toLowerCase();
 
     // Rate limiting
@@ -76,12 +96,19 @@ export async function POST(request: Request) {
 
     setPasswordUrl = `${process.env.NEXTAUTH_URL}/?token=${rawToken}&action=set-password`;
 
-    // Send Welcome Email with Account Activation Link
+    // Send Welcome and Set Password Emails
     await sendWelcomeEmail({
       name: "Traveler",
       to: customerEmail,
-      setPasswordUrl,
     });
+
+    if (setPasswordUrl) {
+      await sendSetPasswordEmail({
+        name: "Traveler",
+        email: customerEmail,
+        setPasswordUrl,
+      });
+    }
 
     return NextResponse.json({
       success: true,

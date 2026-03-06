@@ -16,7 +16,7 @@ import bgParachute from "@/../public/images/service-we-offer/background.png";
 const services = [
   {
     id: 1,
-    title: "Domestic and International Tours",
+    title: "Airport Pickup and Drop",
     icon: icon1,
   },
   {
@@ -47,12 +47,13 @@ const services = [
 ];
 
 import LottieAnimation from "../../ui/LottieAnimation";
+import { Check, CheckCheck } from "lucide-react";
 
 const ServicesWeOffer: React.FC = () => {
   return (
     <section
       id="services"
-      className="pb-10 lg:py-25 relative bg-white scroll-mt-24"
+      className="pb-50 lg:pt-35 lg:pb-65 relative bg-white scroll-mt-24"
     >
       {/* Background Elements */}
       <motion.div
@@ -78,9 +79,9 @@ const ServicesWeOffer: React.FC = () => {
       <div className="container-box relative z-10 px-4">
         {/* Header */}
         <div className="items-center gap-4 mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-[40px] font-inter font-bold text-secondary-text">
-            Services We Offer:
-          </h2>
+          <h3 className="text-3xl md:text-4xl lg:text-[40px] font-inter font-bold text-secondary-text">
+            What's included?
+          </h3>
         </div>
 
         {/* Services Grid */}
@@ -94,7 +95,7 @@ const ServicesWeOffer: React.FC = () => {
                 <motion.div
                   key={service.id}
                   whileHover={{ scale: 1.02 }}
-                  className="bg-white border-2 border-secondary text-black rounded-xl pl-3 py-3 pr-1 sm:py-4 sm:pr-2 sm:pl-4 md:py-6 md:pr-4 md:pl-6 flex items-center cursor-default group"
+                  className="bg-white border-2 border-secondary text-secondary rounded-xl pl-3 py-3 pr-1 sm:py-4 sm:pr-2 sm:pl-4 md:py-6 md:pr-4 md:pl-6 flex items-center cursor-default group"
                 >
                   <div className="bg-transparent p-2 mr-4">
                     <Image
@@ -108,6 +109,7 @@ const ServicesWeOffer: React.FC = () => {
                   <h3 className="font-bold text-base md:text-xl font-inter">
                     {service.title}
                   </h3>
+                  <CheckCheck className="w-10 ml-auto h-10 md:w-12 md:h-12 text-new-blue" />
                 </motion.div>
               ))}
           </div>
@@ -120,7 +122,7 @@ const ServicesWeOffer: React.FC = () => {
                 <motion.div
                   key={service.id}
                   whileHover={{ scale: 1.02 }}
-                  className="bg-white border-2 border-secondary text-black rounded-xl pl-3 py-3 pr-1 sm:py-4 sm:pr-2 sm:pl-4 md:py-6 md:pr-4 md:pl-6 flex items-center cursor-default group"
+                  className="bg-white border-2 border-secondary text-secondary rounded-xl pl-3 py-3 pr-1 sm:py-4 sm:pr-2 sm:pl-4 md:py-6 md:pr-4 md:pl-6 flex items-center cursor-default group"
                 >
                   <div className="bg-transparent p-2 mr-4">
                     <Image
@@ -134,6 +136,7 @@ const ServicesWeOffer: React.FC = () => {
                   <h3 className="font-bold text-lg md:text-xl font-inter">
                     {service.title}
                   </h3>
+                  <CheckCheck className="w-10 ml-auto h-10 md:w-12 md:h-12 text-new-blue" />
                 </motion.div>
               ))}
           </div>

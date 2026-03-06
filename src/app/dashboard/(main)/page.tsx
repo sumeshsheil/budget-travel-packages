@@ -1,35 +1,20 @@
 import { requireCustomerAuth } from "@/lib/customer-auth-guard";
 import { connectDB } from "@/lib/db/mongoose";
-import Lead, { ILead } from "@/lib/db/models/Lead";
+import Lead from "@/lib/db/models/Lead";
 import Link from "next/link";
 import User, { IUser } from "@/lib/db/models/User";
 import { format } from "date-fns";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Plane,
-  CreditCard,
   Calendar,
   ArrowRight,
   User as UserIcon,
-  CheckCircle2,
   Gift,
   Sparkles,
-  AlertTriangle,
   FileText,
 } from "lucide-react";
-import {
-  getStageColor,
-  getStageLabel,
-  getPaymentColor,
-} from "@/lib/dashboard-utils";
 import { PlanTripButton } from "@/components/dashboard/PlanTripButton";
 
 export default async function DashboardOverviewPage() {
@@ -49,6 +34,7 @@ export default async function DashboardOverviewPage() {
     email: user.email,
     phone: user.phone,
     gender: user.gender,
+    birthDate: user.birthDate,
     isPhoneVerified: user.isPhoneVerified,
     isProfileComplete: !!isProfileComplete,
   };
@@ -67,11 +53,11 @@ export default async function DashboardOverviewPage() {
   const serialized = JSON.parse(JSON.stringify(leads));
 
   const totalBookings = serialized.length;
-  // Active = not won, lost, stale. Pending or in progress.
+  // Active = not won, lost, abandoned. Pending or in progress.
   // Actually "won" implies a confirmed trip which might still be upcoming.
-  // Let's count "Active" as anything not Lost or Stale for now, or maybe focused on "Upcoming Trips" (Won + Future Date).
+  // Let's count "Active" as anything not Lost or Abandoned for now, or maybe focused on "Upcoming Trips" (Won + Future Date).
   const activeTrips = serialized.filter(
-    (l: { stage: string }) => !["lost", "stale"].includes(l.stage),
+    (l: { stage: string }) => !["lost", "abandoned"].includes(l.stage),
   ).length;
 
   const pendingPayments = serialized.filter(
@@ -79,7 +65,7 @@ export default async function DashboardOverviewPage() {
   ).length;
 
   const nextTrip = serialized.find(
-    (l: { stage: string }) => !["lost", "stale"].includes(l.stage),
+    (l: { stage: string }) => !["lost", "abandoned"].includes(l.stage),
   ); // First active/upcoming trip
 
   return (

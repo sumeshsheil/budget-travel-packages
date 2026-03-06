@@ -35,7 +35,6 @@ export function AdminAppSidebar() {
   const pathname = usePathname();
   const { data: session } = useSession();
   const isAdmin = session?.user?.role === "admin";
-  const isDarkMode = useTheme().resolvedTheme === "dark";
   const { isMobile, state, setOpenMobile } = useSidebar();
 
   const collapsed = state === "collapsed";
@@ -69,14 +68,21 @@ export function AdminAppSidebar() {
           // Future: { title: "Kanban View", url: "/admin/leads/kanban" }
         ],
       },
+      {
+        title: "Customers",
+        url: "/admin/customers",
+        icon: UserCircle,
+        isActive: pathname.startsWith("/admin/customers"),
+        items: [],
+      },
     ],
     navAdmin: isAdmin
       ? [
           {
-            title: "Customers",
-            url: "/admin/customers",
-            icon: UserCircle,
-            isActive: pathname.startsWith("/admin/customers"),
+            title: "Finance & Earnings",
+            url: "/admin/finance",
+            icon: Plane, // Reusing Plane for now as a generic icon, can be changed
+            isActive: pathname.startsWith("/admin/finance"),
             items: [],
           },
           {
@@ -113,23 +119,20 @@ export function AdminAppSidebar() {
                   </div>
                 ) : (
                   <div className="grid flex-1 text-left text-sm leading-tight">
-                    {isDarkMode ? (
-                      <Image
-                        src={logo}
-                        alt="Budget Travel Packages"
-                        width={120}
-                        height={50}
-                        className="h-8 w-auto object-contain"
-                      />
-                    ) : (
-                      <Image
-                        src={logoDark}
-                        alt="Budget Travel Packages"
-                        width={120}
-                        height={50}
-                        className="h-8 w-auto object-contain"
-                      />
-                    )}
+                    <Image
+                      src={logo}
+                      alt="Budget Travel Packages"
+                      width={120}
+                      height={50}
+                      className="h-8 w-auto object-contain hidden dark:block"
+                    />
+                    <Image
+                      src={logoDark}
+                      alt="Budget Travel Packages"
+                      width={120}
+                      height={50}
+                      className="h-8 w-auto object-contain block dark:hidden"
+                    />
                   </div>
                 )}
               </Link>

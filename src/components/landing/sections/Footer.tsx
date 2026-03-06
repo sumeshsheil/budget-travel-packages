@@ -94,13 +94,13 @@ const Footer: React.FC = () => {
                   </h3>
 
                   <div className="flex flex-col gap-2 w-full max-w-[280px]">
-                    <button className="bg-white border border-primary text-primary hover:bg-primary hover:text-white font-semibold py-2.5 px-4 rounded-lg text-xs xl:text-sm transition-all  w-full cursor-pointer text-center">
+                    <button className="bg-white border border-primary text-new-blue hover:bg-primary hover:text-white font-semibold py-2.5 px-4 rounded-lg text-xs xl:text-sm transition-all  w-full cursor-pointer text-center">
                       Pre-Book Devotional @ ₹333
                     </button>
-                    <button className="bg-white border border-primary text-primary hover:bg-primary hover:text-white font-semibold py-2.5 px-4 rounded-lg text-xs xl:text-sm transition-all  w-full cursor-pointer text-center">
+                    <button className="bg-white border border-primary text-new-blue hover:bg-primary hover:text-white font-semibold py-2.5 px-4 rounded-lg text-xs xl:text-sm transition-all  w-full cursor-pointer text-center">
                       Pre-Book Domestic @ ₹666
                     </button>
-                    <button className="bg-white border border-primary text-primary hover:bg-primary hover:text-white font-semibold py-2.5 px-4 rounded-lg text-xs xl:text-sm transition-all  w-full cursor-pointer text-center">
+                    <button className="bg-white border border-primary text-new-blue hover:bg-primary hover:text-white font-semibold py-2.5 px-4 rounded-lg text-xs xl:text-sm transition-all  w-full cursor-pointer text-center">
                       Pre-Book International @ ₹999
                     </button>
                   </div>
@@ -177,67 +177,69 @@ const Footer: React.FC = () => {
 
             {/* Mobile/Tablet Layout - below lg */}
             <div className="lg:hidden flex flex-col gap-8">
-              {/* Logo Section */}
-              <div className="flex flex-col gap-4 text-center items-center">
-                <Link href="/" className="inline-block">
-                  <Image
-                    src={logo}
-                    alt="Budget Travel Packages"
-                    width={180}
-                    height={76}
-                    className="w-auto h-auto"
-                  />
-                </Link>
-
-                <div className="flex flex-wrap justify-center items-center gap-3">
-                  <div className="flex items-center gap-2">
+              <div className="flex flex-col md:grid md:grid-cols-2 gap-8 items-center md:items-start">
+                {/* Logo Section */}
+                <div className="flex flex-col gap-4 text-center items-center w-full">
+                  <Link href="/" className="inline-block">
                     <Image
-                      src="/images/footer/trust-badge/msme.png"
-                      alt="Verified"
-                      width={1800}
-                      height={1800}
-                      className="w-[48px] h-auto rounded-full"
+                      src={logo}
+                      alt="Budget Travel Packages"
+                      width={180}
+                      height={76}
+                      className="w-auto h-auto"
                     />
-                    <span className="text-black font-medium text-sm font-open-sans">
-                      UDYAM-WB-14-0235424
-                    </span>
+                  </Link>
+
+                  <div className="flex flex-wrap justify-center items-center gap-3">
+                    <div className="flex items-center gap-2">
+                      <Image
+                        src="/images/footer/trust-badge/msme.png"
+                        alt="Verified"
+                        width={1800}
+                        height={1800}
+                        className="w-[48px] h-auto rounded-full"
+                      />
+                      <span className="text-black font-medium text-sm font-open-sans">
+                        UDYAM-WB-14-0235424
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-5">
+                    {["ssl", "lock", "100"].map((badge) => (
+                      <Image
+                        key={badge}
+                        src={`/images/footer/trust-badge/${badge}.svg`}
+                        alt="Trusted"
+                        width={48}
+                        height={48}
+                        className="w-[48px] lg:w-[48px] h-auto"
+                      />
+                    ))}
                   </div>
                 </div>
 
-                <div className="flex items-center gap-5">
-                  {["ssl", "lock", "100"].map((badge) => (
-                    <Image
-                      key={badge}
-                      src={`/images/footer/trust-badge/${badge}.svg`}
-                      alt="Trusted"
-                      width={48}
-                      height={48}
-                      className="w-[48px] lg:w-[48px] h-auto"
-                    />
-                  ))}
-                </div>
-              </div>
+                {/* Services & Payment (Mobile) */}
+                <div className="flex flex-col text-center items-center md:items-center justify-center gap-3 bg-gray-50/50 p-6 rounded-2xl border border-dashed border-gray-200 h-full">
+                  <h3 className="font-bold text-black text-xl md:text-lg">
+                    Get Travel Services at Flat 9% of Total Cost*
+                  </h3>
 
-              {/* Services & Payment (Mobile) */}
-              <div className="flex flex-col text-center items-center gap-3 bg-gray-50/50 p-6 rounded-2xl border border-dashed border-gray-200">
-                <h3 className="font-bold text-black text-xl">
-                  Get Travel Services at Flat 9% of Total Cost*
-                </h3>
-
-                <div className="flex flex-col gap-2 w-full max-w-[240px]">
-                  <button className="bg-white border border-primary text-primary hover:bg-primary hover:text-white font-semibold py-2.5 px-4 rounded-lg text-sm transition-all shadow-sm w-full cursor-pointer">
-                    Pre-Book Devotional @ ₹333
-                  </button>
-                  <button className="bg-white border border-primary text-primary hover:bg-primary hover:text-white font-semibold py-2.5 px-4 rounded-lg text-sm transition-all shadow-sm w-full cursor-pointer">
-                    Pre-Book Domestic @ ₹666
-                  </button>
-                  <button className="bg-white border border-primary text-primary hover:bg-primary hover:text-white font-semibold py-2.5 px-4 rounded-lg text-sm transition-all shadow-sm w-full cursor-pointer">
-                    Pre-Book International @ ₹999
-                  </button>
+                  <div className="flex flex-col gap-2 w-full max-w-[240px]">
+                    <button className="bg-white border border-primary text-new-blue hover:bg-primary hover:text-white font-semibold py-2.5 px-4 rounded-lg text-sm transition-all shadow-sm w-full cursor-pointer">
+                      Pre-Book Devotional @ ₹333
+                    </button>
+                    <button className="bg-white border border-primary text-new-blue hover:bg-primary hover:text-white font-semibold py-2.5 px-4 rounded-lg text-sm transition-all shadow-sm w-full cursor-pointer">
+                      Pre-Book Domestic @ ₹666
+                    </button>
+                    <button className="bg-white border border-primary text-new-blue hover:bg-primary hover:text-white font-semibold py-2.5 px-4 rounded-lg text-sm transition-all shadow-sm w-full cursor-pointer">
+                      Pre-Book International @ ₹999
+                    </button>
+                  </div>
+                  <p className="text-[10px] text-red-500 font-medium italic opacity-80">
+                    * Note: Only book after Agent Confirmation *
+                  </p>
                 </div>
-                <p className="text-[10px] text-red-500 font-medium italic opacity-80">
-                  * Note: Only book after Agent Confirmation *
-                </p>
               </div>
 
               {/* Address + Recent Blogs side by side on sm, stacked on xs */}
@@ -322,8 +324,7 @@ const Footer: React.FC = () => {
                   </Link>
                   <span className="text-gray-400">•</span>
                   <Link
-                    href="http://portals.localhost:3000"
-                    target="_blank"
+                    href="/admin"
                     className="hover:text-primary transition-colors"
                   >
                     Travel Portal

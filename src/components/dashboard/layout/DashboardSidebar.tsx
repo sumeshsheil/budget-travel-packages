@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { Home, Plane, UserIcon } from "lucide-react";
+import { Home, Plane, UserIcon, LayoutDashboard } from "lucide-react";
 import Image from "next/image";
 import logo from "@/../public/images/logo/footer-logo.svg";
 import logoDark from "@/../public/images/logo/logo.svg";
@@ -30,14 +30,11 @@ export function DashboardSidebar() {
   const pathname = usePathname();
   const { data: session } = useSession();
   const { state, isMobile, setOpenMobile } = useSidebar();
-  const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  const isDark = mounted && resolvedTheme === "dark";
 
   const user = {
     name: session?.user?.name || "Guest",
@@ -64,6 +61,21 @@ export function DashboardSidebar() {
       isActive: pathname.startsWith("/dashboard/profile"),
     },
   ];
+
+  // Add Packages button only for paid users
+  const isPaidUser =
+    session?.user?.plan &&
+    session?.user?.plan !== "free" &&
+    session?.user?.subscriptionStatus === "active";
+
+  if (isPaidUser) {
+    navItems.splice(2, 0, {
+      title: "Packages",
+      url: "/dashboard/packages",
+      icon: LayoutDashboard,
+      isActive: pathname.startsWith("/dashboard/packages"),
+    });
+  }
 
   const isCollapsed = state === "collapsed";
 
@@ -110,25 +122,22 @@ export function DashboardSidebar() {
                       transition={{ duration: 0.2 }}
                       className="flex flex-1 items-center py-1"
                     >
-                      {isDark ? (
-                        <Image
-                          src={logoDark}
-                          alt="Budget Travel Packages"
-                          width={180}
-                          height={60}
-                          className="h-10 w-auto object-contain"
-                          priority
-                        />
-                      ) : (
-                        <Image
-                          src={logo}
-                          alt="Budget Travel Packages"
-                          width={180}
-                          height={60}
-                          className="h-10 w-auto object-contain"
-                          priority
-                        />
-                      )}
+                      <Image
+                        src={logoDark}
+                        alt="Budget Travel Packages"
+                        width={180}
+                        height={60}
+                        className="h-10 w-auto object-contain hidden dark:block"
+                        priority
+                      />
+                      <Image
+                        src={logo}
+                        alt="Budget Travel Packages"
+                        width={180}
+                        height={60}
+                        className="h-10 w-auto object-contain block dark:hidden"
+                        priority
+                      />
                     </motion.div>
                   )}
                 </AnimatePresence>

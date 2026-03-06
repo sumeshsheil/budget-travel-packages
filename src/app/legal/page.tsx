@@ -123,83 +123,13 @@ export default function LegalPoliciesPage() {
                     Legal <span className="text-emerald-600">Policies</span>
                   </h1>
 
-                  <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6 text-sm text-slate-600 space-y-3 mb-8 max-w-3xl">
-                    <p>
-                      <strong className="text-slate-900">Brand:</strong> Budget
-                      Travel Packages™
+                  <div className="bg-emerald-50/50 border border-emerald-100/50 rounded-2xl p-6 mb-12">
+                    <p className="text-slate-700 font-bold leading-relaxed flex items-center gap-3">
+                      <span className="shrink-0 w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                      NB: Make sure to do all payments through the website for security and tracking.
                     </p>
-                    <p>
-                      <strong className="text-slate-900">Tagline:</strong>{" "}
-                      Explore More, Spend Less!
-                    </p>
-                    <p>
-                      <strong className="text-slate-900">Contact Email:</strong>{" "}
-                      <a
-                        href="mailto:hello@budgettravelpackages.in"
-                        className="text-emerald-600 hover:underline break-all"
-                      >
-                        hello@budgettravelpackages.in
-                      </a>
-                    </p>
-                    <p>
-                      <strong className="text-slate-900">
-                        Content & Blog URL:
-                      </strong>{" "}
-                      <a
-                        href="https://budgettravelpackages.in/blogs"
-                        className="text-emerald-600 hover:underline break-all"
-                      >
-                        https://budgettravelpackages.in/blogs
-                      </a>
-                    </p>
-                    <p>
-                      <strong className="text-slate-900">
-                        Business Locations:
-                      </strong>{" "}
-                      Kolkata (Main Office) | Delhi (Branch Office) | Mumbai
-                      (Branch Office)
-                    </p>
-                    <div className="pt-2 mt-2 border-t border-slate-200">
-                      <strong className="text-slate-900 block mb-2">
-                        Social Media&apos;s:
-                      </strong>
-                      <ul className="space-y-1 pl-4 list-disc marker:text-emerald-500">
-                        <li>
-                          Facebook:{" "}
-                          <a
-                            href="https://www.facebook.com/budgettravelpackages"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-emerald-600 hover:underline break-all"
-                          >
-                            https://www.facebook.com/budgettravelpackages
-                          </a>
-                        </li>
-                        <li>
-                          Instagram:{" "}
-                          <a
-                            href="https://www.instagram.com/budgettravelpackages.in"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-emerald-600 hover:underline break-all"
-                          >
-                            https://www.instagram.com/budgettravelpackages.in
-                          </a>
-                        </li>
-                        <li>
-                          YouTube:{" "}
-                          <a
-                            href="https://www.youtube.com/@budgettravelpackages"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-emerald-600 hover:underline break-all"
-                          >
-                            https://www.youtube.com/@budgettravelpackages
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
                   </div>
+
                 </div>
 
                 <div className="prose prose-slate max-w-none prose-headings:text-slate-900 prose-headings:font-bold prose-p:text-slate-600 prose-li:text-slate-600 prose-strong:text-slate-900 marker:text-emerald-600">

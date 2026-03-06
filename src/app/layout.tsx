@@ -14,12 +14,20 @@ const openSans = Open_Sans({
 });
 
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
-import { FloatingButtons } from "@/components/layout/FloatingButtons";
+// import { FloatingButtons } from "@/components/layout/FloatingButtons";
 import SessionProvider from "@/components/providers/SessionProvider";
 import { AppThemeProvider } from "@/components/providers/AppThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import SystemHealthCheck from "@/components/layout/SystemHealthCheck";
+import dynamic from "next/dynamic";
 
+const FloatingButtons = dynamic(
+  () =>
+    import("@/components/layout/FloatingButtons").then(
+      (mod) => mod.FloatingButtons,
+    ),
+  // { ssr: false }, // No need to server-side render floating lottie files
+);
 export const viewport: Viewport = {
   themeColor: "#01FF70",
   width: "device-width",
@@ -97,6 +105,8 @@ export const metadata: Metadata = {
   },
 };
 
+import CookieConsent from "@/components/layout/CookieConsent";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -155,12 +165,13 @@ export default function RootLayout({
         <AppThemeProvider>
           <StoreProvider>
             <SessionProvider>
-              <SmoothScrollProvider>
+              {/* <SmoothScrollProvider> */}
                 <SystemHealthCheck />
                 {children}
+                <CookieConsent />
                 <FloatingButtons />
                 <Toaster richColors position="top-right" />
-              </SmoothScrollProvider>
+              {/* </SmoothScrollProvider> */}
             </SessionProvider>
           </StoreProvider>
         </AppThemeProvider>

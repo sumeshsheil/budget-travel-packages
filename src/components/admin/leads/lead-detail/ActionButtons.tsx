@@ -45,6 +45,7 @@ const STAGES = [
   "proposal_sent",
   "negotiation",
   "lost",
+  "abandoned",
 ];
 
 export function ActionButtons({
@@ -184,7 +185,7 @@ export function ActionButtons({
             </Button>
             <p className="text-[10px] text-muted-foreground mt-1.5 text-center px-2">
               Reset the auto-abandon countdown to prevent this lead from going
-              stale.
+              abandoned.
             </p>
           </div>
         </div>

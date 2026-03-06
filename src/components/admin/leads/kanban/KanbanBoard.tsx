@@ -97,7 +97,7 @@ export function KanbanBoard({ initialLeads }: KanbanBoardProps) {
         data-lenis-prevent
         className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 pb-4"
       >
-        {LEAD_STAGES.map((stage) => (
+        {LEAD_STAGES.filter((stage) => stage !== "abandoned").map((stage) => (
           <KanbanColumn
             data-lenis-prevent
             key={stage}

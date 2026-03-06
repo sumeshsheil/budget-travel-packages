@@ -35,6 +35,7 @@ import {
 import { USER_PROGRESS_STAGES, getPaymentColor } from "@/lib/dashboard-utils";
 import AddCompanionModal from "./components/AddCompanionModal";
 import RemoveTravelerButton from "./components/RemoveTravelerButton";
+import PaymentModal from "./components/PaymentModal";
 
 const STAGES = USER_PROGRESS_STAGES;
 
@@ -67,7 +68,7 @@ export default async function BookingDetailPage({
   const booking = JSON.parse(JSON.stringify(lead));
 
   const currentStageIndex = STAGES.findIndex((s) => s.key === booking.stage);
-  const isLostOrStale = ["lost", "stale"].includes(booking.stage);
+  const isLostOrAbandoned = ["dropped", "abandoned"].includes(booking.stage);
 
   return (
     <div className="space-y-6">
@@ -105,12 +106,12 @@ export default async function BookingDetailPage({
           </CardTitle>
         </CardHeader>
         <CardContent>
-          {isLostOrStale ? (
+          {isLostOrAbandoned ? (
             <div className="text-center py-4">
               <Badge className="bg-red-100 text-red-700 border border-red-200 text-sm capitalize">
-                {booking.stage === "lost"
-                  ? "Booking Cancelled"
-                  : "Booking Expired"}
+                {booking.stage === "dropped"
+                  ? "Booking Cancelled/Dropped"
+                  : "Booking Expired/Abandoned"}
               </Badge>
               <p className="text-muted-foreground mt-2 text-sm">
                 Please contact us if you&apos;d like to resubmit your inquiry.
@@ -193,9 +194,9 @@ export default async function BookingDetailPage({
         {/* Trip Details */}
         <Card className="border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
           <CardHeader>
-            <CardTitle className="text-lg flex items-center gap-2 text-slate-900 dark:text-white">
+            <CardTitle className="text-lg flex items-center flex-wrap gap-2 text-slate-900 dark:text-white">
               <Plane className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
-              Trip Details
+              Trip Details  <span className="text-md pl-2 block lg:inline border-l-2 border-slate-800 dark:border-slate-800 text-slate-400 dark:text-slate-500">#{booking._id}</span>
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -631,20 +632,18 @@ export default async function BookingDetailPage({
             </div>
 
             {booking.paymentStatus !== "paid" &&
-              booking.stage !== "lost" &&
-              booking.stage !== "stale" && (
-                <Button
-                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
-                  disabled
-                >
-                  Pay Now (Coming Soon)
-                </Button>
+              booking.stage !== "dropped" &&
+              booking.stage !== "abandoned" && (
+                <PaymentModal
+                  leadId={booking._id}
+                  tripType={booking.tripType}
+                  tripCost={booking.tripCost}
+                  budget={booking.budget}
+                  bookingPayments={booking.bookingPayments || []}
+                  paymentStatus={booking.paymentStatus}
+                  paymentAmount={booking.paymentAmount}
+                />
               )}
-
-            <p className="text-xs text-muted-foreground text-center">
-              Payment integration will be available soon. Contact us for manual
-              payment options.
-            </p>
           </CardContent>
         </Card>
 

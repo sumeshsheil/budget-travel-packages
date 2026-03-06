@@ -3,12 +3,16 @@ import Image from "next/image";
 import React, { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import MenuIcon from "../icons/Menu";
-import { motion, AnimatePresence } from "motion/react";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useMotionValueEvent,
+} from "motion/react";
 import { Search, X } from "lucide-react";
 
 import { searchBlogPosts, SearchResult } from "@/app/actions/blog-search";
 import { useDebouncedCallback } from "use-debounce";
-import FacebookIcon from "../icons/Facebook";
 import YoutubeIcon from "../icons/Youtube";
 import { Button } from "../ui/button";
 import { SOCIAL_LINKS } from "@/lib/constants";
@@ -17,10 +21,6 @@ import { useSession } from "next-auth/react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import LoginModal from "../auth/LoginModal";
 
-/**
- * Inner component that reads search params and opens the login modal
- * when a set-password token is present. Wrapped in Suspense by Header.
- */
 function SearchParamsHandler({ onOpenLogin }: { onOpenLogin: () => void }) {
   const searchParams = useSearchParams();
 
@@ -48,16 +48,16 @@ const Header: React.FC = () => {
   const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   const [isScrolled, setIsScrolled] = useState(false);
+  const { scrollY } = useScroll();
 
-  // Logo Logic
-  // On /, always use primary logo
-  // On other pages, use footer logo (dark) when not scrolled, primary logo when scrolled
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const shouldBeScrolled = latest > 10;
+    if (isScrolled !== shouldBeScrolled) {
+      setIsScrolled(shouldBeScrolled);
+    }
+  });
+
   const isHomePage = pathname === "/";
-  const currentLogo = isHomePage
-    ? logoPrimary
-    : isScrolled
-      ? logoPrimary
-      : logoFooter;
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -114,26 +114,13 @@ const Header: React.FC = () => {
     setIsLoginModalOpen(true);
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <>
       <motion.header
-        initial={{ y: -50, opacity: 0 }}
+        initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.07, ease: "easeIn" }}
-        className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 transform-gpu ${
+        className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 transform-gpu will-change-transform ${
           isScrolled
             ? "bg-black/90 backdrop-blur-md py-3 shadow-lg border-b border-white/10"
             : "py-5 bg-linear-to-b from-black/50 to-transparent"
@@ -141,15 +128,31 @@ const Header: React.FC = () => {
       >
         <div className="container-box flex items-center justify-between relative">
           <div className="relative z-50">
-            <Link href="/" aria-label="Home">
+            <Link
+              href="/"
+              aria-label="Home"
+              className="block relative w-32 sm:w-40 md:w-48 lg:w-60 h-10 sm:h-12 md:h-14 lg:h-16"
+            >
               <Image
-                src={currentLogo}
+                src={logoPrimary}
                 alt="Budget Travel Packages Logo"
-                width={240}
-                height={102}
+                fill
                 priority
-                className="w-32 sm:w-40 md:w-48 lg:w-60 h-auto transition-all duration-300"
+                className={`object-contain transition-opacity duration-300 transform-gpu ${
+                  isHomePage || isScrolled ? "opacity-100" : "opacity-0"
+                }`}
               />
+              {!isHomePage && (
+                <Image
+                  src={logoFooter}
+                  alt="Budget Travel Packages Logo (Dark)"
+                  fill
+                  priority
+                  className={`object-contain transition-opacity duration-300 transform-gpu ${
+                    !isScrolled ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+              )}
             </Link>
           </div>
           <nav
@@ -161,7 +164,7 @@ const Header: React.FC = () => {
                 href={SOCIAL_LINKS.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-transform hover:scale-110"
+                className="transition-transform hover:scale-110 transform-gpu"
                 aria-label="Follow us on Facebook"
               >
                 <Image
@@ -176,7 +179,7 @@ const Header: React.FC = () => {
                 href={SOCIAL_LINKS.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-transform hover:scale-110"
+                className="transition-transform hover:scale-110 transform-gpu"
                 aria-label="Follow us on Instagram"
               >
                 <Image
@@ -191,7 +194,7 @@ const Header: React.FC = () => {
                 href={SOCIAL_LINKS.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-transform hover:scale-110"
+                className="transition-transform hover:scale-110 transform-gpu"
                 aria-label="Subscribe to our YouTube channel"
               >
                 <YoutubeIcon className="w-auto h-5 md:h-6 transition-all" />
@@ -208,7 +211,7 @@ const Header: React.FC = () => {
                     animate={{ width: 280, opacity: 1 }}
                     exit={{ width: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="relative flex items-center bg-white/10 rounded-xl border border-white/20 backdrop-blur-sm"
+                    className="relative flex items-center bg-white/10 rounded-xl border border-white/20 backdrop-blur-sm transform-gpu will-change-transform"
                   >
                     <div className="relative w-full">
                       <input
@@ -234,7 +237,7 @@ const Header: React.FC = () => {
                       />
                       {isSearching && (
                         <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin transform-gpu"></div>
                         </div>
                       )}
                     </div>
@@ -260,7 +263,7 @@ const Header: React.FC = () => {
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 10 }}
-                          className="absolute top-full left-0 w-full mt-2 bg-white rounded-xl shadow-xl overflow-hidden z-50 border border-gray-100 max-h-[400px] overflow-y-auto"
+                          className="absolute top-full left-0 w-full mt-2 bg-white rounded-xl shadow-xl overflow-hidden z-50 border border-gray-100 max-h-[400px] overflow-y-auto transform-gpu will-change-transform"
                         >
                           {searchResults.length > 0 ? (
                             <div className="py-2">
@@ -314,7 +317,7 @@ const Header: React.FC = () => {
                     exit={{ opacity: 0, scale: 0.8 }}
                     transition={{ duration: 0.2 }}
                     onClick={() => setIsSearchOpen(true)}
-                    className="text-white hover:text-[#01FF70] transition-colors p-1.5"
+                    className="text-white hover:text-[#01FF70] transition-colors p-1.5 transform-gpu will-change-transform"
                     aria-label="Open Search"
                   >
                     <Search
@@ -333,7 +336,7 @@ const Header: React.FC = () => {
                 whileTap={{ scale: 0.9 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 onClick={toggleMenu}
-                className="focus:outline-none cursor-pointer"
+                className="focus:outline-none cursor-pointer transform-gpu will-change-transform"
                 aria-label="Toggle Menu"
               >
                 <MenuIcon className="text-[#01FF70]" />
@@ -356,7 +359,7 @@ const Header: React.FC = () => {
                 stiffness: 300,
                 damping: 25,
               }}
-              className="absolute right-4 top-16 md:top-20 mt-6 bg-white rounded-2xl shadow-xl overflow-hidden z-50 w-60 origin-top-right border border-gray-100"
+              className="absolute right-4 top-16 md:top-20 mt-6 bg-white rounded-2xl shadow-xl overflow-hidden z-50 w-60 origin-top-right border border-gray-100 transform-gpu will-change-transform"
             >
               <div className="p-6 flex flex-col gap-6">
                 <ul className="flex flex-col items-center gap-4">
@@ -389,6 +392,7 @@ const Header: React.FC = () => {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
+                      className="transform-gpu will-change-transform"
                     >
                       <Link
                         href={link.href}
@@ -411,7 +415,7 @@ const Header: React.FC = () => {
                       href={SOCIAL_LINKS.facebook}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:scale-110 transition-transform"
+                      className="hover:scale-110 transition-transform transform-gpu"
                     >
                       <Image
                         src="/images/footer/social/facebook.png"
@@ -425,7 +429,7 @@ const Header: React.FC = () => {
                       href={SOCIAL_LINKS.instagram}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:scale-110 transition-transform"
+                      className="hover:scale-110 transition-transform transform-gpu"
                     >
                       <Image
                         src="/images/footer/social/instagram-2.png"
@@ -439,7 +443,7 @@ const Header: React.FC = () => {
                       href={SOCIAL_LINKS.youtube}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:scale-110 transition-transform"
+                      className="hover:scale-110 transition-transform transform-gpu"
                     >
                       <YoutubeIcon className="w-auto h-6" />
                     </Link>

@@ -5,9 +5,12 @@ import { motion } from "motion/react";
 import { Send, CheckCircle2, Loader2, Mail } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 
 export default function Newsletter() {
   const [email, setEmail] = useState("");
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const turnstileRef = React.useRef<TurnstileInstance>(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
@@ -17,13 +20,18 @@ export default function Newsletter() {
     e.preventDefault();
     if (!email) return;
 
+    if (!captchaToken) {
+      toast.error("Please complete the captcha.");
+      return;
+    }
+
     setStatus("loading");
     setErrorMessage("");
     try {
       const response = await fetch("/api/newsletter/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, captchaToken }),
       });
 
       const data = await response.json();
@@ -35,8 +43,12 @@ export default function Newsletter() {
       setStatus("success");
       toast.success(data.message || "Subscribed successfully!");
       setEmail("");
+      setCaptchaToken(null);
+      turnstileRef.current?.reset();
     } catch (error: any) {
       setStatus("error");
+      turnstileRef.current?.reset();
+      setCaptchaToken(null);
       setErrorMessage(
         error.message || "Failed to subscribe. Please try again.",
       );
@@ -91,7 +103,7 @@ export default function Newsletter() {
                   </button>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="relative group">
+                <form onSubmit={handleSubmit} className="relative group space-y-4">
                   <div className="flex flex-col md:flex-row items-stretch md:items-center bg-white p-2 rounded-2xl md:rounded-full shadow-lg gap-2">
                     <div className="flex-1 flex items-center px-4">
                       <Mail className="w-5 h-5 text-gray-400 mr-3 shrink-0" />
@@ -118,6 +130,16 @@ export default function Newsletter() {
                         </>
                       )}
                     </button>
+                  </div>
+                  
+                  <div className="flex justify-center">
+                    <Turnstile
+                      ref={turnstileRef}
+                      siteKey={process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY || ""}
+                      onSuccess={(token) => setCaptchaToken(token)}
+                      onExpire={() => setCaptchaToken(null)}
+                      onError={() => setCaptchaToken(null)}
+                    />
                   </div>
                   {status === "error" && (
                     <p className="mt-3 text-red-500 text-xs font-bold font-open-sans">

@@ -117,11 +117,41 @@ export function LoginForm() {
     return () => clearInterval(timer);
   }, [countdown]);
 
+  // Auto-verify OTP when 6 digits are entered
+  const otpValue = otpVerificationForm.watch("otp");
+  useEffect(() => {
+    if (otpValue?.length === 6 && !isLoading && view === "OTP_VERIFICATION") {
+      otpVerificationForm.handleSubmit(onVerifyOtp)();
+    }
+  }, [otpValue, isLoading, view, otpVerificationForm]);
+
   // Handlers
   async function onLogin(values: LoginFormValues) {
     setIsLoading(true);
     setError(null);
     try {
+      // Get callbackUrl from search params
+      const searchParams = new URLSearchParams(window.location.search);
+      const callbackUrl = searchParams.get("callbackUrl") || "/admin";
+
+      // Step 1: Pre-validate to get specific error messages
+      const validateRes = await fetch("/api/auth/validate-login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: values.email,
+          password: values.password,
+        }),
+      });
+
+      const validateData = await validateRes.json();
+
+      if (!validateRes.ok) {
+        setError(validateData.error || "Invalid email or password.");
+        return;
+      }
+
+      // Step 2: Validation passed — proceed with NextAuth signIn
       const result = await signIn("credentials", {
         email: values.email,
         password: values.password,
@@ -129,20 +159,17 @@ export function LoginForm() {
       });
 
       if (result?.error) {
-        if (result.error === "CredentialsSignin") {
-          setError("Invalid email or password. Please try again.");
-        } else {
-          let cleanError = result.error.replace("Error: ", "");
-          setError(
-            cleanError || "Invalid email or password. Please try again.",
-          );
-        }
+        setError("Invalid email or password. Please try again.");
         return;
       }
 
       toast.success("Logged in successfully");
-      router.push("/admin");
-      router.refresh();
+
+      // Use window.location for a hard redirect to ensure session is picked up
+      // across different hostnames (like ngrok) and to respect callbackUrl
+      setTimeout(() => {
+        window.location.href = callbackUrl;
+      }, 500);
     } catch {
       setError("An unexpected error occurred. Please try again.");
     } finally {

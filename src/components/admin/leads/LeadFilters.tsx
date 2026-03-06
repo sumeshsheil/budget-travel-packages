@@ -47,7 +47,7 @@ export function LeadFilters() {
           <SelectItem value="negotiation">Negotiation</SelectItem>
           {isAdmin && <SelectItem value="won">Won</SelectItem>}
           <SelectItem value="lost">Lost</SelectItem>
-          <SelectItem value="stale">Stale</SelectItem>
+          <SelectItem value="abandoned">Abandoned</SelectItem>
         </SelectContent>
       </Select>
     </div>

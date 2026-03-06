@@ -40,6 +40,8 @@ interface IMember {
   email?: string;
   gender: "male" | "female" | "other";
   age: number;
+  aadhaarNumber?: string;
+  passportNumber?: string;
   documents?: {
     aadharCard: string[];
     passport: string[];
@@ -61,6 +63,8 @@ export default function MembersSection() {
   const [age, setAge] = useState<string>("");
   const [aadharCards, setAadharCards] = useState<string[]>([]);
   const [passports, setPassports] = useState<string[]>([]);
+  const [aadhaarNumber, setAadhaarNumber] = useState("");
+  const [passportNumber, setPassportNumber] = useState("");
 
   useEffect(() => {
     fetchMembers();
@@ -90,6 +94,8 @@ export default function MembersSection() {
     setAge("");
     setAadharCards([]);
     setPassports([]);
+    setAadhaarNumber("");
+    setPassportNumber("");
     setIsEditing(false);
     setEditIndex(null);
   };
@@ -102,6 +108,8 @@ export default function MembersSection() {
     setAge(member.age.toString());
     setAadharCards(member.documents?.aadharCard || []);
     setPassports(member.documents?.passport || []);
+    setAadhaarNumber(member.aadhaarNumber || "");
+    setPassportNumber(member.passportNumber || "");
     setEditIndex(index);
     setIsEditing(true);
   };
@@ -147,8 +155,24 @@ export default function MembersSection() {
       return;
     }
 
-    if (aadharCards.length === 0) {
-      toast.error("Aadhar Card is mandatory for verification");
+    // Aadhaar sync
+    if (
+      (aadharCards.length > 0 && !aadhaarNumber) ||
+      (aadhaarNumber && aadharCards.length === 0)
+    ) {
+      toast.error(
+        "Both Aadhar Number and Aadhar Card PDF are required together.",
+      );
+      return;
+    }
+
+    if (aadhaarNumber && !/^\d{12}$/.test(aadhaarNumber)) {
+      toast.error("Valid 12-digit Aadhaar number is mandatory");
+      return;
+    }
+
+    if (passportNumber && !/^[a-zA-Z0-9]{8}$/.test(passportNumber)) {
+      toast.error("Passport must be exactly 8 alphanumeric characters");
       return;
     }
 
@@ -157,6 +181,8 @@ export default function MembersSection() {
       email: email.trim() || undefined,
       gender: gender as "male" | "female" | "other",
       age: parseInt(age, 10),
+      aadhaarNumber,
+      passportNumber: passportNumber || undefined,
       documents: {
         aadharCard: aadharCards,
         passport: passports,
@@ -302,6 +328,50 @@ export default function MembersSection() {
                   </p>
                 </div>
 
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2.5">
+                    <label className="text-sm font-medium">
+                      Aadhar Number *
+                    </label>
+                    <Input
+                      value={aadhaarNumber}
+                      onChange={(e) =>
+                        setAadhaarNumber(
+                          e.target.value.replace(/\D/g, "").slice(0, 12),
+                        )
+                      }
+                      placeholder="1234 5678 9012"
+                      maxLength={12}
+                      className="border border-slate-200 dark:border-slate-800 text-slate-900"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2.5">
+                    <div className="flex justify-between items-center">
+                      <label className="text-sm font-medium">
+                        Passport Number
+                      </label>
+                      <span className="text-[10px] text-red-500 font-medium italic">
+                        Mandatory if International
+                      </span>
+                    </div>
+                    <Input
+                      value={passportNumber}
+                      onChange={(e) =>
+                        setPassportNumber(
+                          e.target.value
+                            .replace(/[^a-zA-Z0-9]/g, "")
+                            .toUpperCase()
+                            .slice(0, 8),
+                        )
+                      }
+                      placeholder="A1234567"
+                      maxLength={8}
+                      className="border border-slate-200 dark:border-slate-800 text-slate-900"
+                    />
+                  </div>
+                </div>
+
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <div className="flex justify-between items-center px-1">
@@ -429,6 +499,11 @@ export default function MembersSection() {
                         <ShieldAlert className="h-3 w-3" /> No Aadhar
                       </span>
                     )}
+                    {member.aadhaarNumber && (
+                      <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+                        Aadhaar: {member.aadhaarNumber}
+                      </span>
+                    )}
                     {member.documents?.passport?.[0] ? (
                       <a
                         href={member.documents.passport[0]}
@@ -441,6 +516,11 @@ export default function MembersSection() {
                     ) : (
                       <span className="flex items-center gap-1 text-[10px] font-bold text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/30 px-2 py-1 rounded-lg border border-red-100 dark:border-red-900/50">
                         <Plane className="h-3 w-3" /> No Passport
+                      </span>
+                    )}
+                    {member.passportNumber && (
+                      <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+                        Passport: {member.passportNumber}
                       </span>
                     )}
                   </div>

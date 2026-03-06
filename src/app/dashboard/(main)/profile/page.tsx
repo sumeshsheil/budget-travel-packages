@@ -20,6 +20,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
   User,
   Mail,
   Phone,
@@ -31,14 +36,18 @@ import {
   Pencil,
   X,
   Check,
-  Calendar,
+  Calendar as CalendarIcon,
+  CalendarDays,
 } from "lucide-react";
+import { format } from "date-fns";
+import { Calendar } from "@/components/ui/calendar";
 import ImageUpload from "@/components/ui/image-upload";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { OtpInput } from "@/components/landing/sections/booking/components/OtpInput";
+import { motion } from "motion/react";
 
 const OTP_LENGTH = 4;
 const INDIA_PHONE_REGEX = /^[6-9]\d{9}$/;
@@ -53,6 +62,7 @@ interface UserProfile {
   altPhone?: string;
   image?: string;
   gender?: string;
+  birthDate?: string;
   travelPreference?: string;
   role: string;
   createdAt: string;
@@ -62,6 +72,8 @@ interface UserProfile {
     aadharCard: string[];
     passport: string[];
   };
+  aadhaarNumber?: string;
+  passportNumber?: string;
 }
 
 export default function ProfilePage() {
@@ -78,12 +90,15 @@ export default function ProfilePage() {
   const [phone, setPhone] = useState("");
   const [altPhone, setAltPhone] = useState("");
   const [gender, setGender] = useState<string>("");
+  const [birthDate, setBirthDate] = useState("");
   const [isPhoneVerified, setIsPhoneVerified] = useState(false);
 
   // Upload States
   const [profileImage, setProfileImage] = useState<string[]>([]);
   const [aadharCards, setAadharCards] = useState<string[]>([]);
   const [passports, setPassports] = useState<string[]>([]);
+  const [aadhaarNumber, setAadhaarNumber] = useState("");
+  const [passportNumber, setPassportNumber] = useState("");
 
   // OTP Verification States
   const [isVerifying, setIsVerifying] = useState(false);
@@ -111,6 +126,9 @@ export default function ProfilePage() {
         setPhone(data.user.phone || "");
         setAltPhone(data.user.altPhone || "");
         setGender(data.user.gender || "");
+        setBirthDate(
+          data.user.birthDate ? data.user.birthDate.split("T")[0] : "",
+        );
         setIsPhoneVerified(data.user.isPhoneVerified || false);
 
         if (data.user.image) {
@@ -121,6 +139,8 @@ export default function ProfilePage() {
           setAadharCards(data.user.documents.aadharCard || []);
           setPassports(data.user.documents.passport || []);
         }
+        setAadhaarNumber(data.user.aadhaarNumber || "");
+        setPassportNumber(data.user.passportNumber || "");
       }
     } catch (error) {
       toast.error("Failed to load profile");
@@ -137,15 +157,28 @@ export default function ProfilePage() {
       toast.error("Please select a gender");
       return;
     }
-    if (
-      fieldToSave === "identity" &&
-      (!payload.documents?.aadharCard ||
-        payload.documents.aadharCard.length === 0) &&
-      (!profile?.documents?.aadharCard ||
-        profile.documents.aadharCard.length === 0)
-    ) {
-      toast.error("Aadhar Card is mandatory for verification");
-      return;
+    if (fieldToSave === "identity") {
+      const aNo = payload.aadhaarNumber ?? aadhaarNumber;
+      const pNo = payload.passportNumber ?? passportNumber;
+      const aDocs = payload.documents?.aadharCard ?? aadharCards;
+
+      // Aadhaar is mandatory — both number and PDF must exist together
+      if ((aDocs.length > 0 && !aNo) || (aNo && aDocs.length === 0)) {
+        toast.error(
+          "Both Aadhar Number and Aadhar Card PDF are required together.",
+        );
+        return;
+      }
+
+      if (aNo && !/^\d{12}$/.test(aNo)) {
+        toast.error("Valid 12-digit Aadhaar number is mandatory");
+        return;
+      }
+
+      if (pNo && !/^[a-zA-Z0-9]{8}$/.test(pNo)) {
+        toast.error("Passport must be exactly 8 alphanumeric characters");
+        return;
+      }
     }
 
     setSaving(true);
@@ -255,12 +288,24 @@ export default function ProfilePage() {
     }
   };
 
-  // Cooldown timer
-  useEffect(() => {
-    if (cooldown <= 0) return;
-    const timer = setTimeout(() => setCooldown((c) => c - 1), 1000);
-    return () => clearTimeout(timer);
-  }, [cooldown]);
+  // Calculation for profile completion
+  const calculateCompletion = () => {
+    if (!profile) return 0;
+    let points = 0;
+    if (profile.firstName && profile.lastName) points += 10;
+    if (profile.email) points += 10;
+    if (profile.phone) points += 10;
+    if (profile.isPhoneVerified) points += 20;
+    if (profile.image) points += 10;
+    if (profile.gender) points += 10;
+    if (profile.birthDate) points += 10;
+    if (profile.aadhaarNumber && /^\d{12}$/.test(profile.aadhaarNumber))
+      points += 10;
+    if (profile.documents?.aadharCard?.length) points += 10;
+    return points;
+  };
+
+  const completionPercent = calculateCompletion();
 
   if (loading) {
     return (
@@ -280,6 +325,74 @@ export default function ProfilePage() {
           Manage your details and travel companions.
         </p>
       </div>
+
+      {/* Profile Completion Indicator */}
+      {!profile?.isVerified && (
+        <Card className="border-emerald-100 dark:border-emerald-900/40 bg-linear-to-br from-emerald-50/50 to-white dark:from-emerald-950/20 dark:to-slate-900 overflow-hidden relative">
+          <CardContent className="p-6 relative">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div className="space-y-2 flex-1">
+                <div className="flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-slate-800 dark:text-emerald-300">
+                    Profile Completion
+                  </h3>
+                  <Badge
+                    variant="secondary"
+                    className={cn(
+                      "text-[10px] font-bold",
+                      completionPercent === 100
+                        ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400"
+                        : "bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-400",
+                    )}
+                  >
+                    {completionPercent === 100
+                      ? "Verified Status"
+                      : "Action Required"}
+                  </Badge>
+                </div>
+                <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md">
+                  Complete your profile to unlock all features and ensure smooth
+                  travel bookings. Aadhaar and Passport are mandatory for
+                  international trips.
+                </p>
+              </div>
+
+              <div className="flex items-center gap-4 shrink-0">
+                <div className="relative size-20 shrink-0">
+                  <svg className="size-full -rotate-90" viewBox="0 0 36 36">
+                    <circle
+                      cx="18"
+                      cy="18"
+                      r="16"
+                      fill="none"
+                      className="stroke-slate-200 dark:stroke-slate-800"
+                      strokeWidth="3"
+                    />
+                    <motion.circle
+                      cx="18"
+                      cy="18"
+                      r="16"
+                      fill="none"
+                      className="stroke-emerald-500"
+                      strokeWidth="3"
+                      strokeDasharray="100"
+                      initial={{ strokeDashoffset: 100 }}
+                      animate={{ strokeDashoffset: 100 - completionPercent }}
+                      transition={{ duration: 1, ease: "easeOut" }}
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-xl font-black text-slate-900 dark:text-white">
+                      {completionPercent}%
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       <div className="grid gap-6 lg:grid-cols-[250px_1fr]">
         <Card className="h-fit border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
@@ -360,6 +473,11 @@ export default function ProfilePage() {
                 </Button>
               </div>
             )}
+            {profile?.isVerified && (
+              <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 mb-4 py-1.5 px-8 flex items-center gap-1.5 mx-auto w-fit">
+                <ShieldCheck className="h-4 w-4" /> Verified
+              </Badge>
+            )}
             {!editingField && (
               <p className="text-xs text-center text-muted-foreground mt-2">
                 Click edit to update photo
@@ -392,7 +510,7 @@ export default function ProfilePage() {
               <div className="space-y-4 animate-in fade-in zoom-in-95 duration-200">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">First Name</label>
+                    <label className="text-sm font-medium">First Name*</label>
                     <Input
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
@@ -401,7 +519,7 @@ export default function ProfilePage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Last Name</label>
+                    <label className="text-sm font-medium">Last Name*</label>
                     <Input
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
@@ -452,7 +570,7 @@ export default function ProfilePage() {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Gender</label>
+                    <label className="text-sm font-medium">Gender*</label>
                     <Select value={gender} onValueChange={setGender}>
                       <SelectTrigger>
                         <SelectValue placeholder="Select gender" />
@@ -463,6 +581,43 @@ export default function ProfilePage() {
                         <SelectItem value="other">Other</SelectItem>
                       </SelectContent>
                     </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium">Birth Date*</label>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="outline"
+                          className={cn(
+                            "w-full pl-3 text-left font-normal h-10",
+                            !birthDate && "text-muted-foreground",
+                          )}
+                        >
+                          {birthDate ? (
+                            format(new Date(birthDate), "PPP")
+                          ) : (
+                            <span>Pick a date</span>
+                          )}
+                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={birthDate ? new Date(birthDate) : undefined}
+                          onSelect={(date) =>
+                            setBirthDate(date ? format(date, "yyyy-MM-dd") : "")
+                          }
+                          disabled={(date) =>
+                            date > new Date() || date < new Date("1900-01-01")
+                          }
+                          captionLayout="dropdown"
+                          fromYear={1940}
+                          toYear={new Date().getFullYear()}
+                          initialFocus
+                        />
+                      </PopoverContent>
+                    </Popover>
                   </div>
                 </div>
                 <div className="flex justify-end gap-2 pt-2">
@@ -475,6 +630,11 @@ export default function ProfilePage() {
                       setLastName(profile?.lastName || "");
                       setAltPhone(profile?.altPhone || "");
                       setGender(profile?.gender || "");
+                      setBirthDate(
+                        profile?.birthDate
+                          ? profile.birthDate.split("T")[0]
+                          : "",
+                      );
                     }}
                     disabled={saving}
                   >
@@ -489,6 +649,9 @@ export default function ProfilePage() {
                         lastName,
                         altPhone,
                         gender,
+                        birthDate: birthDate
+                          ? new Date(birthDate).toISOString()
+                          : undefined,
                       })
                     }
                     disabled={saving}
@@ -568,6 +731,16 @@ export default function ProfilePage() {
                   </dt>
                   <dd className="text-base font-medium capitalize text-slate-900 dark:text-white">
                     {profile?.gender || "Not specified"}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1">
+                    Date of Birth
+                  </dt>
+                  <dd className="text-base font-medium text-slate-900 dark:text-white">
+                    {profile?.birthDate
+                      ? format(new Date(profile.birthDate), "PPP")
+                      : "Not specified"}
                   </dd>
                 </div>
                 <div>
@@ -770,19 +943,65 @@ export default function ProfilePage() {
                     <strong>front and back</strong> of your document in a single
                     file. For security, once a mandatory document is verified,
                     it can be updated but not removed.
+                    <br />
+                    <span className="text-[10px] mt-1 block opacity-80">
+                      * Aadhaar: 12 numeric digits | * Passport: 8 alphanumeric
+                      chars (mandatory if international)
+                    </span>
                   </span>
                 </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6 mb-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-bold">Aadhar Number *</label>
+                  <Input
+                    value={aadhaarNumber}
+                    onChange={(e) =>
+                      setAadhaarNumber(
+                        e.target.value.replace(/\D/g, "").slice(0, 12),
+                      )
+                    }
+                    placeholder="1234 5678 9012"
+                    maxLength={12}
+                    className="h-10 text-slate-900"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <label className="text-sm font-bold text-slate-900">
+                      Passport Number
+                    </label>
+                    <span className="text-[10px] text-red-500 font-medium italic">
+                      Mandatory if International
+                    </span>
+                  </div>
+                  <Input
+                    value={passportNumber}
+                    onChange={(e) =>
+                      setPassportNumber(
+                        e.target.value
+                          .replace(/[^a-zA-Z0-9]/g, "")
+                          .toUpperCase()
+                          .slice(0, 8),
+                      )
+                    }
+                    placeholder="A1234567"
+                    maxLength={8}
+                    className="h-10 text-slate-900"
+                  />
+                </div>
               </div>
 
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
-                    <label className="text-sm font-bold">Aadhar Card</label>
+                    <label className="text-sm font-bold">Aadhar Card *</label>
                     <Badge
                       variant="secondary"
                       className="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 border-0 text-[10px] px-2"
                     >
-                      Required for 100% Profile
+                      Mandatory
                     </Badge>
                   </div>
                   <ImageUpload
@@ -838,6 +1057,8 @@ export default function ProfilePage() {
                   className="bg-emerald-600 hover:bg-emerald-700"
                   onClick={() =>
                     handleSaveField("identity", {
+                      aadhaarNumber,
+                      passportNumber,
                       documents: {
                         aadharCard: aadharCards,
                         passport: passports,
@@ -885,6 +1106,11 @@ export default function ProfilePage() {
                     <X className="w-4 h-4" /> No Aadhar uploaded
                   </p>
                 )}
+                {profile?.aadhaarNumber && (
+                  <p className="text-xs font-bold text-slate-700 dark:text-slate-300 pt-1">
+                    Number: {profile.aadhaarNumber}
+                  </p>
+                )}
               </div>
               <div className="space-y-3">
                 <h4 className="text-sm font-medium flex items-center gap-2 text-muted-foreground">
@@ -912,6 +1138,11 @@ export default function ProfilePage() {
                 ) : (
                   <p className="text-sm text-muted-foreground bg-muted/30 p-3 rounded-xl border border-border">
                     No passport uploaded.
+                  </p>
+                )}
+                {profile?.passportNumber && (
+                  <p className="text-xs font-bold text-slate-700 dark:text-slate-300 pt-1">
+                    Number: {profile.passportNumber}
                   </p>
                 )}
               </div>

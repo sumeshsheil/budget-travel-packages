@@ -84,12 +84,12 @@ const HowItWorks: React.FC = () => {
     >
       <div className="container-box px-4">
         <header className="text-center mb-16">
-          <h2
+          <h4
             id="how-it-works-heading"
             className="text-3xl md:text-4xl lg:text-[40px] font-inter font-bold text-black"
           >
             How It Works
-          </h2>
+          </h4>
           <p className="text-gray-500 mt-2">
             Our Simple Travel Planning Process
           </p>

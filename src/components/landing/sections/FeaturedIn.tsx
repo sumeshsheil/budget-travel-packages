@@ -35,13 +35,13 @@ const FeaturedIn: React.FC = () => {
       <div className="container-box px-4">
         {/* Header */}
         <header className="text-center mb-10">
-          <h2
+          <h5
             id="featured-in-heading"
             className="text-2xl md:text-3xl lg:text-4xl font-inter font-bold text-black"
           >
             Featured In Leading{" "}
             <span className="text-primary">Media Sites</span>
-          </h2>
+          </h5>
         </header>
 
         {/* Brand Carousel */}
@@ -109,9 +109,9 @@ const FeaturedIn: React.FC = () => {
 
         {/* Spotlight Badge */}
         <div className="flex justify-center mt-10">
-          <span className="inline-flex items-center px-6 py-2 bg-primary/16 text-black font-open-sans font-bold text-sm md:text-base lg:text-xl rounded-full">
+          <h5  className="inline-flex items-center px-6 py-2 bg-primary/16 text-black font-open-sans font-bold text-sm md:text-base lg:text-xl rounded-full">
             Our Brand In The Spotlight
-          </span>
+          </h5>
         </div>
       </div>
     </section>

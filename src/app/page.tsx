@@ -4,7 +4,6 @@ import CityOperations from "@/components/landing/sections/CityOperations";
 import ServicesWeOffer from "@/components/landing/sections/ServicesWeOffer";
 import PopularPackages from "@/components/landing/sections/PopularPackages";
 import BookYourTrip from "@/components/landing/sections/BookYourTrip";
-import HowItWorks from "@/components/landing/sections/HowItWorks";
 import WhyChooseUs from "@/components/landing/sections/WhyChooseUs";
 import FeaturedIn from "@/components/landing/sections/FeaturedIn";
 import FAQ from "@/components/landing/sections/FAQ";
@@ -20,11 +19,9 @@ export default function Home() {
       <main>
         <Hero />
         <CityOperations />
-        <ServicesWeOffer />
         <PopularPackages />
         <BookYourTrip />
-
-        <HowItWorks />
+        <ServicesWeOffer />
         <WhyChooseUs />
         <FeaturedIn />
         <FAQ />

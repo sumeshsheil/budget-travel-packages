@@ -9,6 +9,7 @@ import mongoose from "mongoose";
 import { z } from "zod";
 import { logLeadActivity } from "@/lib/lead-activity";
 import { createNotification } from "@/lib/notifications";
+import { sendLeadAssignmentEmail } from "@/lib/email";
 
 // ============ AUTH HELPER ============
 
@@ -161,7 +162,7 @@ export async function updateLeadStage(leadId: string, newStage: string) {
       "negotiation",
       "won",
       "lost",
-      "stale",
+      "abandoned",
     ];
     if (!validStages.includes(newStage)) {
       return { success: false, error: "Invalid stage value" };
@@ -201,6 +202,14 @@ export async function updateLeadStage(leadId: string, newStage: string) {
             "Travel Documents/Tickets must be uploaded before marking as Won.",
         };
       }
+
+      // 4. Check Payment Status
+      if (lead.paymentStatus !== "paid") {
+        return {
+          success: false,
+          error: "The trip must be fully paid before it can be marked as Won.",
+        };
+      }
     }
 
     const previousStage = lead.stage;
@@ -215,7 +224,7 @@ export async function updateLeadStage(leadId: string, newStage: string) {
     await logLeadActivity({
       leadId,
       userId: session?.user?.id,
-      action: newStage === "stale" ? "auto_stale" : "stage_changed",
+      action: newStage === "abandoned" ? "auto_abandon" : "stage_changed",
       fromStage: previousStage,
       toStage: newStage,
       details: `Stage changed from ${previousStage} to ${newStage}`,
@@ -255,13 +264,15 @@ export async function assignAgent(leadId: string, agentId: string) {
     const isUnassigning =
       !agentId || agentId === "unassigned" || agentId === "";
 
+    let targetUser: any = null;
+
     if (!isUnassigning) {
       if (!mongoose.Types.ObjectId.isValid(agentId)) {
         return { success: false, error: "Invalid agent ID" };
       }
 
       // Ensure the target is an agent or an admin
-      const targetUser = await User.findById(agentId);
+      targetUser = await User.findById(agentId);
       if (!targetUser || !["agent", "admin"].includes(targetUser.role)) {
         return {
           success: false,
@@ -300,6 +311,14 @@ export async function assignAgent(leadId: string, agentId: string) {
         message: "You have been assigned a new lead.",
         type: "info",
         link: `/admin/leads/${leadId}`,
+      });
+
+      // Send Email Notification
+      await sendLeadAssignmentEmail({
+        agentName: targetUser!.name,
+        agentEmail: targetUser!.email,
+        leadCount: 1,
+        leadUrl: `${process.env.NEXTAUTH_URL}/admin/leads/${leadId}`,
       });
     }
 
@@ -363,17 +382,19 @@ export async function bulkAssignAgents(leadIds: string[], agentId: string) {
     const isUnassigning =
       !agentId || agentId === "unassigned" || agentId === "";
 
+    let targetAgent: any = null;
+
     if (!isUnassigning) {
       if (!mongoose.Types.ObjectId.isValid(agentId)) {
         return { success: false, error: "Invalid agent ID" };
       }
 
-      const agent = await User.findById(agentId);
-      if (!agent || agent.role !== "agent") {
+      targetAgent = await User.findById(agentId);
+      if (!targetAgent || targetAgent.role !== "agent") {
         return { success: false, error: "Target user is not an agent" };
       }
 
-      if (!agent.isVerified) {
+      if (!targetAgent.isVerified) {
         return {
           success: false,
           error: "Only verified agents can be assigned to leads.",
@@ -411,6 +432,14 @@ export async function bulkAssignAgents(leadIds: string[], agentId: string) {
         message: `You have been assigned ${leadIds.length} new leads.`,
         type: "info",
         link: `/admin/leads`,
+      });
+
+      // Send Email Notification
+      await sendLeadAssignmentEmail({
+        agentName: targetAgent!.name,
+        agentEmail: targetAgent!.email,
+        leadCount: leadIds.length,
+        leadUrl: `${process.env.NEXTAUTH_URL}/admin/leads`,
       });
     }
 
@@ -515,6 +544,80 @@ export async function addLeadComment(leadId: string, text: string) {
   } catch (error: unknown) {
     const message =
       error instanceof Error ? error.message : "Failed to add comment";
+    return { success: false, error: message };
+  }
+}
+
+export async function updateLeadComment(
+  leadId: string,
+  commentId: string,
+  text: string,
+) {
+  try {
+    await verifySession();
+    await connectDB();
+
+    if (
+      !mongoose.Types.ObjectId.isValid(leadId) ||
+      !mongoose.Types.ObjectId.isValid(commentId)
+    ) {
+      return { success: false, error: "Invalid IDs" };
+    }
+
+    if (!text || text.trim().length === 0) {
+      return { success: false, error: "Comment text cannot be empty" };
+    }
+
+    const lead = await Lead.findById(leadId);
+    if (!lead) return { success: false, error: "Lead not found" };
+
+    const comment = (lead.comments as any[]).find(
+      (c) => c._id.toString() === commentId,
+    );
+    if (!comment) return { success: false, error: "Comment not found" };
+
+    comment.text = text.trim();
+    lead.lastActivityAt = new Date();
+    await lead.save();
+
+    revalidatePath(`/admin/leads/${leadId}`);
+
+    return { success: true, message: "Comment updated successfully." };
+  } catch (error: unknown) {
+    const message =
+      error instanceof Error ? error.message : "Failed to update comment";
+    return { success: false, error: message };
+  }
+}
+
+export async function deleteLeadComment(leadId: string, commentId: string) {
+  try {
+    await verifySession();
+    await connectDB();
+
+    if (
+      !mongoose.Types.ObjectId.isValid(leadId) ||
+      !mongoose.Types.ObjectId.isValid(commentId)
+    ) {
+      return { success: false, error: "Invalid IDs" };
+    }
+
+    const lead = await Lead.findById(leadId);
+    if (!lead) return { success: false, error: "Lead not found" };
+
+    lead.comments = (lead.comments as any[]).filter(
+      (c) => c._id.toString() !== commentId,
+    );
+
+    lead.lastActivityAt = new Date();
+    await lead.save();
+
+    revalidatePath(`/admin/leads/${leadId}`);
+
+    return { success: true, message: "Comment deleted successfully." };
+  } catch (error: unknown) {
+    const message =
+      error instanceof Error ? error.message : "Failed to delete comment";
     return { success: false, error: message };
   }
 }

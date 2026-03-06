@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import BlogCard from "@/components/blog/BlogCard";
+import Newsletter from "@/components/blog/Newsletter";
 import Link from "next/link";
 import { getPostsByCategory } from "@/lib/wordpress/api";
 import { Metadata } from "next";
@@ -117,6 +118,9 @@ export default async function CategoryPage({ params }: PageProps) {
           )}
         </div>
       </section>
+
+      {/* Newsletter Subscription */}
+      <Newsletter />
     </div>
   );
 }

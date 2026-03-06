@@ -31,14 +31,14 @@ const TravelSmartCTA: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="text-center lg:text-left"
           >
-            <h2
+            <h6
               id="cta-heading"
               className="text-3xl md:text-4xl lg:text-5xl font-inter font-semibold text-black"
             >
               Travel Smart.
               <br />
               <span className="text-primary">Explore More, Spend Less!</span>
-            </h2>
+            </h6>
 
             <p className="mt-4 md:mt-6 text-base md:text-lg text-black max-w-[700px] mx-auto lg:mx-0 leading-relaxed">
               Let our travel experts create a memorable journey with the best

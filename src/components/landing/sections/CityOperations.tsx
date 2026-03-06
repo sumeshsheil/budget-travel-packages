@@ -46,55 +46,16 @@ const cityData = [
 
 const CityOperations: React.FC = () => {
   return (
-    <section className="xl:pt-20 md:pt-10 pb-10 relative overflow-hidden bg-white">
-      <div className="relative z-10 mb-0 md:mb-16 px-4 flex flex-col md:flex-row md:flex-wrap  md:gap-x-10 xl:block">
-        {/* Plane Animation */}
-        <div className="order-1 md:order-1 relative  xl:absolute xl:top-2 xl:left-0 2xl:left-10 w-48 md:w-72 xl:mx-0 pointer-events-none mt-0 md:mt-0 -scale-x-100">
-          <LottieAnimation
-            src="/animations/plane.json"
-            width="100%"
-            height="auto"
-            className="w-full h-auto opacity-65"
-          />
-        </div>
-        {/* Header */}
-        <div className="text-center order-2 md:order-2 md:w-full xl:w-auto">
-          <h2 className="text-3xl md:text-4xl lg:text-[40px] xl:text-[48px] font-inter font-semibold text-black leading-tight mb-6">
-            Why Budget Travel Packages Is One Of
-            <br className="hidden md:block" /> The{" "}
-            <span className="text-primary">
-              Best Travel Companies In India?
-            </span>
-          </h2>
-          <div className="inline-block bg-new-blue  px-6 py-2.5 mb-4 rounded-full">
-            <p className="font-semibold font-inter text-white text-lg md:text-xl lg:text-2xl">
-              Pan-India Multi-City Services
-            </p>
-          </div>
-          <p className="text-base md:text-lg max-w-[800px] mx-auto font-inter font-semibold text-gray-600">
-            We proudly serve travelers across 75+ cities in India, with the
-            highest number of satisfied customers from Kolkata, Delhi, and
-            Mumbai.
-          </p>
-        </div>
-        {/* Train Animation */}
-        <div className="order-3 md:order-3 relative md:static xl:absolute xl:top-4 xl:right-0 2xl:right-10 w-[170px]  md:w-[250px] ml-auto xl:mx-0 pointer-events-none mb-2 md:mb-8 xl:mb-0 -scale-x-100">
-          <LottieAnimation
-            src="/animations/train.json"
-            width="100%"
-            height="auto"
-            className="w-full h-auto opacity-65"
-          />
-        </div>
-      </div>
+    <section className=" pb-10 relative overflow-hidden bg-white">
+      
 
       {/* City Content Blocks */}
       <div className="space-y-0">
         {cityData.map((city) => (
           <div key={city.id} className="relative w-full py-16 md:py-24">
-            {city.id === "kolkata" && (
+            {/* {city.id === "kolkata" && (
               <div className="absolute top-0 left-1/2 -translate-x-1/2 container-box  w-full border-b-2 border-dashed border-secondary/50 z-20" />
-            )}
+            )} */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 container-box  w-full border-b-2 border-dashed border-secondary/50 z-20" />
 
             <div
@@ -119,13 +80,13 @@ const CityOperations: React.FC = () => {
                 className={`flex flex-col lg:flex-row items-center justify-center`}
               >
                 <div className="w-full max-w-[800px] flex flex-col items-center justify-center text-center px-4">
-                  <h3 className="text-2xl md:text-3xl lg:text-[40px] font-inter font-bold text-black mb-4 lg:mb-4.5">
+                  <h2 className="text-2xl md:text-3xl lg:text-[40px] font-inter font-bold text-black mb-4 lg:mb-4.5">
                     {city.title.replace(city.highlight, "")}
                     <span className={city.highlightColor}>
                       {" "}
                       {city.highlight}
                     </span>
-                  </h3>
+                  </h2>
                   <p className="font-open-sans text-black text-sm md:text-base leading-relaxed mb-9">
                     {city.description}
                   </p>
