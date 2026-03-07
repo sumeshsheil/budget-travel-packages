@@ -48,7 +48,7 @@ import {
   Clock,
 } from "lucide-react";
 import { format } from "date-fns";
-import { cn } from "@/lib/utils";
+import { cn, calculateAge } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import * as z from "zod";
@@ -208,17 +208,8 @@ export const PlanTripModal: React.FC<PlanTripModalProps> = ({
     }
   }, [tripType, duration, guests, budget, setValue]);
 
-  const calculateAge = (birthDate?: Date) => {
-    if (!birthDate) return 25; // Fallback
-    const today = new Date();
-    const dob = new Date(birthDate);
-    let age = today.getFullYear() - dob.getFullYear();
-    const m = today.getMonth() - dob.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
-      age--;
-    }
-    return age;
-  };
+  const userAge = user.birthDate ? calculateAge(user.birthDate) : null;
+  const isUnderage = userAge === null || userAge < 18;
 
   const onSubmit = async (values: TripFormValues) => {
     setIsSubmitting(true);
@@ -241,7 +232,7 @@ export const PlanTripModal: React.FC<PlanTripModalProps> = ({
           lastName,
           email: user.email,
           phone: user.phone || "0000000000",
-          age: calculateAge(user.birthDate),
+          age: userAge,
           gender: (user.gender as any) || "male",
         },
       };
@@ -294,6 +285,28 @@ export const PlanTripModal: React.FC<PlanTripModalProps> = ({
                   <Button
                     variant="link"
                     className="p-0 h-auto text-red-800 dark:text-red-400 font-bold text-xs underline decoration-2 underline-offset-4"
+                    asChild
+                  >
+                    <Link href="/dashboard/profile">Go to Profile</Link>
+                  </Button>
+                </div>
+              </div>
+            )}
+            {isUnderage && (
+              <div className="mb-6 p-4 bg-amber-50 dark:bg-amber-950/30 border border-amber-100 dark:border-amber-900 rounded-xl flex items-start gap-3 animate-in fade-in slide-in-from-top-2">
+                <ShieldAlert className="h-5 w-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <p className="text-sm font-bold text-amber-900 dark:text-amber-200">
+                    Age Requirement Not Met
+                  </p>
+                  <p className="text-xs text-amber-700 dark:text-amber-300">
+                    You must be at least 18 years old to create a trip plan.
+                    Please ensure your birth date is accurately recorded in
+                    your profile.
+                  </p>
+                  <Button
+                    variant="link"
+                    className="p-0 h-auto text-amber-800 dark:text-amber-400 font-bold text-xs underline decoration-2 underline-offset-4"
                     asChild
                   >
                     <Link href="/dashboard/profile">Go to Profile</Link>
@@ -716,7 +729,7 @@ export const PlanTripModal: React.FC<PlanTripModalProps> = ({
                 <Button
                   type="submit"
                   className="flex-2 rounded-2xl h-16 bg-new-blue hover:brightness-110 text-white font-bold text-lg shadow-xl shadow-blue-100 dark:shadow-blue-900/30 transition-all hover:scale-[1.01] active:scale-[0.99] disabled:opacity-70 disabled:grayscale border-none"
-                  disabled={isSubmitting || !user.isPhoneVerified}
+                  disabled={isSubmitting || !user.isPhoneVerified || isUnderage}
                 >
                   {isSubmitting ? (
                     <div className="flex items-center gap-3">

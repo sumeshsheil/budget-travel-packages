@@ -9,6 +9,7 @@ import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 
 export default function Newsletter() {
   const [email, setEmail] = useState("");
+  const [showCaptcha, setShowCaptcha] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const turnstileRef = React.useRef<TurnstileInstance>(null);
   const [errorMessage, setErrorMessage] = useState("");
@@ -16,12 +17,12 @@ export default function Newsletter() {
     "idle" | "loading" | "success" | "error"
   >("idle");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
     if (!email) return;
 
     if (!captchaToken) {
-      toast.error("Please complete the captcha.");
+      setShowCaptcha(true);
       return;
     }
 
@@ -44,11 +45,11 @@ export default function Newsletter() {
       toast.success(data.message || "Subscribed successfully!");
       setEmail("");
       setCaptchaToken(null);
-      turnstileRef.current?.reset();
+      setShowCaptcha(false);
     } catch (error: any) {
       setStatus("error");
-      turnstileRef.current?.reset();
       setCaptchaToken(null);
+      setShowCaptcha(false);
       setErrorMessage(
         error.message || "Failed to subscribe. Please try again.",
       );
@@ -118,7 +119,8 @@ export default function Newsletter() {
                     </div>
                     <button
                       type="submit"
-                      disabled={status === "loading"}
+                      id="newsletter-submit-btn"
+                      disabled={status === "loading" || showCaptcha}
                       className="bg-new-blue text-white px-10 py-4 rounded-xl md:rounded-full font-black text-sm uppercase tracking-widest hover:brightness-110 active:scale-[0.98] transition-all disabled:opacity-50 flex items-center justify-center gap-3"
                     >
                       {status === "loading" ? (
@@ -132,15 +134,29 @@ export default function Newsletter() {
                     </button>
                   </div>
                   
-                  <div className="flex justify-center">
-                    <Turnstile
-                      ref={turnstileRef}
-                      siteKey={process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY || ""}
-                      onSuccess={(token) => setCaptchaToken(token)}
-                      onExpire={() => setCaptchaToken(null)}
-                      onError={() => setCaptchaToken(null)}
-                    />
-                  </div>
+                  {showCaptcha && (
+                    <div className="flex justify-center animate-in fade-in zoom-in duration-300">
+                      <Turnstile
+                        ref={turnstileRef}
+                        siteKey={process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY || ""}
+                        onSuccess={(token) => {
+                          setCaptchaToken(token);
+                          setShowCaptcha(false);
+                          setTimeout(() => {
+                            const btn = document.getElementById('newsletter-submit-btn');
+                            btn?.click();
+                          }, 100);
+                        }}
+                        onExpire={() => setCaptchaToken(null)}
+                        onError={() => {
+                          setCaptchaToken(null);
+                          setShowCaptcha(false);
+                          toast.error("Captcha failed. Please try again.");
+                        }}
+                      />
+                    </div>
+                  )}
+
                   {status === "error" && (
                     <p className="mt-3 text-red-500 text-xs font-bold font-open-sans">
                       {errorMessage || "Please enter a valid email."}
@@ -148,18 +164,6 @@ export default function Newsletter() {
                   )}
                 </form>
               )}
-              <p className="mt-6 text-[13px] text-black font-bold tracking-wide uppercase opacity-80">
-                NO SPAM • ONE-CLICK UNSUBSCRIBE • PRIVACY-FIRST
-              </p>
-              <div className="mt-5 flex items-center justify-center gap-2 text-sm font-bold text-secondary">
-                <Mail className="w-4 h-4" />
-                <a
-                  href="mailto:hello@budgettravelpackages.in"
-                  className="hover:underline underline-offset-4"
-                >
-                  hello@budgettravelpackages.in
-                </a>
-              </div>
             </div>
           </div>
         </motion.div>

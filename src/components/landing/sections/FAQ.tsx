@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "motion/react";
+import { m, AnimatePresence } from "motion/react";
 import { Plus, Minus, ChevronDown, ChevronUp } from "lucide-react";
 import Button from "../ui/button";
 
@@ -19,19 +19,19 @@ const faqData: FAQItem[] = [
     id: 1,
     question: "Do you offer fixed packages or customized packages?",
     answer:
-      "We offer 100% customized travel packages designed according to your budget, travel dates, and preferences.",
+      "We offer 100% customized travel packages designed according to your budget, travel dates and preferences.",
   },
   {
     id: 2,
     question: "Is there a pre-booking amount?",
     answer:
-      "Yes, a pre-booking amount of ₹599 for domestic trips and ₹999 for international trips is required to start planning your customized itinerary.",
+      "Yes, a pre-booking amount of ₹333 for devotional trips and ₹666 for domestic trips and ₹999 for international trips is required to start planning your customized itinerary.",
   },
   {
     id: 3,
     question: "Is the pre-booking amount refundable?",
     answer:
-      "No, the pre-booking amount is non-refundable as it covers research, itinerary planning, and tour operator confirmations.",
+      "No, the pre-booking amount is non-refundable as it covers research, itinerary planning and tour operator confirmations.",
   },
   {
     id: 4,
@@ -43,25 +43,25 @@ const faqData: FAQItem[] = [
     id: 5,
     question: "What is included in a customized travel package?",
     answer:
-      "Your package can include flights, hotels, transfers, sightseeing, visa assistance, and activities based on your requirements.",
+      "Your package can include flights, hotels, transfers, sightseeing, visa assistance and activities based on your requirements.",
   },
   {
     id: 6,
     question: "Are there any hidden charges?",
     answer:
-      "No. We follow transparent pricing, and all costs are clearly shared before booking confirmation.",
+      "No. We follow transparent pricing and all costs are clearly shared before booking confirmation.",
   },
   {
     id: 7,
     question: "Which cities do you serve?",
     answer:
-      "We provide travel services across 75+ cities in India, with major bookings from Kolkata, Delhi, and Mumbai.",
+      "We provide travel services across 75+ cities in India, with major bookings from Kolkata, Delhi and Mumbai.",
   },
   {
     id: 8,
     question: "How does the booking process work?",
     answer:
-      "You share your travel requirements, pay the pre-booking amount, receive a customized itinerary, and confirm your trip after finalizing the plan.",
+      "You share your travel requirements, pay the pre-booking amount, receive a customized itinerary and confirm your trip after finalizing the plan.",
   },
   {
     id: 9,
@@ -89,9 +89,9 @@ const faqData: FAQItem[] = [
   },
   {
     id: 13,
-    question: "Do you provide flight bookings separately?",
+    question: "Do you provide flight and hotels bookings separately?",
     answer:
-      "No, we do not provide flight bookings separately.",
+      "No, we do not provide flight and hotels bookings separately.",
   },
   {
     id: 14,
@@ -103,7 +103,7 @@ const faqData: FAQItem[] = [
     id: 15,
     question: "Why should I choose Budget Travel Packages?",
     answer:
-      "We offer personalized planning, transparent pricing, flexible payment options, and trusted service across India, making travel easy and hassle-free.",
+      "We offer personalized planning, transparent pricing, flexible payment options and trusted service across India, making travel easy and hassle-free.",
   },
 ];
 
@@ -201,7 +201,7 @@ const FAQ: React.FC = () => {
       />
 
       {/* World Map Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none ">
+      <div className="absolute w-[60%] sm:w-[40%] h-auto lg:inset-0 z-0 pointer-events-none ">
         <Image
           src={worldMap}
           alt=""
@@ -272,7 +272,7 @@ const FAQ: React.FC = () => {
                 {/* Answer Panel */}
                 <AnimatePresence>
                   {isOpen && (
-                    <motion.div
+                    <m.div
                       id={panelId}
                       role="region"
                       aria-labelledby={buttonId}
@@ -285,7 +285,7 @@ const FAQ: React.FC = () => {
                       <div className="px-6 py-4 text-secondary-text text-sm md:text-base leading-relaxed">
                         {faq.answer}
                       </div>
-                    </motion.div>
+                    </m.div>
                   )}
                 </AnimatePresence>
               </div>

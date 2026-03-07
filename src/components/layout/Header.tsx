@@ -27,7 +27,9 @@ function SearchParamsHandler({ onOpenLogin }: { onOpenLogin: () => void }) {
   useEffect(() => {
     const token = searchParams.get("token");
     const action = searchParams.get("action");
-    if (token && action === "set-password") {
+    const login = searchParams.get("login");
+
+    if ((token && action === "set-password") || login === "true") {
       onOpenLogin();
     }
   }, [searchParams, onOpenLogin]);
@@ -379,25 +381,28 @@ const Header: React.FC = () => {
                   </Button>
                   <div className="w-full bg-gray-600 h-px" />
                   {[
-                    { href: "#services", label: "Services" },
+                    { href: "#kolkata", label: "Kolkata" },
+                    { href: "#delhi", label: "Delhi" },
+                    { href: "#mumbai", label: "Mumbai" },
                     { href: "#travel-purpose", label: "Travel Purpose" },
                     { href: "#start-planning", label: "Customize Trip" },
-                    { href: "#how-it-works", label: "How It Works" },
+                    { href: "#services", label: "What's Included?" },
+                    { href: "#why-choose-us", label: "Why Choose Us?" },
                     { href: "#faqs", label: "FAQs" },
-                    { href: "#contact", label: "Contact" },
+                    { href: "#travel-smart", label: "Contact" },
                     { href: "#contact", label: "About" },
                   ].map((link, index) => (
                     <motion.li
-                      key={link.href}
+                      key={`${link.href}-${index}`}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
-                      className="transform-gpu will-change-transform"
+                      className="transform-gpu will-change-transform w-full text-center"
                     >
                       <Link
                         href={link.href}
                         onClick={toggleMenu}
-                        className="block text-secondary-text hover:text-primary transition-colors font-semibold text-sm md:text-lg font-open-sans"
+                        className="block w-full py-1 text-secondary-text hover:text-primary transition-colors font-semibold text-sm md:text-base font-open-sans"
                       >
                         {link.label}
                       </Link>

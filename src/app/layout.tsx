@@ -38,11 +38,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://budgettravelpackages.in"),
   title: {
-    default: "Book Domestic & International Tour Packages from India",
+    default: "Budget Travel Packages India | Affordable Trips Worldwide",
     template: "%s | Budget Travel Packages",
   },
   description:
-    "Book customized domestic & international vacation plan from India. Flights, Trains, Hotels, Sightseeing & much more... Explore More, Spend Less!",
+    "Discover affordable domestic and international travel packages. Get custom itineraries, compare deals, and book your dream vacation with Budget Travel Packages.",
   keywords: [
     "Budget Travel Packages",
     "Customized Tour Packages",
@@ -61,14 +61,14 @@ export const metadata: Metadata = {
     telephone: false,
   },
   icons: {
-    icon: "/images/logo/logo.svg",
-    shortcut: "/images/logo/logo.svg",
-    apple: "/images/logo/logo.svg",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
   },
   openGraph: {
-    title: "Budget Travel Packages - Customized Tours",
+    title: "Budget Travel Packages India | Affordable Trips Worldwide",
     description:
-      "Book affordable, fully customized domestic and international travel packages. Expert planned itineraries from Kolkata, Delhi, Mumbai.",
+      "Discover affordable domestic and international travel packages. Get custom itineraries, compare deals and book your dream vacation with Budget Travel Packages.",
     url: "https://budgettravelpackages.in",
     siteName: "Budget Travel Packages",
     locale: "en_IN",
@@ -84,9 +84,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Budget Travel Packages",
+    title: "Budget Travel Packages India | Affordable Trips Worldwide",
     description:
-      "Affordable, customized domestic and international travel packages from India.",
+      "Discover affordable domestic and international travel packages. Get custom itineraries, compare deals, and book your dream vacation with Budget Travel Packages.",
     images: ["/images/logo/logo.svg"], // Same here
   },
   alternates: {
@@ -157,7 +157,26 @@ export default function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PP3L5HBW');`,
+          }}
+        />
+      </head>
       <body className={`${inter.variable} ${openSans.variable} antialiased`}>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-PP3L5HBW"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

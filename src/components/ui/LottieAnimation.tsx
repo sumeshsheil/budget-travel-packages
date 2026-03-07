@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Lottie from "lottie-react";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 
 interface LottieAnimationProps {
   animationData?: object;
@@ -49,7 +49,7 @@ const LottieAnimation: React.FC<LottieAnimationProps> = ({
   }, [shouldRender, src, data]);
 
   return (
-    <motion.div
+    <m.div
       className={className}
       style={{
         width: width || "100%",
@@ -67,7 +67,7 @@ const LottieAnimation: React.FC<LottieAnimationProps> = ({
           className="w-full h-full"
         />
       ) : null}
-    </motion.div>
+    </m.div>
   );
 };
 

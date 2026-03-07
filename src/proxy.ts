@@ -47,8 +47,8 @@ export async function proxy(request: NextRequest) {
     // Note: Customer auth redirects are also handled by requireCustomerAuth guard in components,
     // but we can add proxy protection here for faster redirects.
     if (!token) {
-      const loginUrl = new URL("/dashboard/login", request.url);
-      loginUrl.searchParams.set("callbackUrl", url.pathname);
+      const loginUrl = new URL("/", request.url);
+      loginUrl.searchParams.set("login", "true");
       return NextResponse.redirect(loginUrl);
     }
 

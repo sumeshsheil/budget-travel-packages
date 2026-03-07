@@ -1,30 +1,23 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { motion } from "motion/react";
-import Lottie from "lottie-react";
+import { m } from "motion/react";
+import LottieAnimation from "../../ui/LottieAnimation";
 import Link from "next/link";
 import { PhoneCall, Mail } from "lucide-react";
 
 const TravelSmartCTA: React.FC = () => {
-  const [animationData, setAnimationData] = useState<object | null>(null);
-
-  useEffect(() => {
-    fetch("/lottie/travel-smart.json")
-      .then((res) => res.json())
-      .then((data) => setAnimationData(data))
-      .catch((err) => console.error("Failed to load Lottie animation:", err));
-  }, []);
 
   return (
     <section
+      id="travel-smart"
       className="pt-20 relative overflow-hidden bg-white"
       aria-labelledby="cta-heading"
     >
       <div className="container-box px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 justify-between items-end gap-8">
           {/* Left Content */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -80,10 +73,10 @@ const TravelSmartCTA: React.FC = () => {
                 </div>
               </Link>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Right Content - Lottie Animation */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -91,15 +84,14 @@ const TravelSmartCTA: React.FC = () => {
             className="flex justify-center lg:justify-end items-end"
           >
             <div className="relative w-full max-w-[600px]">
-              {animationData && (
-                <Lottie
-                  animationData={animationData}
-                  loop={true}
-                  className="w-full h-auto"
-                />
-              )}
+              <LottieAnimation
+                src="/lottie/travel-smart.json"
+                className="w-full h-auto"
+                loop={true}
+                autoplay={true}
+              />
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

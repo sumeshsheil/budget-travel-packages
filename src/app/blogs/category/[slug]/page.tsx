@@ -25,7 +25,7 @@ const CATEGORY_INFO: Record<
       "Discover affordable international destinations with curated guides, visa tips, and budget-friendly itineraries.",
     icon: "🌍",
   },
-  "travel-insights": {
+  insights: {
     title: "Travel Insights",
     description:
       "Get expert travel tips, guides, and insights to make your next budget-friendly trip a breeze.",

@@ -1,4 +1,12 @@
+import { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 import { DashboardSidebar } from "@/components/dashboard/layout/DashboardSidebar";
 import { DashboardHeader } from "@/components/dashboard/layout/DashboardHeader";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";

@@ -54,7 +54,7 @@ export const DurationSelect: React.FC<DurationSelectProps> = ({
       <SelectContent
         data-lenis-prevent
         position="popper"
-        className="w-(--radix-select-trigger-width) max-h-60 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-xl p-1 overflow-y-auto scrollbar-thin"
+        className="w-(--radix-select-trigger-width) max-h-60 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-xl p-1"
       >
         {Array.from({ length: 30 }, (_, i) => i + 1).map((day) => {
           const val = `${day} Day${day > 1 ? "s" : ""}`;

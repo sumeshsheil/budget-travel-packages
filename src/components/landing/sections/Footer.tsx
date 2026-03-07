@@ -324,7 +324,7 @@ const Footer: React.FC = () => {
                   </Link>
                   <span className="text-gray-400">•</span>
                   <Link
-                    href="/admin"
+                    href="https://portal.budgettravelpackages.in"
                     className="hover:text-primary transition-colors"
                   >
                     Travel Portal

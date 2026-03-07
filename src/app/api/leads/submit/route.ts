@@ -138,6 +138,8 @@ export async function POST(request: Request) {
           email: customerEmail,
           password: placeholderPassword,
           name: `${primaryContact.firstName} ${primaryContact.lastName}`.trim(),
+          firstName: primaryContact.firstName,
+          lastName: primaryContact.lastName,
           role: "customer",
           phone: primaryContact.phone,
           isActivated: false,
@@ -230,12 +232,12 @@ export async function POST(request: Request) {
       `${primaryContact.firstName} ${primaryContact.lastName}`.trim();
 
     await Promise.allSettled([
-      sendWelcomeEmail({
-        name: primaryContact.firstName,
-        to: primaryContact.email,
-      }),
       ...(setPasswordUrl
         ? [
+            sendWelcomeEmail({
+              name: primaryContact.firstName,
+              to: primaryContact.email,
+            }),
             sendSetPasswordEmail({
               name: primaryContact.firstName,
               email: primaryContact.email,

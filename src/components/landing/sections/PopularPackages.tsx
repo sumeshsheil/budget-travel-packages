@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 
 import familyImg from "@/../public/images/banner/family.jpeg";
 import honeymoonImg from "@/../public/images/banner/honeymoon.jpeg";
@@ -58,7 +58,7 @@ const PopularPackages: React.FC = () => {
           role="list"
         >
           {packages.map((pkg, index) => (
-            <motion.div
+            <m.div
               key={pkg.id}
               role="listitem"
               initial={{ opacity: 0, y: 20 }}
@@ -76,9 +76,10 @@ const PopularPackages: React.FC = () => {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover"
                   placeholder="blur"
+                  loading="lazy"
                 />
               </article>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

@@ -39,7 +39,7 @@ export const primaryContactSchema = z.object({
     .max(50, "Last name is too long"),
   age: z
     .number({ error: "Age must be a number" })
-    .min(1, "Age must be at least 1")
+    .min(18, "Age must be at least 18")
     .max(120, "Please enter a valid age"),
   gender: z.enum(["male", "female", "other"], {
     error: "Please select a gender",

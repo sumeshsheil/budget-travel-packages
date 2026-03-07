@@ -52,7 +52,7 @@ const CityOperations: React.FC = () => {
       {/* City Content Blocks */}
       <div className="space-y-0">
         {cityData.map((city) => (
-          <div key={city.id} className="relative w-full py-16 md:py-24">
+          <div key={city.id} id={city.id} className="relative w-full py-16 md:py-24 scroll-mt-24">
             {/* {city.id === "kolkata" && (
               <div className="absolute top-0 left-1/2 -translate-x-1/2 container-box  w-full border-b-2 border-dashed border-secondary/50 z-20" />
             )} */}
@@ -69,8 +69,8 @@ const CityOperations: React.FC = () => {
                   alt={city.alt}
                   sizes="(max-width: 768px) 100vw, 50vw"
                   placeholder="blur"
+                  loading="lazy"
                   className={`h-full w-auto object-contain object-bottom ${city.id === "delhi" ? "opacity-50" : ""}`}
-
                 />
               </div>
             </div>

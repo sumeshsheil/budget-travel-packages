@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 import {
   NotebookPen,
@@ -46,7 +46,7 @@ const services: ServiceItem[] = [
 
 const WhatWeOfferContent: React.FC = () => {
   return (
-    <motion.div
+    <m.div
       variants={staggerContainer}
       initial="initial"
       whileInView="animate"
@@ -54,7 +54,7 @@ const WhatWeOfferContent: React.FC = () => {
       className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl mx-auto"
     >
       {services.map((service, index) => (
-        <motion.div
+        <m.div
           key={index}
           variants={staggerItem}
           className="bg-secondary rounded-xl p-4 flex items-center gap-4 shadow-lg hover:shadow-xl transition-shadow duration-300"
@@ -65,9 +65,9 @@ const WhatWeOfferContent: React.FC = () => {
           <p className="text-white font-open-sans font-semibold text-base md:text-lg">
             {service.title}
           </p>
-        </motion.div>
+        </m.div>
       ))}
-    </motion.div>
+    </m.div>
   );
 };
 

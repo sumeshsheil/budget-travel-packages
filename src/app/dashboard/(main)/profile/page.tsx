@@ -44,7 +44,7 @@ import { Calendar } from "@/components/ui/calendar";
 import ImageUpload from "@/components/ui/image-upload";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
+import { cn, calculateAge } from "@/lib/utils";
 import Image from "next/image";
 import { OtpInput } from "@/components/landing/sections/booking/components/OtpInput";
 import { motion } from "motion/react";
@@ -120,8 +120,18 @@ export default function ProfilePage() {
         setProfile(data.user);
 
         // Populate form
-        setFirstName(data.user.firstName || "");
-        setLastName(data.user.lastName || "");
+        // Populate form with name splitting fallback
+        let fName = data.user.firstName || "";
+        let lName = data.user.lastName || "";
+        
+        if ((!fName || !lName) && data.user.name) {
+          const nameParts = data.user.name.trim().split(/\s+/);
+          if (!fName) fName = nameParts[0] || "";
+          if (!lName) lName = nameParts.slice(1).join(" ") || "";
+        }
+
+        setFirstName(fName);
+        setLastName(lName);
         setEmail(data.user.email || "");
         setPhone(data.user.phone || "");
         setAltPhone(data.user.altPhone || "");
@@ -157,6 +167,15 @@ export default function ProfilePage() {
       toast.error("Please select a gender");
       return;
     }
+
+    if (fieldToSave === "personal" && payload.birthDate) {
+      const age = calculateAge(payload.birthDate);
+      if (age < 18) {
+        toast.error("Age must be at least 18");
+        return;
+      }
+    }
+
     if (fieldToSave === "identity") {
       const aNo = payload.aadhaarNumber ?? aadhaarNumber;
       const pNo = payload.passportNumber ?? passportNumber;

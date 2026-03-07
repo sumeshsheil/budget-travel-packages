@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import Button from "../ui/button";
 
 import icon1 from "@/../public/images/why-choose-us/icon1.svg";
@@ -42,7 +42,7 @@ const features = [
   {
     id: 5,
     title: "Trusted by travelers across India",
-    description: "Serving Delhi, Mumbai & Kolkata",
+    description: "We proudly serve across 75+ cities in India",
     icon: icon5,
   },
   {
@@ -56,9 +56,10 @@ const features = [
 const WhyChooseUs: React.FC = () => {
   return (
     <section
-      id="about"
-      className="py-20 relative bg-white overflow-hidden scroll-mt-24"
+      id="why-choose-us"
+      className="lg:py-20 relative bg-white overflow-hidden scroll-mt-24"
     >
+      <div id="about" className="scroll-mt-24" />
       <div className="relative z-10 mb-0 md:mb-16 px-4 flex flex-col md:flex-row md:flex-wrap  md:gap-x-10 xl:block">
               {/* Plane Animation */}
               <div className="order-1 md:order-1 relative xl:absolute xl:top-2 xl:left-0 2xl:left-10 w-48 md:w-72 mx-auto xl:mx-0 pointer-events-none mt-0 md:mt-0 -scale-x-100">
@@ -100,7 +101,7 @@ const WhyChooseUs: React.FC = () => {
         <div className="relative">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {features.map((feature, index) => (
-              <motion.div
+              <m.div
                 key={feature.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -124,7 +125,7 @@ const WhyChooseUs: React.FC = () => {
                 <p className="text-sm md:text-base text-gray-600 leading-relaxed max-w-[250px]">
                   {feature.description}
                 </p>
-              </motion.div>
+              </m.div>
             ))}
           </div>
                   <div className=" bg-accent w-fit mx-auto flex flex-col items-center px-6 py-2.5 mb-4 rounded-full">

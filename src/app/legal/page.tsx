@@ -1,9 +1,11 @@
 "use client";
 
 import Header from "@/components/layout/Header";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import Footer from "@/components/landing/sections/Footer";
 import { useState, useEffect } from "react";
 import { List, X } from "lucide-react";
+import Link from "next/link";
 
 const POLICIES = [
   { id: "privacy", title: "Privacy Policy" },
@@ -119,6 +121,7 @@ export default function LegalPoliciesPage() {
             <div className="lg:w-3/4 space-y-10">
               <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-200">
                 <div className="mb-12">
+                  <Breadcrumbs />
                   <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
                     Legal <span className="text-emerald-600">Policies</span>
                   </h1>
@@ -129,7 +132,54 @@ export default function LegalPoliciesPage() {
                       NB: Make sure to do all payments through the website for security and tracking.
                     </p>
                   </div>
+                <div className="space-y-8 rounded-2xl p-8 border border-slate-100 mb-12 text-slate-700">
+                  {/* Row 1 */}
+                  <div className="space-y-2">
+                    <h4 className="text-black pb-2 text-base lg:text-lg font-inter">
+                      Brand: <span className="font-bold">Budget Travel Packages™</span>{" "}
+                      <Link href="https://budgettravelpackages.in" className="text-emerald-600 hover:underline">
+                        budgettravelpackages.in
+                      </Link>
+                    </h4>
+                    <p>Tagline: Explore More, Spend Less!</p>
+                    <p>Contact Email: hello@budgettravelpackages.in</p>
+                    <p>
+                      Content & Blog URL:{" "}
+                      <Link href="https://budgettravelpackages.in/blogs" className="text-emerald-600 hover:underline">
+                        https://budgettravelpackages.in/blogs
+                      </Link>
+                    </p>
+                  </div>
 
+                  {/* Row 2 */}
+                  <div className="space-y-3 pt-6 border-t border-slate-200">
+                    <div>
+                      <p className="font-semibold text-black mb-1">Business Locations:</p>
+                      <p>Kolkata (Main Office) | Delhi (Branch Office) | Mumbai (Branch Office)</p>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <p className="font-semibold text-black mb-1">Social Media’s:</p>
+                      <span>
+                        Facebook:{" "}
+                        <Link href="https://www.facebook.com/budgettravelpackages" className="text-emerald-600 hover:underline">
+                          https://www.facebook.com/budgettravelpackages
+                        </Link>
+                      </span>
+                      <span>
+                        Instagram:{" "}
+                        <Link href="https://www.instagram.com/budgettravelpackages.in" className="text-emerald-600 hover:underline">
+                          https://www.instagram.com/budgettravelpackages.in
+                        </Link>
+                      </span>
+                      <span>
+                        YouTube:{" "}
+                        <Link href="https://www.youtube.com/@budgettravelpackages" className="text-emerald-600 hover:underline">
+                          https://www.youtube.com/@budgettravelpackages
+                        </Link>
+                      </span>
+                    </div>
+                  </div>
+                </div>
                 </div>
 
                 <div className="prose prose-slate max-w-none prose-headings:text-slate-900 prose-headings:font-bold prose-p:text-slate-600 prose-li:text-slate-600 prose-strong:text-slate-900 marker:text-emerald-600">
@@ -1114,7 +1164,7 @@ export default function LegalPoliciesPage() {
                       page:
                     </p>
                     <p className="font-bold">
-                      https://budgettravelpackages.in/legal-policies
+                      <Link href="https://budgettravelpackages.in/legal">https://budgettravelpackages.in/legal</Link>
                     </p>
                     <p>
                       The revised version will become effective immediately upon
@@ -1164,7 +1214,7 @@ export default function LegalPoliciesPage() {
                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
-                    Last Updated in 2026
+                    Last Updated in January 2026
                   </p>
                 </div>
               </div>

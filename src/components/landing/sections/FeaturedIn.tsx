@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 
 import dailyhunt from "@/../public/images/brands/dailyhunt.svg";
 import enterpreneur from "@/../public/images/brands/enterpreneur.svg";
@@ -51,7 +51,7 @@ const FeaturedIn: React.FC = () => {
           aria-label="Featured media partners carousel"
         >
           <div className="flex items-center">
-            <motion.div
+            <m.div
               initial={{ x: 0 }}
               animate={{ x: "-100%" }}
               transition={{
@@ -73,11 +73,12 @@ const FeaturedIn: React.FC = () => {
                     width={150}
                     height={50}
                     className="h-auto w-auto object-cover object-center"
+                    loading="lazy"
                   />
                 </div>
               ))}
-            </motion.div>
-            <motion.div
+            </m.div>
+            <m.div
               initial={{ x: 0 }}
               animate={{ x: "-100%" }}
               transition={{
@@ -100,10 +101,11 @@ const FeaturedIn: React.FC = () => {
                     width={150}
                     height={50}
                     className="h-auto w-auto object-cover object-center"
+                    loading="lazy"
                   />
                 </div>
               ))}
-            </motion.div>
+            </m.div>
           </div>
         </div>
 

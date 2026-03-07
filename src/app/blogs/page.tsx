@@ -1,12 +1,13 @@
 import FeaturedHero from "@/components/blog/FeaturedHero";
 import CategorySection from "@/components/blog/CategorySection";
 import Newsletter from "@/components/blog/Newsletter";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { getFeaturedPosts, getPostsByCategory } from "@/lib/wordpress/api";
 
 export const metadata = {
-  title: "Travel Blogs & Articles - Budget Travel Packages",
+  title: "Budget Travel Blog | Travel Guides, Tips & Trip Ideas",
   description:
-    "Explore our latest travel tips, guides, and stories for budget-friendly domestic and international travel packages in India.",
+    "Explore travel guides, budget travel tips and destination ideas across India and worldwide. Plan smarter trips with expert insights from Budget Travel Packages. ✈️🌍",
 };
 
 // Category configuration — defines the 3 sections
@@ -28,7 +29,7 @@ const CATEGORIES = [
     accentColor: "purple",
   },
   {
-    slug: "travel-insights",
+    slug: "insights",
     title: "Travel Insights",
     description:
       "Get expert travel tips, guides, and insights from seasoned travelers. From booking hacks to destination deep-dives, we cover everything you need to know before your next adventure.",
@@ -54,6 +55,10 @@ export default async function BlogsPage() {
     <>
       {/* Featured Blog Post */}
       {featuredPost && <FeaturedHero post={featuredPost} />}
+
+      <div className="container-box px-4 pt-8">
+        <Breadcrumbs />
+      </div>
 
       {/* Category Sections */}
       {categoryData.map((cat, index) => (

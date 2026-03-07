@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "skills": {
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "computedHash": "6412eb4eb3b91595ebab937f0c69501240e7ba761b3d82510b5cf506ec5c7adc"
+    },
+    "motion": {
+      "source": "hairyf/skills",
+      "sourceType": "github",
+      "computedHash": "f9570a39ae54cba08f40345f68007a66130904224ab45656582c1719dfcad0b9"
+    },
+    "nextjs-best-practices": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "computedHash": "8f5b6b588c638139854181f80a241c16575810a3bd45b0983e55078b6aed347a"
+    }
+  }
+}

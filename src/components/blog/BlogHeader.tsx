@@ -12,7 +12,7 @@ export default function BlogHeader() {
     { name: "Blogs", href: "/blogs" },
     { name: "Domestic", href: "/blogs/category/domestic" },
     { name: "International", href: "/blogs/category/international" },
-    { name: "Travel insights", href: "/blogs/category/travel-insights" },
+    { name: "Travel insights", href: "/blogs/category/insights" },
   ];
 
   return (

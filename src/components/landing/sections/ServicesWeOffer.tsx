@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 
 import icon1 from "@/../public/images/service-we-offer/icons/icon1.svg";
 import icon2 from "@/../public/images/service-we-offer/icons/icon2.svg";
@@ -53,18 +53,18 @@ const ServicesWeOffer: React.FC = () => {
   return (
     <section
       id="services"
-      className="pb-50 lg:pt-35 lg:pb-65 relative bg-white scroll-mt-24"
+      className="pb-10 md:pb-55 lg:pt-35 lg:pb-65 relative bg-white scroll-mt-24"
     >
       {/* Background Elements */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0, scale: 0.5, y: 50 }}
         whileInView={{ opacity: 1, scale: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  pointer-events-none z-0"
       >
-        <Image src={bgParachute} alt="" className="w-auto h-auto" />
-      </motion.div>
+        <Image src={bgParachute} alt="" className="w-auto h-auto" loading="lazy" />
+      </m.div>
       <div className="md:absolute mx-auto md:-top-15 md:right-10 xl:-top-15 xl:right-20 w-60 lg:w-60 xl:w-80 -mt-4">
         <LottieAnimation
           src="/animations/travel-map.json"
@@ -92,7 +92,7 @@ const ServicesWeOffer: React.FC = () => {
             {services
               .filter((_, i) => i % 2 === 0)
               .map((service) => (
-                <motion.div
+                <m.div
                   key={service.id}
                   whileHover={{ scale: 1.02 }}
                   className="bg-white border-2 border-secondary text-secondary rounded-xl pl-3 py-3 pr-1 sm:py-4 sm:pr-2 sm:pl-4 md:py-6 md:pr-4 md:pl-6 flex items-center cursor-default group"
@@ -104,13 +104,14 @@ const ServicesWeOffer: React.FC = () => {
                       width={40}
                       height={40}
                       className="w-10 h-10 md:w-12 md:h-12"
+                      loading="lazy"
                     />
                   </div>
                   <h3 className="font-bold text-base md:text-xl font-inter">
                     {service.title}
                   </h3>
                   <CheckCheck className="w-10 ml-auto h-10 md:w-12 md:h-12 text-new-blue" />
-                </motion.div>
+                </m.div>
               ))}
           </div>
 
@@ -119,7 +120,7 @@ const ServicesWeOffer: React.FC = () => {
             {services
               .filter((_, i) => i % 2 !== 0)
               .map((service) => (
-                <motion.div
+                <m.div
                   key={service.id}
                   whileHover={{ scale: 1.02 }}
                   className="bg-white border-2 border-secondary text-secondary rounded-xl pl-3 py-3 pr-1 sm:py-4 sm:pr-2 sm:pl-4 md:py-6 md:pr-4 md:pl-6 flex items-center cursor-default group"
@@ -131,13 +132,14 @@ const ServicesWeOffer: React.FC = () => {
                       width={40}
                       height={40}
                       className="w-10 h-10 md:w-12 md:h-12"
+                      loading="lazy"
                     />
                   </div>
                   <h3 className="font-bold text-lg md:text-xl font-inter">
                     {service.title}
                   </h3>
                   <CheckCheck className="w-10 ml-auto h-10 md:w-12 md:h-12 text-new-blue" />
-                </motion.div>
+                </m.div>
               ))}
           </div>
         </div>

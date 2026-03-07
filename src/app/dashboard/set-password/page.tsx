@@ -264,7 +264,7 @@ function SetPasswordForm() {
             "Password set, but auto-login failed. Please log in manually.",
           );
           setTimeout(() => {
-            router.push("/dashboard/login");
+            router.push("/?login=true");
           }, 3000);
         } else {
           setSuccess(true);
@@ -432,7 +432,7 @@ function SetPasswordForm() {
               <p className="text-sm text-muted-foreground font-medium">
                 Returning Member?{" "}
                 <Link
-                  href="/dashboard/login"
+                  href="/?login=true"
                   className="text-emerald-600 hover:text-emerald-700 font-bold transition-colors"
                 >
                   Sign in here

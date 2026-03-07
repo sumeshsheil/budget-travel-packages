@@ -66,6 +66,7 @@ export default function BlogCard({ post, className }: BlogCardProps) {
             alt={title}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-105"
+            loading="lazy"
           />
         </div>
       </div>

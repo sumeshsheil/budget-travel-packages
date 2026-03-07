@@ -8,6 +8,8 @@ interface AppThemeProviderProps {
   children: React.ReactNode;
 }
 
+import { LazyMotion, domAnimation } from "motion/react";
+
 export function AppThemeProvider({ children }: AppThemeProviderProps) {
   const pathname = usePathname();
 
@@ -18,14 +20,16 @@ export function AppThemeProvider({ children }: AppThemeProviderProps) {
     !pathname?.startsWith("/dashboard") && !pathname?.startsWith("/admin");
 
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="light"
-      enableSystem={!isPublicRoute}
-      forcedTheme={isPublicRoute ? "light" : undefined}
-      disableTransitionOnChange
-    >
-      {children}
-    </ThemeProvider>
+    <LazyMotion features={domAnimation}>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="light"
+        enableSystem={!isPublicRoute}
+        forcedTheme={isPublicRoute ? "light" : undefined}
+        disableTransitionOnChange
+      >
+        {children}
+      </ThemeProvider>
+    </LazyMotion>
   );
 }

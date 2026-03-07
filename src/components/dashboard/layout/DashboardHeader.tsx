@@ -6,12 +6,14 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 import { ModeToggle } from "@/components/ui/mode-toggle";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
 export function DashboardHeader() {
   return (
     <header className="flex h-14 shrink-0 items-center gap-2 border-b border-slate-200 dark:border-slate-800 px-4 bg-white dark:bg-slate-900">
       <SidebarTrigger className="-ml-1" />
       <Separator orientation="vertical" className="mr-2 h-4" />
+      <Breadcrumbs />
       <div className="flex-1" />
       <ModeToggle />
       <Button

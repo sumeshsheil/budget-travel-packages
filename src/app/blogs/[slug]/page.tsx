@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getPostBySlug, getPosts } from "@/lib/wordpress/api";
 import { extractFeaturedImage } from "@/lib/wordpress/utils";
 import { Metadata } from "next";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import Newsletter from "@/components/blog/Newsletter";
 import { ArrowLeft, Tag } from "lucide-react";
 
@@ -11,7 +12,7 @@ import { ArrowLeft, Tag } from "lucide-react";
 const CATEGORIES = [
   { slug: "domestic", title: "Domestic Travel" },
   { slug: "international", title: "International Travel" },
-  { slug: "qa", title: "Questions & Answers" },
+  { slug: "insights", title: "Travel Insights" },
 ];
 
 interface PageProps {
@@ -101,19 +102,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       />
       <article className="container-box px-4 py-8 lg:py-12 max-w-4xl mx-auto">
         {/* Breadcrumb */}
-        <nav className="text-sm text-gray-500 mb-6 flex items-center gap-2">
-          <Link href="/" className="hover:text-primary transition-colors">
-            Home
-          </Link>
-          <span>/</span>
-          <Link href="/blogs" className="hover:text-primary transition-colors">
-            Blogs
-          </Link>
-          <span>/</span>
-          <span className="text-gray-900 font-medium truncate max-w-[200px]">
-            {post.slug}
-          </span>
-        </nav>
+        <Breadcrumbs />
 
         {/* Header */}
         <header className="mb-8 lg:mb-12">

@@ -1,0 +1,353 @@
+<mjml lang="en">
+  <mj-head>
+    <mj-title>Welcome to Budget Travel Packages</mj-title>
+    <mj-preview>Travel Deals are live! Explore More, Spend Less!</mj-preview>
+    <mj-attributes>
+      <mj-all font-family="Arial, sans-serif" color="#3c3c3c" />
+      <mj-text font-size="16px" line-height="24px" />
+      <mj-section background-color="#ffffff" padding="20px 0" />
+      <mj-button
+        background-color="#d2d735"
+        color="#024f64"
+        font-weight="700"
+        border-radius="30px"
+        font-size="16px"
+        inner-padding="10px 25px"
+      />
+      <mj-class
+        name="heading"
+        font-size="40px"
+        font-weight="700"
+        color="#007d9f"
+        line-height="1"
+      />
+      <mj-class
+        name="hero-text"
+        font-size="60px"
+        color="#ffffff"
+        line-height="0.8"
+        letter-spacing="-1px"
+      />
+    </mj-attributes>
+    <mj-style inline="inline">
+      .body {
+        background-color: #ffffff;
+      }
+      .tinyMce-placeholder {
+        word-break: break-word;
+      }
+    </mj-style>
+  </mj-head>
+  <mj-body background-color="#ffffff">
+    <!-- Header Logo -->
+    <mj-section background-color="#007d9f" padding="40px 0 20px 0">
+      <mj-column>
+        <mj-image
+          src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-2_budget-travel-packages-high-resolution-logo-transparent.png"
+          width="340px"
+          alt="Budget Travel Packages Logo"
+        />
+      </mj-column>
+    </mj-section>
+
+    <!-- Hero Section -->
+    <mj-section
+      background-color="#007d9f"
+      background-url="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-1_15_Background_Palms.png"
+      background-size="auto"
+      background-repeat="no-repeat"
+      padding="20px 0 0 0"
+    >
+      <mj-column>
+        <mj-text mj-class="hero-text" align="center" padding-bottom="20px">
+          Travel Deals <br />
+          are live !
+        </mj-text>
+        <mj-image
+          src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-3_02_Header_image_email.png"
+          width="600px"
+          alt="Travel Deals"
+          border-radius="0"
+          padding="0"
+        />
+      </mj-column>
+    </mj-section>
+
+    <!-- Greeting Section -->
+    <mj-section background-color="#007d9f" padding="0 0 60px 0">
+      <mj-column padding="0 30px">
+        <mj-text
+          color="#ffffff"
+          align="center"
+          font-size="20px"
+          padding-top="30px"
+        >
+          Hi ${name},
+        </mj-text>
+        <mj-text color="#ffffff" align="center" font-size="18px">
+          Hot deals, Cool escapes and Sun-soaked memories await. Whether you're
+          dreaming of island vibes or city adventures, we’ve got your next
+          getaway ready to go.
+        </mj-text>
+        <!-- Removed duplicate button here as per user request to reduce "same content twitch" -->
+      </mj-column>
+    </mj-section>
+
+    <!-- Deals You'll Melt For -->
+    <mj-section background-color="#fef8ec" padding="60px 0">
+      <mj-column width="50%" vertical-align="middle" padding="0 20px">
+        <mj-text mj-class="heading" padding-bottom="10px">
+          Deals You’ll Melt For
+        </mj-text>
+        <mj-text font-size="18px">
+          This summer, the heat is on - and so are the savings! From sun-soaked
+          beaches to cool mountain escapes, we've curated irresistible deals
+          that will make your wanderlust sizzle.
+        </mj-text>
+        <mj-text font-size="18px" font-weight="700">
+          Don’t wait - these deals are going fast.
+        </mj-text>
+        <mj-button align="left" href="https://budgettravelpackages.in/">
+          Book Your Escape Now
+        </mj-button>
+      </mj-column>
+      <mj-column width="50%" vertical-align="middle">
+        <mj-image
+          src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-5_03_Hot_Deals.png"
+          width="340px"
+          alt="Hot Deals"
+        />
+      </mj-column>
+    </mj-section>
+
+    <!-- Discover Places -->
+    <mj-section background-color="#d2d735" padding="40px 0">
+      <mj-column>
+        <mj-image
+          src="https://media3.giphy.com/media/v1.Y2lkPTIwZWI0ZTlkYzd1bzNzZXJscTUzMnU1a25wajJmYTRhOWd3MnoyMXZrY3I0bXl1MiZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/1GROyD7wDR06QK8BJg/giphy.gif"
+          width="170px"
+          alt="Take me"
+        />
+        <mj-text mj-class="heading" align="center" padding-top="10px">
+          Discover Places
+        </mj-text>
+        <mj-text align="center" font-size="18px" padding="10px 60px">
+          Ready to explore the world like never before? From hidden gems off the
+          beaten path to iconic destinations that take your breath away,
+          <strong>Discover Places</strong> is your gateway to unforgettable
+          adventures.
+        </mj-text>
+        <mj-text align="center" font-size="18px" font-weight="700">
+          Inspiration starts here.
+        </mj-text>
+        <mj-text align="center" font-size="14px">
+          Scroll, dream, and discover the next place that will steal your heart.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Image Grid -->
+    <mj-section background-color="#d2d735" padding="0">
+      <mj-column width="25%">
+        <mj-image
+          src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-6_06_Galapagos.png"
+          width="170px"
+          alt="Galapagos"
+        />
+        <mj-image
+          src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-7_08_Beach.png"
+          width="170px"
+          alt="Beach"
+        />
+      </mj-column>
+      <mj-column width="50%">
+        <mj-image
+          src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-8_08_Where_to_go.png"
+          width="340px"
+          alt="Where to go"
+          padding-top="20px"
+        />
+        <mj-button href="https://budgettravelpackages.in/blogs"
+          >Discover More</mj-button
+        >
+      </mj-column>
+      <mj-column width="25%">
+        <mj-image
+          src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-9_05_Surfer.png"
+          width="170px"
+          alt="Surfing"
+        />
+        <mj-image
+          src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-10_07_Fishes.png"
+          width="170px"
+          alt="Underwater"
+        />
+      </mj-column>
+    </mj-section>
+
+    <!-- Promo Picks of the Week -->
+    <mj-section background-color="#ffffff" padding="40px 0">
+      <mj-column>
+        <mj-text mj-class="heading" align="center"
+          >Promo Picks of the Week</mj-text
+        >
+        <mj-text align="center"
+          >Unwrap a new adventure every week! We've handpicked the
+          <strong>best limited-time offers</strong> just for you - think dreamy
+          destinations, unbeatable prices, and exclusive travel perks.</mj-text
+        >
+        <mj-text align="center" font-weight="700"
+          >New deals drop everyday. Don't miss out - these offers won't last
+          long!</mj-text
+        >
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="#ffffff" padding="0 20px">
+      <mj-column width="33.33%" border="2px dotted #007d9f" padding="10px">
+        <mj-image
+          src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-11_09_Beach_and_boat.png"
+          width="170px"
+          alt="Dreamy Beaches"
+        />
+        <mj-text align="center" font-weight="700">Dreamy Beaches</mj-text>
+        <mj-text align="center" font-size="12px"
+          >Experience the ultimate escape with our Dreamy Beaches tour! Save up
+          to 20% on your packages.</mj-text
+        >
+        <mj-button href="https://budgettravelpackages.in/packages"
+          >Save Now</mj-button
+        >
+      </mj-column>
+      <mj-column width="33.33%" border="2px dotted #007d9f" padding="10px">
+        <mj-image
+          src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-12_10_Cocktail_Party.png"
+          width="170px"
+          alt="Cocktail Party"
+        />
+        <mj-text align="center" font-weight="700">The Cocktail Party</mj-text>
+        <mj-text align="center" font-size="12px"
+          >Come aboard our Cocktail Party Tour and take this deal! Enjoy a free
+          cocktail for each person!</mj-text
+        >
+        <mj-button href="https://budgettravelpackages.in/packages"
+          >Save Now</mj-button
+        >
+      </mj-column>
+      <mj-column width="33.33%" border="2px dotted #007d9f" padding="10px">
+        <mj-image
+          src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-13_11_Walkin_adventure.png"
+          width="170px"
+          alt="Hiking Adventure"
+        />
+        <mj-text align="center" font-weight="700">Hiking Adventure</mj-text>
+        <mj-text align="center" font-size="12px"
+          >Join our exciting Hiking Adventure Tour and enjoy 20% off your first
+          and second booking!</mj-text
+        >
+        <mj-button href="https://budgettravelpackages.in/packages"
+          >Save Now</mj-button
+        >
+      </mj-column>
+    </mj-section>
+
+    <!-- Let the Journey Begin -->
+    <mj-section background-color="#ffffff" padding="40px 0">
+      <mj-column>
+        <mj-image
+          src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-14_Let_the_Journey_Begin_.png"
+          width="600px"
+          alt="Let the Journey Begin"
+        />
+        <!-- Kept this "Discover More" but labeled it differently or kept it if it links to collections -->
+        <mj-button href="https://budgettravelpackages.in/collections"
+          >Explore Collections</mj-button
+        >
+      </mj-column>
+    </mj-section>
+
+    <!-- Time to Fly -->
+    <mj-section background-color="#d2d735" padding="40px 0">
+      <mj-column>
+        <mj-image
+          src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-15_Let_the_Journey_Begin.png"
+          width="200px"
+          alt="Plane"
+        />
+        <mj-text mj-class="heading" align="center"
+          >Time to Fly, Contact Now!</mj-text
+        >
+        <mj-text align="center"
+          >Your next adventure is calling and it's more affordable than ever.
+          From tropical escapes to city breaks, our best deals are ready for
+          takeoff. Don't wait, these offers are flying fast!</mj-text
+        >
+        <mj-button
+          background-color="#007d9f"
+          color="#ffffff"
+          href="https://budgettravelpackages.in/contact"
+          >Contact Us Now</mj-button
+        >
+      </mj-column>
+    </mj-section>
+
+    <!-- Footer -->
+    <mj-section background-color="#007d9f" padding="40px 0">
+      <mj-column>
+        <mj-image
+          src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-2_budget-travel-packages-high-resolution-logo-transparent.png"
+          width="200px"
+          alt="Logo"
+        />
+        <mj-social font-size="15px" icon-size="30px" mode="horizontal">
+          <mj-social-element
+            name="facebook"
+            href="#"
+            src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-17_facebook2x.png"
+          />
+          <mj-social-element
+            name="instagram"
+            href="#"
+            src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-18_instagram2x.png"
+          />
+          <mj-social-element
+            name="twitter"
+            href="#"
+            src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-19_youtube2x.png"
+          />
+        </mj-social>
+        <mj-text
+          align="center"
+          color="#ffffff"
+          font-size="12px"
+          padding-top="20px"
+        >
+          <a href="#" style="color: #ffffff; text-decoration: none"
+            >Travel Blogs</a
+          >
+          |
+          <a href="#" style="color: #ffffff; text-decoration: none"
+            >Travel Portal</a
+          >
+          |
+          <a href="#" style="color: #ffffff; text-decoration: none"
+            >Legal Policies</a
+          >
+        </mj-text>
+        <mj-text
+          align="center"
+          color="#ffffff"
+          font-size="10px"
+          padding-top="20px"
+        >
+          Budget Travel Packages 📍<br />
+          Bengal Eco Intelligent Park, RM Block, Sector V, Bidhannagar, Kolkata,
+          West Bengal 700091
+        </mj-text>
+        <mj-text align="center" color="#ffffff" font-size="10px">
+          Copyright ©. All Rights Reserved.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

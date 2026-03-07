@@ -36,6 +36,7 @@ import { USER_PROGRESS_STAGES, getPaymentColor } from "@/lib/dashboard-utils";
 import AddCompanionModal from "./components/AddCompanionModal";
 import RemoveTravelerButton from "./components/RemoveTravelerButton";
 import PaymentModal from "./components/PaymentModal";
+import PDFViewerModal from "./components/PDFViewerModal";
 
 const STAGES = USER_PROGRESS_STAGES;
 
@@ -470,35 +471,20 @@ export default async function BookingDetailPage({
                         </p>
                       </div>
                     </div>
-                    <div className="grid grid-cols-2 gap-3">
-                      <Button
-                        variant="outline"
-                        className="w-full border-emerald-200 hover:bg-emerald-50 text-emerald-700"
-                        asChild
-                      >
-                        <a
-                          href={itineraryUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Users className="h-4 w-4 mr-2" />
-                          View
-                        </a>
-                      </Button>
-                      <Button
-                        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
-                        asChild
-                      >
-                        <a
-                          href={itineraryUrl}
-                          download
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Download className="h-4 w-4 mr-2" />
-                          Download
-                        </a>
-                      </Button>
+                    <div className="flex flex-col gap-3">
+                      <PDFViewerModal 
+                        url={itineraryUrl} 
+                        title={`${booking.destination} Itinerary`}
+                        trigger={
+                          <Button
+                            variant="outline"
+                            className="w-full border-emerald-200 hover:bg-emerald-50 text-emerald-700 h-11 rounded-xl"
+                          >
+                            <FileText className="h-4 w-4 mr-2" />
+                            View Itinerary
+                          </Button>
+                        }
+                      />
                     </div>
                   </div>
                 ) : (
@@ -550,20 +536,19 @@ export default async function BookingDetailPage({
                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-3">
-                      <Button
-                        variant="outline"
-                        className="w-full border-emerald-200 dark:border-emerald-800 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400"
-                        asChild
-                      >
-                        <a
-                          href={travelDocsUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Users className="h-4 w-4 mr-2" />
-                          View
-                        </a>
-                      </Button>
+                      <PDFViewerModal 
+                        url={travelDocsUrl} 
+                        title="Travel Documents & Tickets"
+                        trigger={
+                          <Button
+                            variant="outline"
+                            className="w-full border-emerald-200 dark:border-emerald-800 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400"
+                          >
+                            <FileText className="h-4 w-4 mr-2" />
+                            View
+                          </Button>
+                        }
+                      />
                       <Button
                         className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
                         asChild

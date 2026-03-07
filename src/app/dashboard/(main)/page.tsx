@@ -21,8 +21,16 @@ export default async function DashboardOverviewPage() {
   const session = await requireCustomerAuth();
   await connectDB();
 
-  // Fetch User for Profile Completeness
-  const user = (await User.findById(session.user.id).lean()) as IUser;
+  // Fetch User and Leads in parallel for better performance
+  const [user, leads] = await Promise.all([
+    User.findById(session.user.id).lean() as Promise<IUser>,
+    Lead.find({ customerId: session.user.id }).sort({ createdAt: -1 }).lean(),
+  ]);
+
+  if (!user) {
+    // Handle case where user might not be found despite session
+    return <div>User not found</div>;
+  }
 
   // Profile is complete when phone is verified AND aadhaar is uploaded
   const isProfileComplete =
@@ -45,10 +53,6 @@ export default async function DashboardOverviewPage() {
   if (user.isPhoneVerified) completenessScore += 25;
   if (user.gender) completenessScore += 25;
   if ((user.documents?.aadharCard?.length || 0) > 0) completenessScore += 25;
-
-  const leads = await Lead.find({ customerId: session.user.id })
-    .sort({ createdAt: -1 })
-    .lean();
 
   const serialized = JSON.parse(JSON.stringify(leads));
 

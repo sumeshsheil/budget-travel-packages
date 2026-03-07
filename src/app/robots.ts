@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/admin/", "/dashboard/", "/api/"],
+      disallow: ["/admin/", "/dashboard/", "/api/", "/customer/", "/agent/"],
     },
     sitemap: "https://budgettravelpackages.in/sitemap.xml",
   };

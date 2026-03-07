@@ -10,7 +10,7 @@ export async function requireCustomerAuth() {
   const session = await auth();
 
   if (!session || !session.user) {
-    redirect("/dashboard/login");
+    redirect("/?login=true");
   }
 
   if (
@@ -18,7 +18,7 @@ export async function requireCustomerAuth() {
     session.user.role !== "agent" &&
     session.user.role !== "admin"
   ) {
-    redirect("/dashboard/login");
+    redirect("/?login=true");
   }
 
   return session;
