@@ -27,7 +27,7 @@ const HeroBackground: React.FC = () => {
       />
 
       {/* Background Video - Fades in when ready, GPU Accelerated */}
-      {/* <video
+      <video
         ref={videoRef}
         autoPlay
         muted
@@ -41,7 +41,7 @@ const HeroBackground: React.FC = () => {
         }`}
       >
         <source src="/videos/hero-background-video.mp4" type="video/mp4" />
-      </video> */}
+      </video> 
     </div>
   );
 };
