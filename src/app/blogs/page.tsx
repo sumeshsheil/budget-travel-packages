@@ -56,8 +56,10 @@ export default async function BlogsPage() {
       {/* Featured Blog Post */}
       {featuredPost && <FeaturedHero post={featuredPost} />}
 
-      <div className="container-box px-4 pt-8">
-        <Breadcrumbs />
+      <div className="bg-white border-b border-gray-100 py-4 shadow-xs">
+        <div className="container-box px-4">
+          <Breadcrumbs />
+        </div>
       </div>
 
       {/* Category Sections */}

@@ -10,9 +10,9 @@ export default function BlogHeader() {
 
   const navLinks = [
     { name: "Blogs", href: "/blogs" },
-    { name: "Domestic", href: "/blogs/category/domestic" },
-    { name: "International", href: "/blogs/category/international" },
-    { name: "Travel insights", href: "/blogs/category/insights" },
+    { name: "Domestic", href: "/blogs/domestic" },
+    { name: "International", href: "/blogs/international" },
+    { name: "Travel insights", href: "/blogs/insights" },
   ];
 
   return (

@@ -58,6 +58,20 @@ export function KanbanBoard({ initialLeads }: KanbanBoardProps) {
     const lead = leads.find((l) => l._id === leadId);
     if (!lead || lead.stage === newStage) return;
 
+    if (lead.stage === "won") {
+      toast.error("Confirmed trips cannot be moved back to active stages.");
+      return;
+    }
+
+    if (newStage === "abandoned" || newStage === "won") {
+      const message =
+        newStage === "abandoned"
+          ? "Leads cannot be manually moved to Abandoned. This happens automatically after 7 days."
+          : "Leads cannot be manually moved to Booked. Use the 'Mark as Won' button on the detail page.";
+      toast.error(message);
+      return;
+    }
+
     // Optimistic Update
     setLeads((prev) =>
       prev.map((l) => (l._id === leadId ? { ...l, stage: newStage } : l)),

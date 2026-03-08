@@ -3,6 +3,8 @@
 import { revalidatePath } from "next/cache";
 import { connectDB } from "@/lib/db/mongoose";
 import Lead from "@/lib/db/models/Lead";
+import User from "@/lib/db/models/User";
+import Notification from "@/lib/db/models/Notification";
 import mongoose from "mongoose";
 
 export async function submitBookingPayment(
@@ -59,6 +61,44 @@ export async function submitBookingPayment(
     // Stage will only be advanced to 'booked' when admin verifies the payment.
 
     await lead.save();
+
+    // ------------------------------------------------------------------------
+    // SEND NOTIFICATIONS TO ADMINS AND AGENT
+    // ------------------------------------------------------------------------
+    try {
+      // Find all admin users
+      const admins = await User.find({ role: "admin" }, "_id").lean();
+      const notificationUserIds = admins.map((a: any) => a._id.toString());
+
+      // Include the assigned agent if one exists
+      if (lead.agentId && !notificationUserIds.includes(lead.agentId.toString())) {
+        notificationUserIds.push(lead.agentId.toString());
+      }
+
+      // Create notification documents
+      const paymentAmountFormatted = new Intl.NumberFormat("en-IN", {
+        style: "currency",
+        currency: "INR",
+        maximumFractionDigits: 0,
+      }).format(paymentAmount);
+
+      const notifications = notificationUserIds.map((userId) => ({
+        userId: new mongoose.Types.ObjectId(userId),
+        type: "success",
+        title: "New Payment Submitted",
+        message: `A payment of ${paymentAmountFormatted} was submitted for ${lead.travelers?.[0]?.name || 'a customer'}'s trip to ${lead.destination}.`,
+        link: `/admin/leads/${leadId}`,
+        isRead: false,
+      }));
+
+      if (notifications.length > 0) {
+        await Notification.insertMany(notifications);
+      }
+    } catch (notifErr) {
+      console.error("Failed to create payment notifications:", notifErr);
+      // Soft fail: don't break the payment flow if notifications fail
+    }
+
     revalidatePath(`/dashboard/bookings/${leadId}`);
 
     return { success: true };

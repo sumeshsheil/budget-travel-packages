@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 
 import { Post } from "@/lib/wordpress/types";
-import { extractFeaturedImage } from "@/lib/wordpress/utils";
+import { extractFeaturedImage, decodeHtmlEntities } from "@/lib/wordpress/utils";
 
 interface FeaturedHeroProps {
   post: Post;
@@ -13,22 +13,31 @@ interface FeaturedHeroProps {
 
 export default function FeaturedHero({ post }: FeaturedHeroProps) {
   const title = post.title.rendered;
-  const description = post.excerpt.rendered.replace(/<[^>]+>/g, "");
+  const description = decodeHtmlEntities(post.excerpt.rendered.replace(/<[^>]+>/g, ""));
 
   const image = extractFeaturedImage(post);
 
-  const rawCategory = post._embedded?.["wp:term"]?.[0]?.[0]?.name || "Travel";
-  const category =
-    ["QUESTIONS", "Q&A", "Q&AMP;A", "QA"].includes(rawCategory.toUpperCase()) ||
-    rawCategory === "Travel insights"
-      ? "Travel Insights"
-      : rawCategory;
   const authorName = post._embedded?.author?.[0]?.name || "Budget Travel Team";
   const formattedDate = new Date(post.date).toLocaleDateString("en-US", {
     month: "long",
     day: "numeric",
     year: "numeric",
   });
+
+  const rawCategorySlug = post._embedded?.["wp:term"]?.[0]?.[0]?.slug || "travel";
+  const rawCategoryName = post._embedded?.["wp:term"]?.[0]?.[0]?.name || "Travel";
+  
+  const category =
+    ["QUESTIONS", "Q&A", "Q&AMP;A", "QA"].includes(rawCategoryName.toUpperCase()) ||
+    rawCategoryName === "Travel insights"
+      ? "Travel Insights"
+      : rawCategoryName;
+
+  const categorySlug =
+    ["questions", "q-a", "qa"].includes(rawCategorySlug.toLowerCase()) ||
+    rawCategorySlug === "travel-insights"
+      ? "insights"
+      : rawCategorySlug;
 
   return (
     <section className="relative w-full min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden py-20 lg:py-32">
@@ -102,7 +111,7 @@ export default function FeaturedHero({ post }: FeaturedHeroProps) {
               className="mt-16"
             >
               <Link
-                href={`/blogs/${post.slug}`}
+                href={`/blogs/${categorySlug}/${post.slug}`}
                 className="inline-flex items-center gap-5 text-white hover:text-primary transition-all duration-300 group"
               >
                 <span className="text-sm md:text-base font-black uppercase tracking-[0.3em] font-open-sans">

@@ -121,7 +121,9 @@ export default function LegalPoliciesPage() {
             <div className="lg:w-3/4 space-y-10">
               <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-200">
                 <div className="mb-12">
-                  <Breadcrumbs />
+                  <div className="mb-6">
+                    <Breadcrumbs />
+                  </div>
                   <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
                     Legal <span className="text-emerald-600">Policies</span>
                   </h1>

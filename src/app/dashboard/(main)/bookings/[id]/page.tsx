@@ -38,6 +38,8 @@ import RemoveTravelerButton from "./components/RemoveTravelerButton";
 import PaymentModal from "./components/PaymentModal";
 import PDFViewerModal from "./components/PDFViewerModal";
 
+import RightClickBlocker from "./components/RightClickBlocker";
+
 const STAGES = USER_PROGRESS_STAGES;
 
 export default async function BookingDetailPage({
@@ -440,9 +442,10 @@ export default async function BookingDetailPage({
           const itineraryUrl = booking.itineraryPdfUrl;
 
           return (
-            <Card
-              className={`border-0 shadow-sm h-full ${!itineraryUrl ? "opacity-60 bg-muted/30" : ""}`}
-            >
+            <RightClickBlocker className="h-full">
+              <Card
+                className={`border-0 shadow-sm h-full ${!itineraryUrl ? "opacity-60 bg-muted/30" : ""}`}
+              >
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                   <MapPin
@@ -499,7 +502,8 @@ export default async function BookingDetailPage({
                   </div>
                 )}
               </CardContent>
-            </Card>
+              </Card>
+            </RightClickBlocker>
           );
         })()}
 

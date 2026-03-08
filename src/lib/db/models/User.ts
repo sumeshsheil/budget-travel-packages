@@ -45,6 +45,14 @@ export interface IUser extends Document {
   billingCycle?: "monthly" | "90days" | "yearly";
   leadCount: number;
   packageCount: number;
+  bankDetails?: {
+    accountHolderName?: string;
+    accountNumber?: string;
+    bankName?: string;
+    ifscCode?: string;
+    branchName?: string;
+  };
+  upiId?: string;
 }
 
 export interface IMember {
@@ -202,6 +210,14 @@ const UserSchema = new Schema<IUser>(
       type: Number,
       default: 0,
     },
+    bankDetails: {
+      accountHolderName: { type: String, trim: true },
+      accountNumber: { type: String, trim: true },
+      bankName: { type: String, trim: true },
+      ifscCode: { type: String, trim: true },
+      branchName: { type: String, trim: true },
+    },
+    upiId: { type: String, trim: true },
   },
   {
     timestamps: true,
@@ -213,6 +229,10 @@ const UserSchema = new Schema<IUser>(
 UserSchema.index({ role: 1, status: 1 });
 
 // ============ MODEL ============
+
+if (process.env.NODE_ENV === "development") {
+  delete mongoose.models.User;
+}
 
 const User: Model<IUser> =
   mongoose.models.User || mongoose.model<IUser>("User", UserSchema);

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 import { Post } from "@/lib/wordpress/types";
-import { extractFeaturedImage } from "@/lib/wordpress/utils";
+import { extractFeaturedImage, decodeHtmlEntities } from "@/lib/wordpress/utils";
 
 interface BlogCardProps {
   post: Post;
@@ -29,11 +29,13 @@ export default function BlogCard({ post, className }: BlogCardProps) {
 
   const title = post.title.rendered;
   const description =
-    post.excerpt.rendered
-      .replace(/<[^>]+>/g, "")
-      .split(" ")
-      .slice(0, 20)
-      .join(" ") + "...";
+    decodeHtmlEntities(
+      post.excerpt.rendered
+        .replace(/<[^>]+>/g, "")
+        .split(" ")
+        .slice(0, 20)
+        .join(" "),
+    ) + "...";
 
   const image = extractFeaturedImage(post);
 
@@ -49,12 +51,17 @@ export default function BlogCard({ post, className }: BlogCardProps) {
     day: "numeric",
     year: "numeric",
   });
+  const categorySlug =
+    ["QUESTIONS", "Q&A", "Q&AMP;A", "QA"].includes(rawCategory.toUpperCase()) ||
+    rawCategory === "Travel insights"
+      ? "insights"
+      : rawCategory.toLowerCase().replace(/\s+/g, "-");
 
   return (
     <Link
-      href={`/blogs/${post.slug}`}
+      href={`/blogs/${categorySlug}/${post.slug}`}
       className={cn(
-        "group flex flex-col sm:flex-row items-stretch bg-white rounded-2xl overflow-hidden shadow-[0_2px_10px_-3px_rgba(0,0,0,0.04),0_4px_12px_-2px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-500 border border-gray-100 hover:border-primary/40",
+        "group flex flex-col sm:flex-row items-stretch w-full bg-white rounded-2xl overflow-hidden shadow-[0_2px_10px_-3px_rgba(0,0,0,0.04),0_4px_12px_-2px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-500 border border-gray-100 hover:border-primary/40",
         className,
       )}
     >

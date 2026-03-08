@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { decodeHtmlEntities } from "@/lib/wordpress/utils";
 
 interface RecentPost {
   slug: string;
@@ -11,6 +12,7 @@ interface RecentPost {
     "wp:featuredmedia"?: Array<{
       source_url: string | string[];
     }>;
+    "wp:term"?: Array<Array<{ name: string; slug: string }>>;
   };
 }
 
@@ -27,6 +29,14 @@ function extractImage(post: RecentPost): string {
       : FALLBACK_IMAGE;
   }
   return typeof raw === "string" && raw.length > 0 ? raw : FALLBACK_IMAGE;
+}
+
+function getCategorySlug(post: RecentPost): string {
+  const rawCategory = post._embedded?.["wp:term"]?.[0]?.[0]?.slug || "travel";
+  return ["questions", "q-a", "qa"].includes(rawCategory.toLowerCase()) ||
+    rawCategory === "travel-insights"
+    ? "insights"
+    : rawCategory;
 }
 
 export default function FooterRecentBlogs() {
@@ -55,14 +65,14 @@ export default function FooterRecentBlogs() {
         {posts.map((post) => (
           <Link
             key={post.slug}
-            href={`/blogs/${post.slug}`}
+            href={`/blogs/${getCategorySlug(post)}/${post.slug}`}
             className="group flex items-start gap-3 hover:opacity-80 transition-opacity"
           >
             {/* Small Thumbnail */}
             <div className="relative w-16 h-12 md:w-20 md:h-14 rounded-lg overflow-hidden shrink-0 border border-gray-200/50">
               <Image
                 src={extractImage(post)}
-                alt={post.title.rendered.replace(/<[^>]+>/g, "")}
+                alt={decodeHtmlEntities(post.title.rendered.replace(/<[^>]+>/g, ""))}
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-300"
                 sizes="80px"
@@ -71,7 +81,7 @@ export default function FooterRecentBlogs() {
 
             {/* Title */}
             <p className="text-xs md:text-sm font-medium text-gray-800 group-hover:text-primary transition-colors line-clamp-2 leading-snug font-open-sans">
-              {post.title.rendered.replace(/<[^>]+>/g, "")}
+              {decodeHtmlEntities(post.title.rendered.replace(/<[^>]+>/g, ""))}
             </p>
           </Link>
         ))}

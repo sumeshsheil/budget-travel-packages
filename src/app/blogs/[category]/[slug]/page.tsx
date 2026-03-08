@@ -16,7 +16,7 @@ const CATEGORIES = [
 ];
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ category: string; slug: string }>;
 }
 
 export async function generateMetadata({
@@ -42,14 +42,23 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const { posts } = await getPosts(1, 10);
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+  const { posts } = await getPosts(1, 100);
+  return posts.map((post) => {
+    const rawCategory = post._embedded?.["wp:term"]?.[0]?.[0]?.slug || "travel";
+    const category =
+      ["questions", "q-a", "qa"].includes(rawCategory.toLowerCase()) ||
+      rawCategory === "travel-insights"
+        ? "insights"
+        : rawCategory;
+    return {
+      category: category,
+      slug: post.slug,
+    };
+  });
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
-  const { slug } = await params;
+  const { category, slug } = await params;
   const post = await getPostBySlug(slug);
 
   if (!post) {
@@ -90,7 +99,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://budgettravelpackages.in/blogs/${slug}`,
+      "@id": `https://budgettravelpackages.in/blogs/${category}/${slug}`,
     },
   };
 
@@ -100,9 +109,13 @@ export default async function BlogPostPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <article className="container-box px-4 py-8 lg:py-12 max-w-4xl mx-auto">
-        {/* Breadcrumb */}
-        <Breadcrumbs />
+      <div className="bg-white border-b border-gray-100 py-4 shadow-xs mb-8">
+        <div className="container-box px-4 max-w-4xl mx-auto">
+          <Breadcrumbs />
+        </div>
+      </div>
+
+      <article className="container-box px-4 py-8 lg:py-4 max-w-4xl mx-auto">
 
         {/* Header */}
         <header className="mb-8 lg:mb-12">
@@ -167,7 +180,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               {CATEGORIES.map((cat) => (
                 <Link
                   key={cat.slug}
-                  href={`/blogs/category/${cat.slug}`}
+                  href={`/blogs/${cat.slug}`}
                   className="text-sm font-medium text-gray-600 hover:text-secondary transition-colors"
                 >
                   {cat.title}

@@ -20,20 +20,29 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ]);
 
     // Categories routes
-    const categoryRoutes = categories.map((category) => ({
-      url: `${baseUrl}/blogs/category/${category.slug}`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "weekly" as const,
-      priority: 0.7,
-    }));
+    const categoryRoutes = categories.map((category) => {
+      const slug = ["questions", "q-a", "qa"].includes(category.slug.toLowerCase()) || 
+                   category.slug === "travel-insights" ? "insights" : category.slug;
+      return {
+        url: `${baseUrl}/blogs/${slug}`,
+        lastModified: new Date().toISOString(),
+        changeFrequency: "weekly" as const,
+        priority: 0.7,
+      };
+    });
 
     // Dynamic blog posts
-    const blogRoutes = posts.map((post) => ({
-      url: `${baseUrl}/blogs/${post.slug}`,
-      lastModified: new Date(post.date).toISOString(),
-      changeFrequency: "weekly" as const,
-      priority: 0.6,
-    }));
+    const blogRoutes = posts.map((post) => {
+      const rawCategory = post._embedded?.["wp:term"]?.[0]?.[0]?.slug || "travel";
+      const categorySlug = ["questions", "q-a", "qa"].includes(rawCategory.toLowerCase()) ||
+                           rawCategory === "travel-insights" ? "insights" : rawCategory;
+      return {
+        url: `${baseUrl}/blogs/${categorySlug}/${post.slug}`,
+        lastModified: new Date(post.date).toISOString(),
+        changeFrequency: "weekly" as const,
+        priority: 0.6,
+      };
+    });
 
     return [...staticRoutes, ...categoryRoutes, ...blogRoutes];
   } catch (error) {

@@ -4,9 +4,10 @@ import Newsletter from "@/components/blog/Newsletter";
 import Link from "next/link";
 import { getPostsByCategory } from "@/lib/wordpress/api";
 import { Metadata } from "next";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ category: string }>;
 }
 
 const CATEGORY_INFO: Record<
@@ -36,8 +37,8 @@ const CATEGORY_INFO: Record<
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const info = CATEGORY_INFO[slug];
+  const { category } = await params;
+  const info = CATEGORY_INFO[category];
 
   return {
     title: info ? `${info.title} - Blogs` : "Category - Blogs",
@@ -46,35 +47,27 @@ export async function generateMetadata({
 }
 
 export default async function CategoryPage({ params }: PageProps) {
-  const { slug } = await params;
-  const info = CATEGORY_INFO[slug];
+  const { category } = await params;
+  const info = CATEGORY_INFO[category];
 
   if (!info) {
     notFound();
   }
 
-  const { posts, total } = await getPostsByCategory(slug, 50);
+  const { posts, total } = await getPostsByCategory(category, 50);
 
   return (
     <div className="bg-white min-h-screen">
       {/* Category Header */}
-      <section className="bg-gray-50 py-12 md:py-16 border-b border-gray-100">
+      <div className="bg-white border-b border-gray-100 py-4 shadow-xs">
         <div className="container-box px-4">
-          {/* Breadcrumb */}
-          <nav className="text-sm text-gray-500 mb-6 flex items-center gap-2 font-open-sans">
-            <Link href="/" className="hover:text-primary transition-colors">
-              Home
-            </Link>
-            <span>/</span>
-            <Link
-              href="/blogs"
-              className="hover:text-primary transition-colors"
-            >
-              Blogs
-            </Link>
-            <span>/</span>
-            <span className="text-gray-900 font-medium">{info.title}</span>
-          </nav>
+          <Breadcrumbs />
+        </div>
+      </div>
+
+      {/* Category Header */}
+      <section className="py-12 md:py-16 border-b border-gray-100">
+        <div className="container-box px-4">
 
           <div className="flex items-center gap-3 mb-3">
             <span className="text-3xl">{info.icon}</span>

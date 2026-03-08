@@ -50,13 +50,6 @@ export async function POST(request: Request) {
     // Rate limiting
     const headerList = await headers();
     const ip = headerList.get("x-forwarded-for") || "unknown";
-    const { allowed } = await checkRateLimit(ip);
-    if (!allowed) {
-      return NextResponse.json(
-        { error: "Too many requests. Please try again later." },
-        { status: 429 },
-      );
-    }
 
     await connectDB();
 

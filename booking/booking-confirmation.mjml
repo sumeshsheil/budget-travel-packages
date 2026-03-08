@@ -1,0 +1,270 @@
+<mjml lang="en">
+  <mj-head>
+    <mj-title>Booking Confirmation</mj-title>
+    <mj-preview
+      >Your booking with Budget Travel Packages is confirmed!</mj-preview
+    >
+    <mj-attributes>
+      <mj-all font-family="Arial, sans-serif" color="#3c3c3c" />
+      <mj-text font-size="16px" line-height="24px" />
+      <mj-section background-color="#ffffff" padding="20px 0" />
+      <mj-button
+        background-color="#d2d735"
+        color="#024f64"
+        font-weight="700"
+        border-radius="30px"
+        font-size="16px"
+        inner-padding="10px 25px"
+      />
+      <mj-class
+        name="heading"
+        font-size="32px"
+        font-weight="700"
+        color="#007d9f"
+        line-height="1.2"
+      />
+      <mj-class
+        name="sub-heading"
+        font-size="20px"
+        font-weight="700"
+        color="#007d9f"
+        line-height="1.2"
+      />
+      <mj-class
+        name="hero-text"
+        font-size="40px"
+        color="#ffffff"
+        line-height="1"
+        letter-spacing="-1px"
+        font-weight="700"
+      />
+    </mj-attributes>
+    <mj-style inline="inline">
+      .body {
+        background-color: #f4f4f4;
+      }
+      .content-wrapper {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .data-row {
+        border-bottom: 1px solid #eeeeee;
+      }
+      .data-label {
+        font-weight: 700;
+        color: #555555;
+      }
+      .data-value {
+        color: #222222;
+      }
+    </mj-style>
+  </mj-head>
+  <mj-body css-class="body">
+    <mj-wrapper
+      padding="20px"
+      css-class="content-wrapper"
+      background-color="#ffffff"
+    >
+      <!-- Header Logo -->
+      <mj-section
+        background-color="#007d9f"
+        padding="30px 0 20px 0"
+        border-radius="8px 8px 0 0"
+      >
+        <mj-column>
+          <mj-image
+            src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-2_budget-travel-packages-high-resolution-logo-transparent.png"
+            width="280px"
+            alt="Budget Travel Packages Logo"
+          />
+        </mj-column>
+      </mj-section>
+
+      <!-- Hero Section -->
+      <mj-section
+        background-color="#007d9f"
+        background-url="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-1_15_Background_Palms.png"
+        background-size="cover"
+        background-repeat="no-repeat"
+        padding="40px 20px"
+      >
+        <mj-column>
+          <mj-text mj-class="hero-text" align="center">
+            Booking Received! ✈️
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <!-- Greeting Section -->
+      <mj-section padding="40px 30px 20px 30px">
+        <mj-column>
+          <mj-text
+            font-size="20px"
+            font-weight="700"
+            color="#222222"
+            padding-bottom="15px"
+          >
+            Hi \${name},
+          </mj-text>
+          <mj-text>
+            Thank you for choosing <strong>Budget Travel Packages</strong>! We
+            have received your inquiry for your next adventure to
+            <strong>\${destination}</strong>.
+          </mj-text>
+          <mj-text padding-top="10px">
+            Our team is already reviewing your request and will get back to you
+            shortly with the best options tailored to your needs.
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <!-- Inquiry Details -->
+      <mj-section padding="20px 30px">
+        <mj-column>
+          <mj-text mj-class="heading" padding-bottom="20px">
+            Inquiry Details
+          </mj-text>
+
+          <mj-table padding="0">
+            <tr style="border-bottom: 1px solid #eeeeee">
+              <td
+                style="
+                  padding: 15px 0;
+                  font-weight: 700;
+                  color: #555555;
+                  width: 40%;
+                "
+              >
+                Destination
+              </td>
+              <td style="padding: 15px 0; color: #222222; font-weight: 600">
+                \${destination}
+              </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eeeeee">
+              <td style="padding: 15px 0; font-weight: 700; color: #555555">
+                Number of Travelers
+              </td>
+              <td style="padding: 15px 0; color: #222222; font-weight: 600">
+                \${travelers}
+              </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eeeeee">
+              <td style="padding: 15px 0; font-weight: 700; color: #555555">
+                Budget
+              </td>
+              <td style="padding: 15px 0; color: #222222; font-weight: 600">
+                \${budget}
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 15px 0; font-weight: 700; color: #555555">
+                Phone Number
+              </td>
+              <td style="padding: 15px 0; color: #222222; font-weight: 600">
+                \${phone}
+              </td>
+            </tr>
+          </mj-table>
+        </mj-column>
+      </mj-section>
+
+      <!-- Support Section -->
+      <mj-section background-color="#fef8ec" padding="30px" border-radius="8px">
+        <mj-column>
+          <mj-text mj-class="sub-heading" align="center" padding-bottom="10px">
+            Need Help?
+          </mj-text>
+          <mj-text align="center">
+            If you have any questions or need to update your inquiry, feel free
+            to contact us.
+          </mj-text>
+          <mj-button
+            href="mailto:hello@budgettravelpackages.in"
+            background-color="#007d9f"
+            color="#ffffff"
+            margin-top="15px"
+          >
+            Contact Support
+          </mj-button>
+        </mj-column>
+      </mj-section>
+
+      <!-- Footer -->
+      <mj-section
+        background-color="#007d9f"
+        padding="40px 0"
+        border-radius="0 0 8px 8px"
+        margin-top="20px"
+      >
+        <mj-column>
+          <mj-image
+            src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-2_budget-travel-packages-high-resolution-logo-transparent.png"
+            width="200px"
+            alt="Logo"
+          />
+          <mj-social
+            font-size="15px"
+            icon-size="30px"
+            mode="horizontal"
+            padding-top="20px"
+          >
+            <mj-social-element
+              name="facebook"
+              href="#"
+              src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-17_facebook2x.png"
+            />
+            <mj-social-element
+              name="instagram"
+              href="#"
+              src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-18_instagram2x.png"
+            />
+            <mj-social-element
+              name="twitter"
+              href="#"
+              src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-19_youtube2x.png"
+            />
+          </mj-social>
+          <mj-text
+            align="center"
+            color="#ffffff"
+            font-size="12px"
+            padding-top="20px"
+          >
+            <a
+              href="https://budgettravelpackages.in/blogs"
+              style="color: #ffffff; text-decoration: none"
+              >Travel Blogs</a
+            >
+            |
+            <a
+              href="https://budgettravelpackages.in"
+              style="color: #ffffff; text-decoration: none"
+              >Travel Portal</a
+            >
+            |
+            <a
+              href="https://budgettravelpackages.in/cookie-policy"
+              style="color: #ffffff; text-decoration: none"
+              >Legal Policies</a
+            >
+          </mj-text>
+          <mj-text
+            align="center"
+            color="#ffffff"
+            font-size="10px"
+            padding-top="20px"
+          >
+            Budget Travel Packages 📍<br />
+            Bengal Eco Intelligent Park, RM Block, Sector V, Bidhannagar,
+            Kolkata, West Bengal 700091
+          </mj-text>
+          <mj-text align="center" color="#ffffff" font-size="10px">
+            Copyright ©. All Rights Reserved.
+          </mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+  </mj-body>
+</mjml>

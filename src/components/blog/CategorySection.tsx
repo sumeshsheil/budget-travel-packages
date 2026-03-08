@@ -67,8 +67,8 @@ export default function CategorySection({
           </p>
         </div>
 
-        {/* Blog Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {/* Blog Cards Grid - Highly responsive with auto-fill */}
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,350px),1fr))] gap-6 md:gap-8">
           {posts.slice(0, 6).map((post) => (
             <BlogCard key={post.id} post={post} />
           ))}
@@ -78,7 +78,7 @@ export default function CategorySection({
         {totalPosts > 6 && (
           <div className="mt-8 text-center">
             <Link
-              href={`/blogs/category/${slug}`}
+              href={`/blogs/${slug}`}
               className={`inline-flex items-center gap-3 ${colors.button} text-white font-black text-xs md:text-sm px-8 py-4 rounded-full transition-all shadow-lg hover:shadow-primary/20 hover:-translate-y-1 uppercase tracking-widest font-open-sans`}
             >
               Explore {title}

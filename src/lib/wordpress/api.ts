@@ -4,7 +4,7 @@ import { Post } from "./types";
 
 const WP_API_URL = process.env.NEXT_PUBLIC_WP_URL
   ? `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2`
-  : "https://demo.wp-api.org/wp-json/wp/v2";
+  : "https://public-api.wordpress.com/wp/v2/sites/demo.wordpress.com";
 
 export async function getPosts(
   page = 1,

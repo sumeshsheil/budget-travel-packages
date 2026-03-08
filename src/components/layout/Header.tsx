@@ -139,7 +139,7 @@ const Header: React.FC = () => {
                 src={logoPrimary}
                 alt="Budget Travel Packages Logo"
                 fill
-                priority
+                priority={isHomePage}
                 className={`object-contain transition-opacity duration-300 transform-gpu ${
                   isHomePage || isScrolled ? "opacity-100" : "opacity-0"
                 }`}
@@ -149,7 +149,6 @@ const Header: React.FC = () => {
                   src={logoFooter}
                   alt="Budget Travel Packages Logo (Dark)"
                   fill
-                  priority
                   className={`object-contain transition-opacity duration-300 transform-gpu ${
                     !isScrolled ? "opacity-100" : "opacity-0"
                   }`}

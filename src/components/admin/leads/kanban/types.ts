@@ -29,6 +29,7 @@ export interface KanbanLead {
   stageUpdatedAt?: string;
 }
 
+// Board pipeline columns
 export const LEAD_STAGES: LeadStage[] = [
   "new",
   "contacted",

@@ -21,7 +21,7 @@ export function Breadcrumbs() {
   const pathSegments = pathname.split("/").filter((segment) => segment !== "");
 
   return (
-    <Breadcrumb className="mb-4">
+    <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>

@@ -17,7 +17,7 @@ const STAGE_COLORS: Record<LeadStage, string> = {
   booked: "bg-purple-500",
   proposal_sent: "bg-indigo-500",
   negotiation: "bg-orange-500",
-  won: "bg-emerald-500",
+  won: "bg-emerald-600",
   dropped: "bg-red-500",
   abandoned: "bg-gray-500",
 };

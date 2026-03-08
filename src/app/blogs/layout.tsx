@@ -11,7 +11,7 @@ export default function BlogsLayout({
   return (
     <>
       <Header />
-      <div className="pt-[110px] md:pt-[130px] bg-blue-400/60 lg:pt-[100px]">
+      <div className="pt-[110px] md:pt-[130px] lg:pt-[100px] bg-white">
         {/* Sticky Header Wrapper */}
         <div className="sticky top-[64px] md:top-[90px] lg:top-[86px] z-40 shadow-sm transform-gpu will-change-transform bg-white">
           <PromoBanner />

@@ -67,10 +67,7 @@ export async function POST(request: Request) {
     //    Matches the exact MC dashboard code format
     const validateUrl = `${MC_BASE_URL}/verification/v3/validateOtp?countryCode=${countryCode}&mobileNumber=${phone}&verificationId=${encodeURIComponent(verificationId)}&customerId=${encodeURIComponent(MC_CUSTOMER_ID)}&code=${encodeURIComponent(otp)}`;
 
-    console.log(
-      "MC Validate OTP:",
-      validateUrl.replace(/code=\d+/, "code=****"),
-    );
+
 
     const validateRes = await fetch(validateUrl, {
       method: "GET",

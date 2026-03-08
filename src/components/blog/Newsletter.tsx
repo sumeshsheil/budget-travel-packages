@@ -74,7 +74,7 @@ export default function Newsletter() {
           <div className="absolute inset-0 bg-white/40 backdrop-blur-xs"></div>
 
           <div className="relative z-10">
-            <h2 className="text-3xl md:text-5xl font-black text-secondary mb-4 tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-black text-secondary-text mb-4 tracking-tight">
               Get Travel Deals
             </h2>
             <p className="text-gray-800 text-base md:text-lg mb-10 max-w-md mx-auto font-medium">
@@ -120,7 +120,7 @@ export default function Newsletter() {
                     <button
                       type="submit"
                       id="newsletter-submit-btn"
-                      disabled={status === "loading" || showCaptcha}
+                      disabled={status === "loading"}
                       className="bg-new-blue text-white px-10 py-4 rounded-xl md:rounded-full font-black text-sm uppercase tracking-widest hover:brightness-110 active:scale-[0.98] transition-all disabled:opacity-50 flex items-center justify-center gap-3"
                     >
                       {status === "loading" ? (
@@ -135,23 +135,28 @@ export default function Newsletter() {
                   </div>
                   
                   {showCaptcha && (
-                    <div className="flex justify-center animate-in fade-in zoom-in duration-300">
+                    <div className="flex justify-center animate-in fade-in zoom-in duration-300 min-h-[65px]">
                       <Turnstile
                         ref={turnstileRef}
                         siteKey={process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY || ""}
                         onSuccess={(token) => {
                           setCaptchaToken(token);
                           setShowCaptcha(false);
+                          // Use a slight delay to ensure state is updated before triggering submit
                           setTimeout(() => {
-                            const btn = document.getElementById('newsletter-submit-btn');
-                            btn?.click();
+                            handleSubmit();
                           }, 100);
                         }}
-                        onExpire={() => setCaptchaToken(null)}
-                        onError={() => {
+                        onExpire={() => {
+                          setCaptchaToken(null);
+                        }}
+                        onError={(error) => {
+                          console.error("Turnstile error:", error);
                           setCaptchaToken(null);
                           setShowCaptcha(false);
-                          toast.error("Captcha failed. Please try again.");
+                          setStatus("error");
+                          setErrorMessage("Captcha verification failed. Please refresh and try again.");
+                          toast.error("Captcha failed (Code: " + error + "). Please check your internet or site settings.");
                         }}
                       />
                     </div>
@@ -164,6 +169,18 @@ export default function Newsletter() {
                   )}
                 </form>
               )}
+              <p className="mt-6 text-[13px] text-black font-bold tracking-wide uppercase opacity-80">
+                NO SPAM • ONE-CLICK UNSUBSCRIBE • PRIVACY-FIRST
+              </p>
+              <div className="mt-5 flex items-center justify-center gap-2 text-sm font-bold text-secondary">
+                <Mail className="w-4 h-4" />
+                <a
+                  href="mailto:hello@budgettravelpackages.in"
+                  className="hover:underline underline-offset-4"
+                >
+                  hello@budgettravelpackages.in
+                </a>
+              </div>
             </div>
           </div>
         </motion.div>
