@@ -48,7 +48,7 @@ export default async function Home() {
     
       <Header />
       <main>
-        {/* <Hero />
+        <Hero />
         <CityOperations />
         <PopularPackages />
         <BookYourTrip />
@@ -56,9 +56,7 @@ export default async function Home() {
         <WhyChooseUs />
         <FeaturedIn />
         <FAQ />
-        <TravelSmartCTA /> */}
-
-        <h2 className="text-5xl text-red-900 text-center">Hello</h2>
+        <TravelSmartCTA />
       </main>
       <Footer />
     </>
