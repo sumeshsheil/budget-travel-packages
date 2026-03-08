@@ -9,7 +9,6 @@ import FeaturedIn from "@/components/landing/sections/FeaturedIn";
 import FAQ from "@/components/landing/sections/FAQ";
 import TravelSmartCTA from "@/components/landing/sections/TravelSmartCTA";
 import Footer from "@/components/landing/sections/Footer";
-import SystemHealthCheck from "@/components/layout/SystemHealthCheck";
 import { getPosts } from "@/lib/wordpress/api";
 
 export default async function Home() {
@@ -46,10 +45,10 @@ export default async function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchemas) }}
       />
-      <SystemHealthCheck />
+    
       <Header />
       <main>
-        <Hero />
+        {/* <Hero />
         <CityOperations />
         <PopularPackages />
         <BookYourTrip />
@@ -57,7 +56,9 @@ export default async function Home() {
         <WhyChooseUs />
         <FeaturedIn />
         <FAQ />
-        <TravelSmartCTA />
+        <TravelSmartCTA /> */}
+
+        <h2 className="text-5xl text-red-900 text-center">Hello</h2>
       </main>
       <Footer />
     </>
