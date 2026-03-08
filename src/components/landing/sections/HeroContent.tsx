@@ -2,6 +2,7 @@
 
 import React from "react";
 import { m } from "motion/react";
+import Button from "../ui/button";
 
 const HeroContent: React.FC = () => {
   return (
@@ -27,6 +28,17 @@ const HeroContent: React.FC = () => {
           Explore More, Spend Less!
         </p>
       </div>
+        <Button 
+          variant="primary"
+          className="bg-new-blue text-white  text-sm md:text-base px-8 lg:px-16 py-2 rounded-full transition-all"
+          onClick={() => {
+            document
+              .getElementById("start-planning")
+              ?.scrollIntoView({ behavior: "smooth" });
+          }}
+        >
+          Customize My Trip
+        </Button>
     </m.div>
   );
 };
