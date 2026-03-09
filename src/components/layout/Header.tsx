@@ -1,5 +1,4 @@
 "use client";
-import { Search, X } from "lucide-react";
 import {
     AnimatePresence, motion, useMotionValueEvent, useScroll
 } from "motion/react";
@@ -9,7 +8,6 @@ import React, { Suspense, useEffect, useState } from "react";
 import MenuIcon from "../icons/Menu";
 
 import { SOCIAL_LINKS } from "@/lib/constants";
-import { useDebouncedCallback } from "use-debounce";
 import YoutubeIcon from "../icons/Youtube";
 import { Button } from "../ui/button";
 
@@ -57,19 +55,7 @@ const Header: React.FC = () => {
 
   const isHomePage = pathname === "/";
 
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [isSearching, setIsSearching] = useState(false);
-  const inputRef = React.useRef<HTMLInputElement>(null);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-
- 
-
-  useEffect(() => {
-    if (isSearchOpen && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [isSearchOpen]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -187,7 +173,19 @@ const Header: React.FC = () => {
             </div>
           </nav>
           <div>
-           
+            <div className="flex items-center gap-4 min-h-8">
+              <motion.button
+                ref={buttonRef}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                onClick={toggleMenu}
+                className="focus:outline-none cursor-pointer transform-gpu will-change-transform"
+                aria-label="Toggle Menu"
+              >
+                <MenuIcon className="text-[#01FF70]" />
+              </motion.button>
+            </div>
           </div>
         </div>
 
