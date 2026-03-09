@@ -19,7 +19,9 @@
 .agents/
 .agents/*
 .agents/**
-
+.env
+.env.local
+/env.env
 
 # testing
 /coverage
