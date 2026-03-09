@@ -34,8 +34,7 @@ export default async function Home() {
       },
     },
     image:
-      post._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
-      "https://budgettravelpackages.in/images/logo/logo.svg",
+      post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "",
     url: `https://budgettravelpackages.in/blogs/${post.slug}`,
   }));
 

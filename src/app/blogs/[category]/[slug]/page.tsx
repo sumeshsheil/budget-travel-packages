@@ -81,7 +81,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     "@type": "BlogPosting",
     headline: post.title.rendered,
     description: post.excerpt.rendered.replace(/<[^>]+>/g, "").slice(0, 160),
-    image: featuredImage || "https://budgettravelpackages.in/images/logo/logo.svg",
+    image: featuredImage || "",
     datePublished: post.date,
     dateModified: (post as any).modified || post.date,
     author: {
