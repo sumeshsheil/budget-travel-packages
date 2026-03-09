@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { getInputClass, labelClass, errorTextSmClass } from "../styles";
+import { errorTextSmClass, getInputClass, labelClass } from "../styles";
 
 interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { labelClass, errorTextSmClass } from "../styles";
+import { errorTextSmClass, labelClass } from "../styles";
 
 interface FormSelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;

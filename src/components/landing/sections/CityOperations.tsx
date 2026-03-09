@@ -1,12 +1,11 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
-import Button from "../ui/button";
-import LottieAnimation from "../../ui/LottieAnimation";
-import kolkataImg from "@/../public/images/city/kolkata.png";
 import delhiImg from "@/../public/images/city/delhi.png";
+import kolkataImg from "@/../public/images/city/kolkata.png";
 import mumbaiImg from "@/../public/images/city/mumbai.png";
+import Image from "next/image";
+import React from "react";
+import Button from "../ui/button";
 
 const cityData = [
   {

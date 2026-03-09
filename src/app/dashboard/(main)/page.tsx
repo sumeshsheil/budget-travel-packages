@@ -1,21 +1,15 @@
-import { requireCustomerAuth } from "@/lib/customer-auth-guard";
-import { connectDB } from "@/lib/db/mongoose";
-import Lead from "@/lib/db/models/Lead";
-import Link from "next/link";
-import User, { IUser } from "@/lib/db/models/User";
-import { format } from "date-fns";
+import { PlanTripButton } from "@/components/dashboard/PlanTripButton";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { requireCustomerAuth } from "@/lib/customer-auth-guard";
+import Lead from "@/lib/db/models/Lead";
+import User, { IUser } from "@/lib/db/models/User";
+import { connectDB } from "@/lib/db/mongoose";
+import { format } from "date-fns";
 import {
-  Plane,
-  Calendar,
-  ArrowRight,
-  User as UserIcon,
-  Gift,
-  Sparkles,
-  FileText,
+    ArrowRight, Calendar, FileText, Gift, Plane, Sparkles, User as UserIcon
 } from "lucide-react";
-import { PlanTripButton } from "@/components/dashboard/PlanTripButton";
+import Link from "next/link";
 
 export default async function DashboardOverviewPage() {
   const session = await requireCustomerAuth();

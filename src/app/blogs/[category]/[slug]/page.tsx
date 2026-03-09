@@ -1,12 +1,11 @@
-import { notFound } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
+import Newsletter from "@/components/blog/Newsletter";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { getPostBySlug, getPosts } from "@/lib/wordpress/api";
 import { extractFeaturedImage } from "@/lib/wordpress/utils";
 import { Metadata } from "next";
-import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import Newsletter from "@/components/blog/Newsletter";
-import { ArrowLeft, Tag } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
 // Category configuration
 const CATEGORIES = [

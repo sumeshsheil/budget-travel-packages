@@ -1,21 +1,14 @@
 "use client";
 
-import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
-import { 
-  LayoutDashboard, 
-  Sparkles, 
-  Rocket, 
-  Lock,
-  ArrowRight,
-  Zap,
-  Star,
-  Globe
-} from "lucide-react";
-import { motion } from "motion/react";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import {
+    ArrowRight, Globe, Rocket, Sparkles, Star, Zap
+} from "lucide-react";
+import { motion } from "motion/react";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 export default function PackagesPage() {
   const { data: session, status } = useSession();

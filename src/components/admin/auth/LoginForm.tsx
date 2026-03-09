@@ -1,37 +1,32 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import {
-  Loader2,
-  Eye,
-  EyeOff,
-  LogIn,
-  ArrowLeft,
-  CheckCircle2,
-  AlertCircle,
-  UserPlus,
-} from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
-import Image from "next/image";
 import logo from "@/../public/images/logo/footer-logo.svg";
-
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { toast } from "sonner";
+    AlertCircle, ArrowLeft,
+    CheckCircle2, Eye,
+    EyeOff, Loader2, LogIn, UserPlus
+} from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { signIn } from "next-auth/react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
 import { OtpInput } from "@/components/landing/sections/booking/components/OtpInput";
+import { Button } from "@/components/ui/button";
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
 // Schemas
 const loginSchema = z.object({

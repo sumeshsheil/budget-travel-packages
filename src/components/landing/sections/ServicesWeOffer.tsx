@@ -1,15 +1,13 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
 import { m } from "motion/react";
+import Image from "next/image";
+import React from "react";
 
 import icon1 from "@/../public/images/service-we-offer/icons/icon1.svg";
 import icon2 from "@/../public/images/service-we-offer/icons/icon2.svg";
-import icon3 from "@/../public/images/service-we-offer/icons/icon3.svg";
 import icon4 from "@/../public/images/service-we-offer/icons/icon4.svg";
 import icon5 from "@/../public/images/service-we-offer/icons/icon5.svg";
-import icon6 from "@/../public/images/service-we-offer/icons/icon6.svg";
 
 import bgParachute from "@/../public/images/service-we-offer/background.png";
 
@@ -46,8 +44,8 @@ const services = [
   },
 ];
 
+import { CheckCheck } from "lucide-react";
 import LottieAnimation from "../../ui/LottieAnimation";
-import { Check, CheckCheck } from "lucide-react";
 
 const ServicesWeOffer: React.FC = () => {
   return (

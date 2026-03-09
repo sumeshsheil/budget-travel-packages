@@ -1,37 +1,30 @@
 "use client";
 
-import { useState, useTransition } from "react";
-import { format } from "date-fns";
-import {
-  Calendar as CalendarIcon,
-  Loader2,
-  Plane,
-  MapPin,
-  Users,
-  Banknote,
-  Clock,
-  MessageSquare,
-} from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { updateLeadBasicTripDetails } from "@/app/admin/(dashboard)/leads/[id]/itinerary-actions";
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
+    Popover,
+    PopoverContent,
+    PopoverTrigger
 } from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-import { updateLeadBasicTripDetails } from "@/app/admin/(dashboard)/leads/[id]/itinerary-actions";
+import { format } from "date-fns";
+import {
+    Banknote, Calendar as CalendarIcon, Clock, Loader2, MapPin, MessageSquare, Plane, Users
+} from "lucide-react";
+import { useState, useTransition } from "react";
 
 interface TripInfoManagerProps {
   leadId: string;

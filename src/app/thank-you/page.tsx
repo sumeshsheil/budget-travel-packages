@@ -1,20 +1,14 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { motion } from "motion/react";
-import {
-  CheckCircle2,
-  ArrowRight,
-  Home,
-  PhoneCall,
-  Clock,
-  ShieldCheck,
-  Lock,
-} from "lucide-react";
-import Header from "@/components/layout/Header";
 import Footer from "@/components/landing/sections/Footer";
 import Button from "@/components/landing/ui/button";
+import Header from "@/components/layout/Header";
+import {
+    ArrowRight, CheckCircle2, Clock, Home, Lock, PhoneCall, ShieldCheck
+} from "lucide-react";
+import { motion } from "motion/react";
+import Image from "next/image";
+import Link from "next/link";
 import styles from "./loader.module.css";
 
 export default function ThankYouPage() {

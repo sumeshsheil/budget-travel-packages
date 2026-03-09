@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import { ChevronDown, ChevronUp, Minus, Plus } from "lucide-react";
+import { AnimatePresence, m } from "motion/react";
 import Image from "next/image";
-import { m, AnimatePresence } from "motion/react";
-import { Plus, Minus, ChevronDown, ChevronUp } from "lucide-react";
+import React, { useRef, useState } from "react";
 import Button from "../ui/button";
 
 import worldMap from "@/../public/images/shapes/world-map.svg";

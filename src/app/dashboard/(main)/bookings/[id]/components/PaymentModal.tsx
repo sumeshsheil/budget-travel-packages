@@ -1,35 +1,27 @@
 "use client";
 
-import { useState } from "react";
-import {
-  Download,
-  Copy,
-  CreditCard,
-  Phone,
-  ShieldCheck,
-  Loader2,
-  CheckCircle2,
-  Clock,
-  XCircle,
-  AlertTriangle,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription, DialogTitle,
+    DialogTrigger
+} from "@/components/ui/dialog";
+import UpcomingPaymentsIcon from "@/components/ui/icons/upcoming-payments-icon";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { toast } from "sonner";
+    AlertTriangle, CheckCircle2,
+    Clock, Copy,
+    CreditCard, Download, Loader2, Phone,
+    ShieldCheck, XCircle
+} from "lucide-react";
 import Image from "next/image";
-import { submitBookingPayment } from "../payment-actions";
 import { useRouter } from "next/navigation";
-import UpcomingPaymentsIcon from "@/components/ui/icons/upcoming-payments-icon";
+import { useState } from "react";
+import { toast } from "sonner";
+import { submitBookingPayment } from "../payment-actions";
 
 const BOOKING_AMOUNTS: Record<string, number> = {
   domestic: 666,

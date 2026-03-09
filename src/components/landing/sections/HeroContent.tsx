@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
 import { m } from "motion/react";
-import Button from "../ui/button";
+import React from "react";
 
 const HeroContent: React.FC = () => {
   return (

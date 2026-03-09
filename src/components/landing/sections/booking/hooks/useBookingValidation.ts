@@ -1,13 +1,11 @@
-import { useCallback } from "react";
-import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
 import {
-  setStep1Errors,
-  setStep2Errors,
-  setContactErrors,
-  setBudgetError,
+    setBudgetError, setContactErrors, setStep1Errors,
+    setStep2Errors
 } from "@/lib/redux/features/bookingSlice";
-import { step1Schema, primaryContactSchema } from "../schemas";
-import type { Step1Data, FieldErrors, TravelerErrors } from "../types";
+import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
+import { useCallback } from "react";
+import { primaryContactSchema, step1Schema } from "../schemas";
+import type { FieldErrors, Step1Data, TravelerErrors } from "../types";
 import { useMinBudget } from "./useMinBudget";
 
 /**

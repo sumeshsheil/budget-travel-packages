@@ -1,30 +1,24 @@
 "use client";
 
-import { Suspense, useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { signIn } from "next-auth/react";
-import Link from "next/link";
-import {
-  Eye,
-  EyeOff,
-  CheckCircle,
-  Plane,
-  Calendar,
-  CreditCard,
-  Gift,
-  Sparkles,
-} from "lucide-react";
+import logo from "@/../public/images/logo/footer-logo.svg";
 import { Button } from "@/components/ui/button";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+    Calendar, CheckCircle, CreditCard, Eye,
+    EyeOff, Plane, Sparkles
+} from "lucide-react";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
-import logo from "@/../public/images/logo/footer-logo.svg";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
 
 /**
  * Full-fidelity Dashboard Overview skeleton rendered as a static background.

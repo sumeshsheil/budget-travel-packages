@@ -1,10 +1,10 @@
-import { notFound } from "next/navigation";
 import BlogCard from "@/components/blog/BlogCard";
 import Newsletter from "@/components/blog/Newsletter";
-import Link from "next/link";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { getPostsByCategory } from "@/lib/wordpress/api";
 import { Metadata } from "next";
-import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
 interface PageProps {
   params: Promise<{ category: string }>;

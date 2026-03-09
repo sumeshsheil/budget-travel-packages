@@ -1,21 +1,19 @@
-import { NextResponse } from "next/server";
-import { connectDB } from "@/lib/db/mongoose";
+import { auth } from "@/lib/auth";
 import Lead from "@/lib/db/models/Lead";
 import User from "@/lib/db/models/User";
-import { checkRateLimit } from "@/lib/rate-limit";
-import { logLeadActivity } from "@/lib/lead-activity";
-import { headers } from "next/headers";
-import { revalidatePath } from "next/cache";
-import { z } from "zod";
-import crypto from "crypto";
-import bcryptjs from "bcryptjs";
-import { auth } from "@/lib/auth";
+import { connectDB } from "@/lib/db/mongoose";
 import {
-  sendLeadConfirmationEmail,
-  sendLeadNotificationEmail,
-  sendWelcomeEmail,
-  sendSetPasswordEmail,
+    sendLeadConfirmationEmail,
+    sendLeadNotificationEmail, sendSetPasswordEmail, sendWelcomeEmail
 } from "@/lib/email";
+import { logLeadActivity } from "@/lib/lead-activity";
+import { checkRateLimit } from "@/lib/rate-limit";
+import bcryptjs from "bcryptjs";
+import crypto from "crypto";
+import { revalidatePath } from "next/cache";
+import { headers } from "next/headers";
+import { NextResponse } from "next/server";
+import { z } from "zod";
 
 // Validation Schema matching the form
 const leadSchema = z.object({
@@ -216,37 +214,47 @@ export async function POST(request: Request) {
     const fullName =
       `${primaryContact.firstName} ${primaryContact.lastName}`.trim();
 
-    await Promise.allSettled([
-      ...(setPasswordUrl
-        ? [
-            sendWelcomeEmail({
-              name: primaryContact.firstName,
-              to: primaryContact.email,
-            }),
-            sendSetPasswordEmail({
-              name: primaryContact.firstName,
-              email: primaryContact.email,
-              setPasswordUrl,
-            }),
-          ]
-        : []),
-      sendLeadConfirmationEmail({
+    // Small delay helper to respect Resend's 2 requests/sec rate limit
+    const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+    try {
+      if (setPasswordUrl) {
+        await sendWelcomeEmail({
+          name: primaryContact.firstName,
+          to: primaryContact.email,
+        });
+        await sleep(600);
+        await sendSetPasswordEmail({
+          name: primaryContact.firstName,
+          email: primaryContact.email,
+          setPasswordUrl,
+        });
+        await sleep(600);
+      }
+
+      await sendLeadConfirmationEmail({
         name: fullName,
         email: primaryContact.email,
         phone: primaryContact.phone,
         destination: validatedData.destination,
         budget: validatedData.budget,
         guests: validatedData.guests,
-      }),
-      sendLeadNotificationEmail({
+      });
+
+      await sleep(600);
+
+      await sendLeadNotificationEmail({
         name: fullName,
         email: primaryContact.email,
         phone: primaryContact.phone,
         destination: validatedData.destination,
         budget: validatedData.budget,
         guests: validatedData.guests,
-      }),
-    ]);
+      });
+    } catch (emailError) {
+      // Log but don't fail the request if emails fail
+      console.error("[Email] Sequential send error:", emailError);
+    }
 
     // Revalidate admin leads page so new lead shows up immediately
     revalidatePath("/admin/leads");

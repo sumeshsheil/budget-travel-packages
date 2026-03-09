@@ -1,2 +1,1 @@
-export { default } from "./booking";
-export { BookYourTrip } from "./booking";
+export { BookYourTrip, default } from "./booking";

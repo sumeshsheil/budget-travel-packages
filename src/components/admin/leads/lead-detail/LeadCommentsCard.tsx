@@ -1,20 +1,20 @@
 "use client";
 
-import { useState, useTransition } from "react";
 import { format } from "date-fns";
-import { toast } from "sonner";
 import { MessageSquare, Send } from "lucide-react";
+import { useState, useTransition } from "react";
+import { toast } from "sonner";
 
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { addLeadComment } from "@/app/admin/(dashboard)/leads/actions";
+import { Button } from "@/components/ui/button";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle
+} from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
 
 interface Comment {
   _id?: string;

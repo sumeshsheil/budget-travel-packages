@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
 import { setDepartureCity } from "@/lib/redux/features/bookingSlice";
-import { labelClass, getInputClass, errorTextClass } from "../styles";
+import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
+import React, { useEffect, useRef, useState } from "react";
+import { errorTextClass, getInputClass, labelClass } from "../styles";
 
 // List of departure cities
 const DEPARTURE_CITIES = [

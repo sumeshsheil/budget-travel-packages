@@ -1,14 +1,12 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
-import {
-  setDuration,
-  toggleDurationDropdown,
-  closeDurationDropdown,
-} from "@/lib/redux/features/bookingSlice";
 import { DurationSelect } from "@/components/shared/DurationSelect";
-import { labelClass, errorTextClass } from "../styles";
+import {
+    setDuration
+} from "@/lib/redux/features/bookingSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
+import React from "react";
+import { errorTextClass, labelClass } from "../styles";
 
 export const DurationDropdown: React.FC = () => {
   const dispatch = useAppDispatch();

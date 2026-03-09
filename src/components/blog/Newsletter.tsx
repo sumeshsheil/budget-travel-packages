@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion } from "motion/react";
-import { Send, CheckCircle2, Loader2, Mail } from "lucide-react";
-import { toast } from "sonner";
-import { cn } from "@/lib/utils";
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
+import { CheckCircle2, Loader2, Mail, Send } from "lucide-react";
+import { motion } from "motion/react";
+import React, { useState } from "react";
+import { toast } from "sonner";
 
 export default function Newsletter() {
   const [email, setEmail] = useState("");

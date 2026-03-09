@@ -1,5 +1,5 @@
-import FeaturedHero from "@/components/blog/FeaturedHero";
 import CategorySection from "@/components/blog/CategorySection";
+import FeaturedHero from "@/components/blog/FeaturedHero";
 import Newsletter from "@/components/blog/Newsletter";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { getFeaturedPosts, getPostsByCategory } from "@/lib/wordpress/api";

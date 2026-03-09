@@ -1,11 +1,11 @@
 "use client";
 
+import Footer from "@/components/landing/sections/Footer";
 import Header from "@/components/layout/Header";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import Footer from "@/components/landing/sections/Footer";
-import { useState, useEffect } from "react";
 import { List, X } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const POLICIES = [
   { id: "privacy", title: "Privacy Policy" },

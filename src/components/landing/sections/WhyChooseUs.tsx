@@ -1,17 +1,17 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
 import { m } from "motion/react";
+import Image from "next/image";
+import React from "react";
 import Button from "../ui/button";
 
+import bgPattern from "@/../public/images/why-choose-us/background.svg";
 import icon1 from "@/../public/images/why-choose-us/icon1.svg";
 import icon2 from "@/../public/images/why-choose-us/icon2.svg";
 import icon3 from "@/../public/images/why-choose-us/icon3.svg";
 import icon4 from "@/../public/images/why-choose-us/icon4.svg";
 import icon5 from "@/../public/images/why-choose-us/icon5.svg";
 import icon6 from "@/../public/images/why-choose-us/icon6.svg";
-import bgPattern from "@/../public/images/why-choose-us/background.svg";
 import LottieAnimation from "@/components/ui/LottieAnimation";
 
 const features = [

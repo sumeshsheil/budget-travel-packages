@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
-import { Play, Pause } from "lucide-react";
+import { Pause, Play } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
 
 const steps = [
   {

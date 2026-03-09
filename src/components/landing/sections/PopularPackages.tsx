@@ -1,12 +1,12 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
 import { m } from "motion/react";
+import Image from "next/image";
+import React from "react";
 
+import adventureImg from "@/../public/images/banner/adventure.jpeg";
 import familyImg from "@/../public/images/banner/family.jpeg";
 import honeymoonImg from "@/../public/images/banner/honeymoon.jpeg";
-import adventureImg from "@/../public/images/banner/adventure.jpeg";
 
 const packages = [
   {

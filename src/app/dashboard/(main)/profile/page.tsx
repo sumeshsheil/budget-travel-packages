@@ -1,53 +1,41 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
-import MembersSection from "./MembersSection";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { OtpInput } from "@/components/landing/sections/booking/components/OtpInput";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle
+} from "@/components/ui/card";
+import ImageUpload from "@/components/ui/image-upload";
 import { Input } from "@/components/ui/input";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
+    Popover,
+    PopoverContent,
+    PopoverTrigger
 } from "@/components/ui/popover";
 import {
-  User,
-  Mail,
-  Phone,
-  Loader2,
-  ShieldCheck,
-  ShieldAlert,
-  Plane,
-  FileText,
-  Pencil,
-  X,
-  Check,
-  Calendar as CalendarIcon,
-  CalendarDays,
-} from "lucide-react";
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue
+} from "@/components/ui/select";
+import { calculateAge, cn } from "@/lib/utils";
 import { format } from "date-fns";
-import { Calendar } from "@/components/ui/calendar";
-import ImageUpload from "@/components/ui/image-upload";
-import { toast } from "sonner";
-import { Badge } from "@/components/ui/badge";
-import { cn, calculateAge } from "@/lib/utils";
-import Image from "next/image";
-import { OtpInput } from "@/components/landing/sections/booking/components/OtpInput";
+import {
+    Calendar as CalendarIcon, Check, FileText, Loader2, Mail, Pencil, Phone, Plane, ShieldAlert, ShieldCheck, User, X
+} from "lucide-react";
 import { motion } from "motion/react";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import MembersSection from "./MembersSection";
 
 const OTP_LENGTH = 4;
 const INDIA_PHONE_REGEX = /^[6-9]\d{9}$/;

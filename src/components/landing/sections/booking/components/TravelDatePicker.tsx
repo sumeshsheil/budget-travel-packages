@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useRef, useEffect, useMemo } from "react";
-import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
 import { setTravelDate } from "@/lib/redux/features/bookingSlice";
-import { labelClass, getInputClass, errorTextClass } from "../styles";
+import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { errorTextClass, getInputClass, labelClass } from "../styles";
 
 // Helper to format date as DD/MM/YYYY
 const formatDate = (date: Date): string => {

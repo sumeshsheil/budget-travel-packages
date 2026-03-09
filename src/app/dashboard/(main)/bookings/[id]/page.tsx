@@ -1,42 +1,22 @@
-import { requireCustomerAuth } from "@/lib/customer-auth-guard";
-import { connectDB } from "@/lib/db/mongoose";
-import Lead from "@/lib/db/models/Lead";
-import User from "@/lib/db/models/User";
-import { notFound } from "next/navigation";
-import Link from "next/link";
-import { format } from "date-fns";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { requireCustomerAuth } from "@/lib/customer-auth-guard";
+import { getPaymentColor, USER_PROGRESS_STAGES } from "@/lib/dashboard-utils";
+import Lead from "@/lib/db/models/Lead";
+import User from "@/lib/db/models/User";
+import { connectDB } from "@/lib/db/mongoose";
+import { format } from "date-fns";
 import {
-  ArrowLeft,
-  MapPin,
-  Users,
-  IndianRupee,
-  Calendar,
-  Clock,
-  Plane,
-  CreditCard,
-  Check,
-  CheckCircle2,
-  Circle,
-  FileText,
-  Hotel,
-  Download,
-  Receipt,
-  FileCheck,
-  File,
-  UtensilsCrossed,
-  Bus,
-  CheckCircle,
-  XCircle,
-  AlertTriangle,
+    AlertTriangle, ArrowLeft, Calendar, Check, CheckCircle, Circle, Clock, CreditCard, Download, FileText,
+    Hotel, IndianRupee, MapPin, Plane, Users, XCircle
 } from "lucide-react";
-import { USER_PROGRESS_STAGES, getPaymentColor } from "@/lib/dashboard-utils";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 import AddCompanionModal from "./components/AddCompanionModal";
-import RemoveTravelerButton from "./components/RemoveTravelerButton";
 import PaymentModal from "./components/PaymentModal";
 import PDFViewerModal from "./components/PDFViewerModal";
+import RemoveTravelerButton from "./components/RemoveTravelerButton";
 
 import RightClickBlocker from "./components/RightClickBlocker";
 

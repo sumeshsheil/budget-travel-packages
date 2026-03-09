@@ -1,30 +1,26 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useSession } from "next-auth/react";
-import { Home, Plane, UserIcon, LayoutDashboard } from "lucide-react";
-import Image from "next/image";
 import logo from "@/../public/images/logo/footer-logo.svg";
 import logoDark from "@/../public/images/logo/logo.svg";
-import { useTheme } from "next-themes";
+import { Home, LayoutDashboard, Plane, UserIcon } from "lucide-react";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { cn } from "@/lib/utils";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupLabel,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
-  useSidebar,
-} from "@/components/ui/sidebar";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { motion, AnimatePresence } from "motion/react";
+import {
+    Sidebar,
+    SidebarContent,
+    SidebarFooter,
+    SidebarGroup,
+    SidebarGroupLabel,
+    SidebarHeader,
+    SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar
+} from "@/components/ui/sidebar";
+import { cn } from "@/lib/utils";
+import { AnimatePresence, motion } from "motion/react";
 
 export function DashboardSidebar() {
   const pathname = usePathname();

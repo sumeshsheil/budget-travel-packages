@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "motion/react";
-import { Cookie, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 
 export default function CookieConsent() {

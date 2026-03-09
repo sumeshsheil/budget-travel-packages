@@ -1,20 +1,20 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
 import { m } from "motion/react";
+import Image from "next/image";
+import React from "react";
 
 import dailyhunt from "@/../public/images/brands/dailyhunt.svg";
 import enterpreneur from "@/../public/images/brands/enterpreneur.svg";
 import hindustan from "@/../public/images/brands/hindustan.svg";
 // import trind from "@/../public/images/brands/trind.svg";
-import googleNews from "@/../public/images/brands/google-news.png";
 import cityCarnival from "@/../public/images/brands/citycarnival.png";
+import googleNews from "@/../public/images/brands/google-news.png";
 import indianPublisher from "@/../public/images/brands/indian-publisher.png";
 
+import businessUpdate from "@/../public/images/brands/business-update.png";
 import foxStory from "@/../public/images/brands/fox-story.png";
 import hindustanTimes from "@/../public/images/brands/hindustan-time.png";
-import businessUpdate from "@/../public/images/brands/business-update.png";
 const brands = [
   { name: "Dailyhunt", logo: dailyhunt },
   { name: "Entrepreneur Street", logo: enterpreneur },

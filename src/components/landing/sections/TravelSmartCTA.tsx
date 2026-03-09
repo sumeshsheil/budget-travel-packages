@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { Mail, PhoneCall } from "lucide-react";
 import { m } from "motion/react";
-import LottieAnimation from "../../ui/LottieAnimation";
 import Link from "next/link";
-import { PhoneCall, Mail } from "lucide-react";
+import React from "react";
+import LottieAnimation from "../../ui/LottieAnimation";
 
 const TravelSmartCTA: React.FC = () => {
 

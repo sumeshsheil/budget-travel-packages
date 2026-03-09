@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
-import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
 import { setTripType } from "@/lib/redux/features/bookingSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
+import React from "react";
 
 export const TripTypeSelector: React.FC = () => {
   const dispatch = useAppDispatch();

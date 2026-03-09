@@ -1,17 +1,16 @@
-import { requireCustomerAuth } from "@/lib/customer-auth-guard";
-import { connectDB } from "@/lib/db/mongoose";
-import Lead from "@/lib/db/models/Lead";
-import Link from "next/link";
-import { format } from "date-fns";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Plane, ArrowRight, MapPin, Users, IndianRupee } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { requireCustomerAuth } from "@/lib/customer-auth-guard";
 import {
-  getStageColor,
-  getStageLabel,
-  getPaymentColor,
+    getPaymentColor, getStageColor,
+    getStageLabel
 } from "@/lib/dashboard-utils";
+import Lead from "@/lib/db/models/Lead";
+import { connectDB } from "@/lib/db/mongoose";
+import { format } from "date-fns";
+import { ArrowRight, IndianRupee, MapPin, Plane, Users } from "lucide-react";
+import Link from "next/link";
 
 export default async function BookingsPage() {
   const session = await requireCustomerAuth();

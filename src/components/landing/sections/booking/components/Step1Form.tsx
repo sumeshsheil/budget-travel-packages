@@ -1,22 +1,21 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
+import Button from "@/components/landing/ui/button";
 import {
-  setDestination,
-  setBudget,
-  setBudgetError,
-  setCurrentStep,
+    setBudget,
+    setBudgetError,
+    setCurrentStep, setDestination
 } from "@/lib/redux/features/bookingSlice";
-import { TripTypeSelector } from "./TripTypeSelector";
-import { DurationDropdown } from "./DurationDropdown";
-import { GuestCounter } from "./GuestCounter";
-import { DepartureCityCombobox } from "./DepartureCityCombobox";
-import { TravelDatePicker } from "./TravelDatePicker";
+import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
+import React, { useEffect } from "react";
 import { useBookingValidation } from "../hooks/useBookingValidation";
 import { useMinBudget } from "../hooks/useMinBudget";
-import Button from "@/components/landing/ui/button";
-import { labelClass, getInputClass, errorTextClass } from "../styles";
+import { errorTextClass, getInputClass, labelClass } from "../styles";
+import { DepartureCityCombobox } from "./DepartureCityCombobox";
+import { DurationDropdown } from "./DurationDropdown";
+import { GuestCounter } from "./GuestCounter";
+import { TravelDatePicker } from "./TravelDatePicker";
+import { TripTypeSelector } from "./TripTypeSelector";
 
 export const Step1Form: React.FC = () => {
   const dispatch = useAppDispatch();

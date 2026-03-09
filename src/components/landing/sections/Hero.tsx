@@ -1,7 +1,7 @@
 import React from "react";
 import Marquee from "../ui/Marquee";
-import HeroContent from "./HeroContent";
 import HeroBackground from "./HeroBackground";
+import HeroContent from "./HeroContent";
 
 const Hero: React.FC = () => {
   return (

@@ -1,7 +1,7 @@
 "use client";
 import YellowStar from "@/components/icons/YellowStar";
-import React from "react";
 import { motion } from "motion/react";
+import React from "react";
 const Marquee: React.FC = () => {
   const titles = [
     {

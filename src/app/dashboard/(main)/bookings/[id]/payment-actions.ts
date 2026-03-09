@@ -1,11 +1,11 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
-import { connectDB } from "@/lib/db/mongoose";
 import Lead from "@/lib/db/models/Lead";
 import User from "@/lib/db/models/User";
-import Notification from "@/lib/db/models/Notification";
+import { connectDB } from "@/lib/db/mongoose";
+import { createBulkNotification } from "@/lib/notifications";
 import mongoose from "mongoose";
+import { revalidatePath } from "next/cache";
 
 export async function submitBookingPayment(
   leadId: string,
@@ -75,28 +75,24 @@ export async function submitBookingPayment(
         notificationUserIds.push(lead.agentId.toString());
       }
 
-      // Create notification documents
-      const paymentAmountFormatted = new Intl.NumberFormat("en-IN", {
-        style: "currency",
-        currency: "INR",
-        maximumFractionDigits: 0,
-      }).format(paymentAmount);
+      if (notificationUserIds.length > 0) {
+        const paymentAmountFormatted = new Intl.NumberFormat("en-IN", {
+          style: "currency",
+          currency: "INR",
+          maximumFractionDigits: 0,
+        }).format(paymentAmount);
 
-      const notifications = notificationUserIds.map((userId) => ({
-        userId: new mongoose.Types.ObjectId(userId),
-        type: "success",
-        title: "New Payment Submitted",
-        message: `A payment of ${paymentAmountFormatted} was submitted for ${lead.travelers?.[0]?.name || 'a customer'}'s trip to ${lead.destination}.`,
-        link: `/admin/leads/${leadId}`,
-        isRead: false,
-      }));
+        const paymentLabel = type === "booking" ? "Booking Payment" : "Trip Cost Payment";
 
-      if (notifications.length > 0) {
-        await Notification.insertMany(notifications);
+        await createBulkNotification(notificationUserIds, {
+          title: "New Payment Submitted",
+          message: `${paymentLabel} of ${paymentAmountFormatted} was submitted for ${lead.travelers?.[0]?.name || 'a customer'}'s trip to ${lead.destination}.`,
+          type: "success",
+          link: `/admin/leads/${leadId}`,
+        });
       }
     } catch (notifErr) {
       console.error("Failed to create payment notifications:", notifErr);
-      // Soft fail: don't break the payment flow if notifications fail
     }
 
     revalidatePath(`/dashboard/bookings/${leadId}`);

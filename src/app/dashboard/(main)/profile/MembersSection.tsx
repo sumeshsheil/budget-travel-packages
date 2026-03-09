@@ -1,39 +1,26 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-  CardFooter,
-} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import {
+    Card,
+    CardContent, CardFooter, CardHeader,
+    CardTitle
+} from "@/components/ui/card";
+import ImageUpload from "@/components/ui/image-upload";
 import { Input } from "@/components/ui/input";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue
 } from "@/components/ui/select";
 import {
-  Users,
-  UserPlus,
-  Pencil,
-  Trash2,
-  Loader2,
-  ShieldCheck,
-  ShieldAlert,
-  FileText,
-  Plane,
-  Check,
+    Loader2, Pencil, Plane, ShieldAlert, ShieldCheck, Trash2, UserPlus, Users
 } from "lucide-react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import ImageUpload from "@/components/ui/image-upload";
-import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
 
 interface IMember {
   name: string;

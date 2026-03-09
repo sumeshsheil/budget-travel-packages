@@ -1,14 +1,14 @@
 "use client";
 
-import React from "react";
-import { usePathname } from "next/navigation";
 import { ThemeProvider } from "@/components/theme-provider";
+import { usePathname } from "next/navigation";
+import React from "react";
 
 interface AppThemeProviderProps {
   children: React.ReactNode;
 }
 
-import { LazyMotion, domAnimation } from "motion/react";
+import { domAnimation, LazyMotion } from "motion/react";
 
 export function AppThemeProvider({ children }: AppThemeProviderProps) {
   const pathname = usePathname();

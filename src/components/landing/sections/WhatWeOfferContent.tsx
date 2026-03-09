@@ -1,16 +1,12 @@
 "use client";
 
-import React from "react";
-import { m } from "motion/react";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 import {
-  NotebookPen,
-  Plane,
-  Ticket,
-  Stamp,
-  Hotel,
-  ThumbsUp,
+    Hotel, NotebookPen,
+    Plane, Stamp, ThumbsUp, Ticket
 } from "lucide-react";
+import { m } from "motion/react";
+import React from "react";
 
 interface ServiceItem {
   icon: React.ElementType;

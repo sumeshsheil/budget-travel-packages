@@ -6,27 +6,24 @@ const OTP_LENGTH = 4;
 // Supported country codes (India Only)
 const INDIA_PHONE_REGEX = /^[6-9]\d{9}$/;
 
-import React, { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
+import Button from "@/components/landing/ui/button";
 import {
-  setSpecialRequests,
-  updatePrimaryContact,
-  setPhoneVerified,
-  setCurrentStep,
-  resetForm,
+    resetForm, setCurrentStep, setPhoneVerified, setSpecialRequests,
+    updatePrimaryContact
 } from "@/lib/redux/features/bookingSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
 import { useSession } from "next-auth/react";
-import { FormTextarea } from "./FormTextarea";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
+import { useBookingValidation } from "../hooks/useBookingValidation";
+import { getInputClass, labelClass } from "../styles";
+import type { Traveler } from "../types";
 import { FormInput } from "./FormInput";
 import { FormSelect } from "./FormSelect";
+import { FormTextarea } from "./FormTextarea";
 import { OtpInput } from "./OtpInput";
-import { useBookingValidation } from "../hooks/useBookingValidation";
-import Button from "@/components/landing/ui/button";
-import { labelClass, getInputClass } from "../styles";
-import { toast } from "sonner";
-import type { Traveler } from "../types";
-import Image from "next/image";
 
 export const Step2Form: React.FC = () => {
   const dispatch = useAppDispatch();

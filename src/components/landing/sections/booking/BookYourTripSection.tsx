@@ -8,7 +8,6 @@ import { BookingFormCard } from "./components/BookingFormCard";
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 import parachuteAnimation from "@/../public/animations/parachute.json";
-import boatAnimation from "@/../public/animations/boat.json";
 
 const BookYourTripSection: React.FC = () => {
   return (

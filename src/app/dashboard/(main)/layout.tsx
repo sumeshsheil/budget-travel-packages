@@ -1,3 +1,7 @@
+import { DashboardHeader } from "@/components/dashboard/layout/DashboardHeader";
+import { DashboardSidebar } from "@/components/dashboard/layout/DashboardSidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { requireCustomerAuth } from "@/lib/customer-auth-guard";
 import { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
 
@@ -7,10 +11,6 @@ export const metadata: Metadata = {
     follow: false,
   },
 };
-import { DashboardSidebar } from "@/components/dashboard/layout/DashboardSidebar";
-import { DashboardHeader } from "@/components/dashboard/layout/DashboardHeader";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { requireCustomerAuth } from "@/lib/customer-auth-guard";
 
 export default async function DashboardLayout({
   children,

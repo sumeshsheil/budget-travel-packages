@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Traveler } from "@/components/landing/sections/booking/types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // ============ STATE TYPES ============
 

@@ -1,35 +1,26 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import logoDark from "@/../public/images/logo/footer-logo.svg";
+import logo from "@/../public/images/logo/logo.svg";
+import {
+    FileText, LayoutDashboard, Plane, Settings, UserCircle, Users
+} from "lucide-react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import logo from "@/../public/images/logo/logo.svg";
-import logoDark from "@/../public/images/logo/footer-logo.svg";
-import {
-  LayoutDashboard,
-  Users,
-  UserCircle,
-  FileText,
-  Settings,
-  Plane,
-} from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupLabel,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
-  useSidebar,
-} from "@/components/ui/sidebar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+    Sidebar,
+    SidebarContent,
+    SidebarFooter,
+    SidebarGroup,
+    SidebarGroupLabel,
+    SidebarHeader,
+    SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar
+} from "@/components/ui/sidebar";
 import { motion } from "motion/react";
-import { useTheme } from "next-themes";
 
 export function AdminAppSidebar() {
   const pathname = usePathname();

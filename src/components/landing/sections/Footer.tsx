@@ -1,14 +1,14 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
 import FooterRecentBlogs from "@/components/blog/FooterRecentBlogs";
 import YoutubeIcon from "@/components/icons/Youtube";
 import { SOCIAL_LINKS } from "@/lib/constants";
+import Image from "next/image";
+import Link from "next/link";
 
 // Logo and background
-import logo from "@/../public/images/logo/footer-logo.svg";
 import backgroundFooter from "@/../public/images/footer/background-footer.png";
 import backgroundFooterMobile from "@/../public/images/footer/mobile-background-footer.png";
+import logo from "@/../public/images/logo/footer-logo.svg";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();

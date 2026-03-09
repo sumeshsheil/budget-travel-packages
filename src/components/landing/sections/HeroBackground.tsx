@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
-import React, { useState, useRef, useEffect } from "react";
 import HeroBg from "@/../public/images/heros/hero-background.png";
+import Image from "next/image";
+import React, { useEffect, useRef, useState } from "react";
 
 const HeroBackground: React.FC = () => {
   const [videoLoaded, setVideoLoaded] = useState(false);

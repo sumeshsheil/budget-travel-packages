@@ -1,6 +1,6 @@
 "use client";
-import React, { ComponentProps, forwardRef } from "react";
 import { motion } from "motion/react";
+import { ComponentProps, forwardRef } from "react";
 
 // Define the variant types logic manually since we don't have cva/clsx
 type ButtonVariant = "primary" | "secondary" | "outline";

@@ -1,15 +1,13 @@
 "use client";
 
-import React from "react";
-import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
-import {
-  incrementGuests,
-  decrementGuests,
-  setGuests,
-  setStep1Errors,
-} from "@/lib/redux/features/bookingSlice";
 import { GuestCounter as SharedGuestCounter } from "@/components/shared/GuestCounter";
-import { labelClass, errorTextClass } from "../styles";
+import {
+    setGuests,
+    setStep1Errors
+} from "@/lib/redux/features/bookingSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
+import React from "react";
+import { errorTextClass, labelClass } from "../styles";
 
 export const GuestCounter: React.FC = () => {
   const dispatch = useAppDispatch();
