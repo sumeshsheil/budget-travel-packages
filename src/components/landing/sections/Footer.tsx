@@ -1,5 +1,4 @@
 "use client";
-import FooterRecentBlogs from "@/components/blog/FooterRecentBlogs";
 import YoutubeIcon from "@/components/icons/Youtube";
 import { SOCIAL_LINKS } from "@/lib/constants";
 import Image from "next/image";
@@ -112,7 +111,7 @@ const Footer: React.FC = () => {
 
               {/* Col 3: Recent Blogs */}
               <div className="pt-4">
-                <FooterRecentBlogs />
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.1061147562764!2d88.42702700075614!3d22.57513417882024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0275f5973f2ae9%3A0x76145337c0904cd9!2sBudget%20Travel%20Packages!5e0!3m2!1sen!2sbd!4v1773083654340!5m2!1sen!2sbd" width="250" height="250" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
               </div>
 
               {/* Col 4: Office Address & Social */}
@@ -246,7 +245,7 @@ const Footer: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 {/* Recent Blogs (Mobile) */}
                 <div className="flex flex-col items-center sm:items-start">
-                  <FooterRecentBlogs />
+                   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.1061147562764!2d88.42702700075614!3d22.57513417882024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0275f5973f2ae9%3A0x76145337c0904cd9!2sBudget%20Travel%20Packages!5e0!3m2!1sen!2sbd!4v1773083654340!5m2!1sen!2sbd" width="300" height="350" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                 </div>
 
                 {/* Office Address & Social */}

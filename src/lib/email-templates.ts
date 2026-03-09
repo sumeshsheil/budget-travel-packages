@@ -1065,7 +1065,7 @@ export function getWelcomeEmailHtml(name: string) {
                           <tbody>
                             <tr>
                               <td align="center" bgcolor="#d2d735" role="presentation" style="border:none;border-radius:30px;cursor:auto;mso-padding-alt:10px 25px;background:#d2d735;" valign="middle">
-                                <a href="https://budgettravelpackages.in/collections" style="display:inline-block;background:#d2d735;color:#024f64;font-family:Arial, sans-serif;font-size:16px;font-weight:700;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:30px;" target="_blank"> Explore Collections </a>
+                                <a href="https://budgettravelpackages.in/packages" style="display:inline-block;background:#d2d735;color:#024f64;font-family:Arial, sans-serif;font-size:16px;font-weight:700;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:30px;" target="_blank"> Explore Packages </a>
                               </td>
                             </tr>
                           </tbody>
@@ -1084,8 +1084,8 @@ export function getWelcomeEmailHtml(name: string) {
     <!--[if mso | IE]></td></tr></table><![endif]-->
     <!-- Time to Fly -->
     <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" bgcolor="#d2d735" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-    <div style="background:#d2d735;background-color:#d2d735;margin:0px auto;max-width:600px;">
-      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#d2d735;background-color:#d2d735;width:100%;">
+    <div style="background:#1a1a1a;background-color:#1a1a1a;margin:0px auto;max-width:600px;">
+      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#1a1a1a;background-color:#1a1a1a;width:100%;">
         <tbody>
           <tr>
             <td style="direction:ltr;font-size:0px;padding:40px 0;text-align:center;">
@@ -1113,7 +1113,7 @@ export function getWelcomeEmailHtml(name: string) {
                     </tr>
                     <tr>
                       <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                        <div style="font-family:Arial, sans-serif;font-size:16px;line-height:24px;text-align:center;color:#3c3c3c;">Your next adventure is calling and it's more affordable than ever. From tropical escapes to city breaks, our best deals are ready for takeoff. Don't wait, these offers are flying fast!</div>
+                        <div style="font-family:Arial, sans-serif;font-size:16px;line-height:24px;text-align:center;color:#ffffff;">Your next adventure is calling and it's more affordable than ever. From tropical escapes to city breaks, our best deals are ready for takeoff. Don't wait, these offers are flying fast!</div>
                       </td>
                     </tr>
                     <tr>
@@ -1170,11 +1170,11 @@ export function getWelcomeEmailHtml(name: string) {
                           <tbody>
                             <tr>
                               <td style="padding:4px;vertical-align:middle;">
-                                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#3b5998;border-radius:3px;width:30px;">
+                                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:3px;width:30px;">
                                   <tbody>
                                     <tr>
                                       <td style="font-size:0;height:30px;vertical-align:middle;width:30px;">
-                                        <a href="https://www.facebook.com/sharer/sharer.php?u=#" target="_blank">
+                                        <a href="https://www.facebook.com/budgettravelpackages" target="_blank">
                                           <img alt src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-17_facebook2x.png" style="border-radius:3px;display:block;" width="30">
                                         </a>
                                       </td>
@@ -1190,11 +1190,11 @@ export function getWelcomeEmailHtml(name: string) {
                           <tbody>
                             <tr>
                               <td style="padding:4px;vertical-align:middle;">
-                                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#3f729b;border-radius:3px;width:30px;">
+                                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:3px;width:30px;">
                                   <tbody>
                                     <tr>
                                       <td style="font-size:0;height:30px;vertical-align:middle;width:30px;">
-                                        <a href="#" target="_blank">
+                                        <a href="https://www.instagram.com/budgettravelpackages.in" target="_blank">
                                           <img alt src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-18_instagram2x.png" style="border-radius:3px;display:block;" width="30">
                                         </a>
                                       </td>
@@ -1210,11 +1210,11 @@ export function getWelcomeEmailHtml(name: string) {
                           <tbody>
                             <tr>
                               <td style="padding:4px;vertical-align:middle;">
-                                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#55acee;border-radius:3px;width:30px;">
+                                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:3px;width:30px;">
                                   <tbody>
                                     <tr>
                                       <td style="font-size:0;height:30px;vertical-align:middle;width:30px;">
-                                        <a href="https://twitter.com/intent/tweet?url=#" target="_blank">
+                                        <a href="https://www.youtube.com/@budgettravelpackages" target="_blank">
                                           <img alt src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-19_youtube2x.png" style="border-radius:3px;display:block;" width="30">
                                         </a>
                                       </td>
@@ -1230,7 +1230,7 @@ export function getWelcomeEmailHtml(name: string) {
                     </tr>
                     <tr>
                       <td align="center" style="font-size:0px;padding:10px 25px;padding-top:20px;word-break:break-word;">
-                        <div style="font-family:Arial, sans-serif;font-size:12px;line-height:24px;text-align:center;color:#ffffff;"><a href="#" style="color: #ffffff; text-decoration: none">Travel Blogs</a> | <a href="#" style="color: #ffffff; text-decoration: none">Travel Portal</a> | <a href="#" style="color: #ffffff; text-decoration: none">Legal Policies</a></div>
+                        <div style="font-family:Arial, sans-serif;font-size:12px;line-height:24px;text-align:center;color:#ffffff;"><a href="https://blogs.budgettravelpackages.in" style="color: #ffffff; text-decoration: none">Travel Blogs</a> | <a href="https://portal.budgettravelpackages.in" style="color: #ffffff; text-decoration: none">Travel Portal</a> | <a href="https://budgettravelpackages.in/legal" style="color: #ffffff; text-decoration: none">Legal Policies</a></div>
                       </td>
                     </tr>
                     <tr>
@@ -1263,232 +1263,425 @@ export function getWelcomeEmailHtml(name: string) {
 
 export function getLeadConfirmationEmailHtml(name: string, destination: string, travelers: number, budget: string, phone: string) {
   return `
-<!DOCTYPE html>
-<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" lang="en">
+  <!doctype html>
+<html lang="en" dir="auto" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
 <head>
-	<title></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"><!--[if mso]><xml><w:wordml><w:nthematestp/><w:alwaysshowplaceholdertext/></w:wordml></xml><![endif]-->
-	<style>
-		* { box-sizing: border-box; }
-		body { margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none; }
-		a[x-apple-data-detectors] { color: inherit !important; text-decoration: inherit !important; }
-		#MessageViewBody a { color: inherit; text-decoration: none; }
-		p { line-height: inherit }
-		.desktop_hide, .desktop_hide table { mso-hide: all; display: none; max-height: 0px; overflow: hidden; }
-		.image_block img + div { display: none; }
-		@media (max-width:700px) {
-			.desktop_hide table.icons-inner { display: inline-block !important; }
-			.icons-inner { text-align: center; }
-			.icons-inner td { margin: 0 auto; }
-			.mobile_hide { display: none; }
-			.row-content { width: 100% !important; }
-			.stack .column { width: 100%; display: block; }
-			.mobile_hide { mso-hide: all; display: none; }
-			.desktop_hide, .desktop_hide table { display: table !important; max-height: none !important; }
-			.row-9 .column-1 .col-pad { padding: 5px 15px !important; }
-			.row-9 .column-2 .col-pad { padding: 5px 15px !important; }
-			.row-9 .column-3 .col-pad { padding: 5px 15px !important; }
-		}
-	</style>
+  <title>Booking Confirmation</title>
+  <!--[if !mso]><!-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!--<![endif]-->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+    #outlook a {
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+
+    table,
+    td {
+      border-collapse: collapse;
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+    }
+
+    img {
+      border: 0;
+      height: auto;
+      line-height: 100%;
+      outline: none;
+      text-decoration: none;
+      -ms-interpolation-mode: bicubic;
+    }
+
+    p {
+      display: block;
+      margin: 13px 0;
+    }
+
+  </style>
+  <!--[if mso]>
+    <noscript>
+    <xml>
+    <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+    </xml>
+    </noscript>
+    <![endif]-->
+  <!--[if lte mso 11]>
+    <style type="text/css">
+      .mj-outlook-group-fix { width:100% !important; }
+    </style>
+    <![endif]-->
+  <style type="text/css">
+    @media only screen and (min-width:480px) {
+      .mj-column-per-100 {
+        width: 100% !important;
+        max-width: 100%;
+      }
+    }
+
+  </style>
+  <style media="screen and (min-width:480px)">
+    .moz-text-html .mj-column-per-100 {
+      width: 100% !important;
+      max-width: 100%;
+    }
+
+  </style>
+  <style type="text/css">
+    @media only screen and (max-width:479px) {
+      table.mj-full-width-mobile {
+        width: 100% !important;
+      }
+
+      td.mj-full-width-mobile {
+        width: auto !important;
+      }
+    }
+
+  </style>
 </head>
-<body style="background-color: #fef8ec; margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
-	<table class="nl-container" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #fef8ec;">
-		<tbody>
-			<tr>
-				<td>
-					<table class="row row-1" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #007d9f;">
-						<tbody>
-							<tr>
-								<td>
-									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; width: 680px; margin: 0 auto;" width="680">
-										<tbody>
-											<tr>
-												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
-													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-														<tr>
-															<td class="col-pad" style="padding-bottom:10px;padding-top:10px;">
-																<table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-																	<tr>
-																		<td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
-																			<div class="alignment" align="center">
-																				<div style="max-width: 238px;"><img src="data:image/png;base64,${LOGO_BASE64}" style="display: block; height: auto; border: 0; width: 100%;" width="238" alt="Budget Travel Packages Logo" title="Budget Travel Packages Logo" height="auto"></div>
-																			</div>
-																		</td>
-																	</tr>
-																</table>
-															</td>
-														</tr>
-													</table>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<table class="row row-2" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-						<tbody>
-							<tr>
-								<td>
-									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #007d9f; border-radius: 0; color: #000000; width: 680px; margin: 0 auto;" width="680">
-										<tbody>
-											<tr>
-												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
-													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-														<tr>
-															<td class="col-pad" style="padding-bottom:5px;padding-top:5px;">
-																<table class="heading_block block-1" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-																	<tr>
-																		<td class="pad">
-																			<h1 style="margin: 0; color: #ffffff; direction: ltr; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 50px; font-weight: 700; letter-spacing: -2px; line-height: 1; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 50px;">Welcome to Budget Travel Packages, ${name}!</h1>
-																		</td>
-																	</tr>
-																</table>
-															</td>
-														</tr>
-													</table>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<table class="row row-3" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-						<tbody>
-							<tr>
-								<td>
-									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #007d9f; border-radius: 0; color: #000000; width: 680px; margin: 0 auto;" width="680">
-										<tbody>
-											<tr>
-												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
-													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-														<tr>
-															<td class="col-pad" style="padding-bottom:20px;padding-left:30px;padding-right:30px;padding-top:20px;">
-																<table class="paragraph_block block-1" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
-																	<tr>
-																		<td class="pad">
-																			<div style="color:#ffffff;direction:ltr;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:20px;font-weight:400;letter-spacing:0px;line-height:1.2;text-align:center;mso-line-height-alt:24px;">
-																				<p style="margin: 0;">We&rsquo;re thrilled to have you here! Your journey to unforgettable destinations at the best prices starts now. Explore our curated travel packages and start planning your dream getaway.</p>
-																			</div>
-																		</td>
-																	</tr>
-																</table>
-															</td>
-														</tr>
-													</table>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<table class="row row-14" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #007d9f;">
-						<tbody>
-							<tr>
-								<td>
-									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; width: 680px; margin: 0 auto;" width="680">
-										<tbody>
-											<tr>
-												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
-													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-														<tr>
-															<td class="col-pad" style="padding-bottom:5px;padding-top:5px;">
-																<div class="spacer_block block-1" style="height:15px;line-height:15px;font-size:1px;">&#8202;</div>
-																<table class="image_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-																	<tr>
-																		<td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
-																			<div class="alignment" align="center">
-																				<div style="max-width: 340px;"><img src="data:image/png;base64,${LOGO_BASE64}" style="display: block; height: auto; border: 0; width: 100%;" width="340" alt="Budget Travel Packages Logo" title="Budget Travel Packages Logo" height="auto"></div>
-																			</div>
-																		</td>
-																	</tr>
-																</table>
-																<div class="spacer_block block-3" style="height:20px;line-height:20px;font-size:1px;">&#8202;</div>
-																<table class="social_block block-4" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-																	<tr>
-																		<td class="pad">
-																			<div class="alignment" align="center">
-																				<table class="social-table" width="104px" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block;">
-																					<tr>
-																						<td style="padding:0 2px 0 0;"><a href="https://www.facebook.com/budgettravelpackages" target="_blank"><img src="https://app-rsrc.getbee.io/public/resources/social-networks-icon-sets/t0/facebook2x.png" width="32" height="auto" alt="Facebook" title="facebook" style="display: block; height: auto; border: 0;"></a></td>
-																						<td style="padding:0 2px 0 2px;"><a href="https://www.instagram.com/budgettravelpackages.in" target="_blank"><img src="https://app-rsrc.getbee.io/public/resources/social-networks-icon-sets/t0/instagram2x.png" width="32" height="auto" alt="Instagram" title="instagram" style="display: block; height: auto; border: 0;"></a></td>
-																						<td style="padding:0 0 0 2px;"><a href="https://www.youtube.com/@budgettravelpackages" target="_blank"><img src="https://app-rsrc.getbee.io/public/resources/social-networks-icon-sets/t0/youtube2x.png" width="32" height="auto" alt="YouTube" title="YouTube" style="display: block; height: auto; border: 0;"></a></td>
-																					</tr>
-																				</table>
-																			</div>
-																		</td>
-																	</tr>
-																</table>
-																<div class="spacer_block block-5" style="height:20px;line-height:20px;font-size:1px;">&#8202;</div>
-																<table class="menu_block mobile_hide block-6" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-																	<tr>
-																		<td class="pad">
-																			<table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-																				<tr>
-																					<td class="alignment" style="text-align:center;font-size:0px;">
-																						<div class="menu-links"><a href="https://budgettravelpackages.in/blogs" target="_blank" style="padding-top:0px;padding-bottom:0px;padding-left:16px;padding-right:16px;display:inline-block;color:#ffffff;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:700;text-decoration:none;letter-spacing:normal;">Travel Blogs</a><a href="https://portal.budgettravelpackages.in/" target="_blank" style="padding-top:0px;padding-bottom:0px;padding-left:16px;padding-right:16px;display:inline-block;color:#ffffff;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:700;text-decoration:none;letter-spacing:normal;"> Travel Portal</a><a href="https://budgettravelpackages.in/legal" target="_blank" style="padding-top:0px;padding-bottom:0px;padding-left:16px;padding-right:16px;display:inline-block;color:#ffffff;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:700;text-decoration:none;letter-spacing:normal;">Legal Policies</a></div>
-																					</td>
-																				</tr>
-																			</table>
-																		</td>
-																	</tr>
-																</table>
-															</td>
-														</tr>
-													</table>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<table class="row row-15" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #007d9f;">
-						<tbody>
-							<tr>
-								<td>
-									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #007d9f; border-radius: 0; color: #000000; width: 680px; margin: 0 auto;" width="680">
-										<tbody>
-											<tr>
-												<td class="column column-2" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
-													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-														<tr>
-															<td class="col-pad" style="padding-bottom:5px;padding-top:5px;">
-																<table class="paragraph_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
-																	<tr>
-																		<td class="pad" style="padding-bottom:10px;padding-left:60px;padding-right:60px;padding-top:10px;">
-																			<div style="color:#ffffff;direction:ltr;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:1.2;text-align:center;mso-line-height-alt:19px;">
-																				<p style="margin: 0; margin-bottom: 16px;">Budget Travel Packages ™️</p>
-																				<p style="margin: 0; margin-bottom: 16px;">Bengal Eco Intelligent Park, EM Block,<br>Sector V, Bidhannagar, Kolkata,<br>West Bengal 700091</p>
-																				<p style="margin: 0;">Copyright ©. All Rights Reserved.</p>
-																			</div>
-																		</td>
-																	</tr>
-																</table>
-															</td>
-														</tr>
-													</table>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+
+<body style="word-spacing:normal;">
+  <div style="display:none;font-size:1px;color:#ffffff;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">Your booking with Budget Travel Packages is confirmed!</div>
+  <div aria-label="Booking Confirmation" aria-roledescription="email" class="body" style="background-color: #f4f4f4;" role="article" lang="en" dir="auto">
+    <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="content-wrapper-outlook" role="presentation" style="width:600px;" width="600" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+    <div class="content-wrapper" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px; overflow: hidden; background: #ffffff; background-color: #ffffff; margin: 0px auto; max-width: 600px;">
+      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
+        <tbody>
+          <tr>
+            <td style="direction:ltr;font-size:0px;padding:20px;text-align:center;">
+              <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><![endif]-->
+              <!-- Header Logo -->
+              <!--[if mso | IE]><tr><td class="" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:560px;" width="560" bgcolor="#007d9f" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+              <div style="background:#007d9f;background-color:#007d9f;margin:0px auto;max-width:560px;border-radius:8px 8px 0 0;overflow:hidden;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#007d9f;background-color:#007d9f;width:100%;border-collapse:separate;">
+                  <tbody>
+                    <tr>
+                      <td style="border-radius:8px 8px 0 0;direction:ltr;font-size:0px;padding:30px 0 20px 0;text-align:center;">
+                        <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:560px;" ><![endif]-->
+                        <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                            <tbody>
+                              <tr>
+                                <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
+                                    <tbody>
+                                      <tr>
+                                        <td style="width:280px;">
+                                          <img alt="Budget Travel Packages Logo" src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-2_budget-travel-packages-high-resolution-logo-transparent.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="280" height="auto">
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!--[if mso | IE]></td></tr></table><![endif]-->
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+              <!-- Hero Section -->
+              <!--[if mso | IE]><tr><td class="" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:560px;" width="560" bgcolor="#007d9f" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><v:rect style="width:560px;" xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false"><v:fill origin="0, -0.5" position="0, -0.5" src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-1_15_Background_Palms.png" color="#007d9f" type="frame" size="1,1" aspect="atleast" /><v:textbox style="mso-fit-shape-to-text:true" inset="0,0,0,0"><![endif]-->
+              <div style="background:#007d9f url('https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-1_15_Background_Palms.png') center top / cover no-repeat;background-position:center top;background-repeat:no-repeat;background-size:cover;margin:0px auto;max-width:560px;">
+                <div style="line-height:0;font-size:0;">
+                  <table align="center" background="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-1_15_Background_Palms.png" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#007d9f url('https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-1_15_Background_Palms.png') center top / cover no-repeat;background-position:center top;background-repeat:no-repeat;background-size:cover;width:100%;">
+                    <tbody>
+                      <tr>
+                        <td style="direction:ltr;font-size:0px;padding:40px 20px;text-align:center;">
+                          <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:520px;" ><![endif]-->
+                          <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                            <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                              <tbody>
+                                <tr>
+                                  <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                    <div style="font-family:Arial, sans-serif;font-size:40px;font-weight:700;letter-spacing:-1px;line-height:1;text-align:center;color:#ffffff;">Booking Received! ✈️</div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <!--[if mso | IE]></td></tr></table><![endif]-->
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!--[if mso | IE]></v:textbox></v:rect></td></tr></table></td></tr><![endif]-->
+              <!-- Greeting Section -->
+              <!--[if mso | IE]><tr><td class="" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:560px;" width="560" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+              <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:560px;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
+                  <tbody>
+                    <tr>
+                      <td style="direction:ltr;font-size:0px;padding:40px 30px 20px 30px;text-align:center;">
+                        <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:500px;" ><![endif]-->
+                        <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                            <tbody>
+                              <tr>
+                                <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:15px;word-break:break-word;">
+                                  <div style="font-family:Arial, sans-serif;font-size:20px;font-weight:700;line-height:24px;text-align:left;color:#222222;">Hi ${name},</div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                  <div style="font-family:Arial, sans-serif;font-size:16px;line-height:24px;text-align:left;color:#3c3c3c;">Thank you for choosing <strong>Budget Travel Packages</strong>! We have received your inquiry for your next adventure to <strong>${destination}</strong>.</div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="left" style="font-size:0px;padding:10px 25px;padding-top:10px;word-break:break-word;">
+                                  <div style="font-family:Arial, sans-serif;font-size:16px;line-height:24px;text-align:left;color:#3c3c3c;">Our team is already reviewing your request and will get back to you shortly with the best options tailored to your needs.</div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!--[if mso | IE]></td></tr></table><![endif]-->
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+              <!-- Inquiry Details -->
+              <!--[if mso | IE]><tr><td class="" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:560px;" width="560" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+              <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:560px;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
+                  <tbody>
+                    <tr>
+                      <td style="direction:ltr;font-size:0px;padding:20px 30px;text-align:center;">
+                        <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:500px;" ><![endif]-->
+                        <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                            <tbody>
+                              <tr>
+                                <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:20px;word-break:break-word;">
+                                  <div style="font-family:Arial, sans-serif;font-size:32px;font-weight:700;line-height:1.2;text-align:left;color:#007d9f;">Inquiry Details</div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="left" style="font-size:0px;padding:0;word-break:break-word;">
+                                  <table cellpadding="0" cellspacing="0" width="100%" border="0" style="color:#3c3c3c;font-family:Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;border:none;">
+                                    <tr style="border-bottom: 1px solid #eeeeee">
+                                      <td style="
+                  padding: 15px 0;
+                  font-weight: 700;
+                  color: #555555;
+                  width: 40%;
+                "> Destination </td>
+                                      <td style="padding: 15px 0; color: #222222; font-weight: 600"> ${destination} </td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #eeeeee">
+                                      <td style="padding: 15px 0; font-weight: 700; color: #555555"> Number of Travelers </td>
+                                      <td style="padding: 15px 0; color: #222222; font-weight: 600"> ${travelers} </td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #eeeeee">
+                                      <td style="padding: 15px 0; font-weight: 700; color: #555555"> Budget </td>
+                                      <td style="padding: 15px 0; color: #222222; font-weight: 600"> ${budget} </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="padding: 15px 0; font-weight: 700; color: #555555"> Phone Number </td>
+                                      <td style="padding: 15px 0; color: #222222; font-weight: 600"> ${phone} </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!--[if mso | IE]></td></tr></table><![endif]-->
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+              <!-- Support Section -->
+              <!--[if mso | IE]><tr><td class="" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:560px;" width="560" bgcolor="#fef8ec" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+              <div style="background:#fef8ec;background-color:#fef8ec;margin:0px auto;max-width:560px;border-radius:8px;overflow:hidden;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#fef8ec;background-color:#fef8ec;width:100%;border-collapse:separate;">
+                  <tbody>
+                    <tr>
+                      <td style="border-radius:8px;direction:ltr;font-size:0px;padding:30px;text-align:center;">
+                        <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:500px;" ><![endif]-->
+                        <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                            <tbody>
+                              <tr>
+                                <td align="center" style="font-size:0px;padding:10px 25px;padding-bottom:10px;word-break:break-word;">
+                                  <div style="font-family:Arial, sans-serif;font-size:20px;font-weight:700;line-height:1.2;text-align:center;color:#007d9f;">Need Help?</div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                  <div style="font-family:Arial, sans-serif;font-size:16px;line-height:24px;text-align:center;color:#3c3c3c;">If you have any questions or need to update your inquiry, feel free to contact us.</div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
+                                    <tbody>
+                                      <tr>
+                                        <td align="center" bgcolor="#007d9f" role="presentation" style="border:none;border-radius:30px;cursor:auto;mso-padding-alt:10px 25px;background:#007d9f;" valign="middle">
+                                          <a href="mailto:booking@budgettravelpackages.in" style="display:inline-block;background:#007d9f;color:#ffffff;font-family:Arial, sans-serif;font-size:16px;font-weight:700;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:30px;" target="_blank"> Contact Support </a>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!--[if mso | IE]></td></tr></table><![endif]-->
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+              <!-- Footer -->
+              <!--[if mso | IE]><tr><td class="" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:560px;" width="560" bgcolor="#007d9f" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+              <div style="background:#007d9f;background-color:#007d9f;margin:0px auto;max-width:560px;border-radius:0 0 8px 8px;overflow:hidden;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#007d9f;background-color:#007d9f;width:100%;border-collapse:separate;">
+                  <tbody>
+                    <tr>
+                      <td style="border-radius:0 0 8px 8px;direction:ltr;font-size:0px;padding:40px 0;text-align:center;">
+                        <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:560px;" ><![endif]-->
+                        <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                            <tbody>
+                              <tr>
+                                <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
+                                    <tbody>
+                                      <tr>
+                                        <td style="width:200px;">
+                                          <img alt="Logo" src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-2_budget-travel-packages-high-resolution-logo-transparent.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="200" height="auto">
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="center" style="font-size:0px;padding:10px 25px;padding-top:20px;word-break:break-word;">
+                                  <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" ><tr><td><![endif]-->
+                                  <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="float:none;display:inline-table;">
+                                    <tbody>
+                                      <tr>
+                                        <td style="padding:4px;vertical-align:middle;">
+                                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:3px;width:30px;">
+                                            <tbody>
+                                              <tr>
+                                                <td style="font-size:0;height:30px;vertical-align:middle;width:30px;">
+                                                  <a href="https://www.facebook.com/budgettravelpackages" target="_blank">
+                                                    <img alt src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-17_facebook2x.png" style="border-radius:3px;display:block;" width="30">
+                                                  </a>
+                                                </td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                  <!--[if mso | IE]></td><td><![endif]-->
+                                  <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="float:none;display:inline-table;">
+                                    <tbody>
+                                      <tr>
+                                        <td style="padding:4px;vertical-align:middle;">
+                                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:3px;width:30px;">
+                                            <tbody>
+                                              <tr>
+                                                <td style="font-size:0;height:30px;vertical-align:middle;width:30px;">
+                                                  <a href="https://www.instagram.com/budgettravelpackages.in" target="_blank">
+                                                    <img alt src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-18_instagram2x.png" style="border-radius:3px;display:block;" width="30">
+                                                  </a>
+                                                </td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                  <!--[if mso | IE]></td><td><![endif]-->
+                                  <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="float:none;display:inline-table;">
+                                    <tbody>
+                                      <tr>
+                                        <td style="padding:4px;vertical-align:middle;">
+                                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:3px;width:30px;">
+                                            <tbody>
+                                              <tr>
+                                                <td style="font-size:0;height:30px;vertical-align:middle;width:30px;">
+                                                  <a href="https://www.youtube.com/@budgettravelpackages" target="_blank">
+                                                    <img alt src="https://ik.imagekit.io/rmsdevelopment/welcome-email/welcome-email-19_youtube2x.png" style="border-radius:3px;display:block;" width="30">
+                                                  </a>
+                                                </td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                  <!--[if mso | IE]></td></tr></table><![endif]-->
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="center" style="font-size:0px;padding:10px 25px;padding-top:20px;word-break:break-word;color:#ffffff;">
+                                  <div style="font-family:Arial, sans-serif;font-size:12px;line-height:24px;text-align:center;color:#ffffff;"><a href="https://blogs.budgettravelpackages.in" style="color: #ffffff; text-decoration: none">Travel Blogs</a> | <a href="https://portal.budgettravelpackages.in" style="color: #ffffff; text-decoration: none">Travel Portal</a> | <a href="https://budgettravelpackages.in/legal" style="color:#ffffff; text-decoration: none">Legal Policies</a></div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="center" style="font-size:0px;padding:10px 25px;padding-top:20px;word-break:break-word;">
+                                  <div style="font-family:Arial, sans-serif;font-size:10px;line-height:24px;text-align:center;color:#ffffff;">Budget Travel Packages™ <br> 📍Bengal Eco Intelligent Park, RM Block, Sector V, Bidhannagar, Kolkata, West Bengal 700091</div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                  <div style="font-family:Arial, sans-serif;font-size:10px;line-height:24px;text-align:center;color:#ffffff;">Copyright ©. All Rights Reserved.</div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!--[if mso | IE]></td></tr></table><![endif]-->
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!--[if mso | IE]></td></tr></table></td></tr></table><![endif]-->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--[if mso | IE]></td></tr></table><![endif]-->
+  </div>
 </body>
+
 </html>
+
 `;
 }
 
