@@ -2,6 +2,7 @@
 
 import { m } from "motion/react";
 import React from "react";
+import Button from "../ui/button";
 
 const HeroContent: React.FC = () => {
   return (
@@ -22,11 +23,22 @@ const HeroContent: React.FC = () => {
         Book customized domestic & international vacation plan from India.
       </p>
 
-      <div className="inline-block px-6 py-2">
+      <div className="inline-block px-6 py-2 mb-6">
         <p className="font-open-sans font-bold text-accent text-lg md:text-2xl lg:text-[48px] tracking-wide">
           Explore More, Spend Less!
         </p>
       </div>
+      <Button
+        variant="primary"
+        className="bg-new-blue text-white  text-sm md:text-base px-8 lg:px-16 py-2 rounded-full transition-all"
+        onClick={() => {
+          document
+            .getElementById("start-planning")
+            ?.scrollIntoView({ behavior: "smooth" });
+        }}
+      >
+        Customize My Trip
+      </Button>
 
     </m.div>
   );
