@@ -7,6 +7,7 @@ import {
     sendLeadNotificationEmail, sendSetPasswordEmail, sendWelcomeEmail
 } from "@/lib/email";
 import { logLeadActivity } from "@/lib/lead-activity";
+import { createBulkNotification } from "@/lib/notifications";
 import { checkRateLimit } from "@/lib/rate-limit";
 import bcryptjs from "bcryptjs";
 import crypto from "crypto";
@@ -251,6 +252,19 @@ export async function POST(request: Request) {
         budget: validatedData.budget,
         guests: validatedData.guests,
       });
+
+      // Send In-App Notifications to Admins
+      const admins = await User.find({ role: "admin" }, "_id").lean();
+      const adminIds = admins.map((admin) => admin._id.toString());
+
+      if (adminIds.length > 0) {
+        await createBulkNotification(adminIds, {
+          title: "New Lead Received",
+          message: `${fullName} planned a trip to ${validatedData.destination}`,
+          type: "info",
+          link: `/admin/leads/${lead._id}`,
+        });
+      }
     } catch (emailError) {
       // Log but don't fail the request if emails fail
       console.error("[Email] Sequential send error:", emailError);

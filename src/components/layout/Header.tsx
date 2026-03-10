@@ -53,7 +53,7 @@ const Header: React.FC = () => {
     }
   });
 
-  const isHomePage = pathname === "/";
+  const isHomePage = pathname === "/" || pathname === "/packages";
 
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
@@ -223,16 +223,16 @@ const Header: React.FC = () => {
                   </Button>
                   <div className="w-full bg-gray-600 h-px" />
                   {[
-                    { href: "#kolkata", label: "Kolkata" },
-                    { href: "#delhi", label: "Delhi" },
-                    { href: "#mumbai", label: "Mumbai" },
-                    { href: "#travel-purpose", label: "Travel Purpose" },
-                    { href: "#start-planning", label: "Customize Trip" },
-                    { href: "#services", label: "What's Included?" },
-                    { href: "#why-choose-us", label: "Why Choose Us?" },
-                    { href: "#faqs", label: "FAQs" },
-                    { href: "#travel-smart", label: "Contact" },
-                    { href: "#contact", label: "About" },
+                    { href: "/#kolkata", label: "Kolkata" },
+                    { href: "/#delhi", label: "Delhi" },
+                    { href: "/#mumbai", label: "Mumbai" },
+                    { href: "/#travel-purpose", label: "Travel Purpose" },
+                    { href: "/#start-planning", label: "Customize Trip" },
+                    { href: "/#services", label: "What's Included?" },
+                    { href: "/#why-choose-us", label: "Why Choose Us?" },
+                    { href: "/#faqs", label: "FAQs" },
+                    { href: "/#travel-smart", label: "Contact" },
+                    { href: "/#contact", label: "About" },
                   ].map((link, index) => (
                     <motion.li
                       key={`${link.href}-${index}`}

@@ -316,7 +316,7 @@ const Footer: React.FC = () => {
                 {/* Left: Links */}
                 <div className="flex items-center gap-2 text-secondary-text text-xs md:text-sm lg:text-base font-open-sans">
                   <Link
-                    href="/blogs"
+                    href="https://blogs.budgettravelpackages.in"
                     className="hover:text-primary transition-colors"
                   >
                     Travel Blogs

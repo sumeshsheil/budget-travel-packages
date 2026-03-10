@@ -145,12 +145,12 @@ export default function LegalPoliciesPage() {
                     </h4>
                     <p>Tagline: Explore More, Spend Less!</p>
                     <p>Contact Email: hello@budgettravelpackages.in</p>
-                    <p>
-                      Content & Blog URL:{" "}
-                      <Link href="https://budgettravelpackages.in/blogs" className="text-emerald-600 hover:underline">
-                        https://budgettravelpackages.in/blogs
-                      </Link>
-                    </p>
+                    <p className="flex flex-col sm:flex-row sm:gap-2">
+                       <span className="font-medium shrink-0">Content & Blog URL:</span>
+                       <Link href="https://budgettravelpackages.in/blogs" className="text-emerald-600 hover:underline break-all">
+                         https://budgettravelpackages.in/blogs
+                       </Link>
+                     </p>
                   </div>
 
                   {/* Row 2 */}
@@ -159,26 +159,28 @@ export default function LegalPoliciesPage() {
                       <p className="font-semibold text-black mb-1">Business Locations:</p>
                       <p>Kolkata (Main Office) | Delhi (Branch Office) | Mumbai (Branch Office)</p>
                     </div>
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-col gap-2">
                       <p className="font-semibold text-black mb-1">Social Media’s:</p>
-                      <span>
-                        Facebook:{" "}
-                        <Link href="https://www.facebook.com/budgettravelpackages" className="text-emerald-600 hover:underline">
-                          https://www.facebook.com/budgettravelpackages
-                        </Link>
-                      </span>
-                      <span>
-                        Instagram:{" "}
-                        <Link href="https://www.instagram.com/budgettravelpackages.in" className="text-emerald-600 hover:underline">
-                          https://www.instagram.com/budgettravelpackages.in
-                        </Link>
-                      </span>
-                      <span>
-                        YouTube:{" "}
-                        <Link href="https://www.youtube.com/@budgettravelpackages" className="text-emerald-600 hover:underline">
-                          https://www.youtube.com/@budgettravelpackages
-                        </Link>
-                      </span>
+                      <div className="flex flex-col gap-3">
+                        <div className="flex flex-col sm:flex-row sm:gap-2">
+                          <span className="font-medium shrink-0">Facebook:</span>
+                          <Link href="https://www.facebook.com/budgettravelpackages" className="text-emerald-600 hover:underline break-all">
+                            https://www.facebook.com/budgettravelpackages
+                          </Link>
+                        </div>
+                        <div className="flex flex-col sm:flex-row sm:gap-2">
+                          <span className="font-medium shrink-0">Instagram:</span>
+                          <Link href="https://www.instagram.com/budgettravelpackages.in" className="text-emerald-600 hover:underline break-all">
+                            https://www.instagram.com/budgettravelpackages.in
+                          </Link>
+                        </div>
+                        <div className="flex flex-col sm:flex-row sm:gap-2">
+                          <span className="font-medium shrink-0">YouTube:</span>
+                          <Link href="https://www.youtube.com/@budgettravelpackages" className="text-emerald-600 hover:underline break-all">
+                            https://www.youtube.com/@budgettravelpackages
+                          </Link>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
