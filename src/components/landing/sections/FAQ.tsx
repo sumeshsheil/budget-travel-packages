@@ -201,7 +201,7 @@ const FAQ: React.FC = () => {
       />
 
       {/* World Map Background */}
-      <div className="absolute w-[60%] sm:w-[40%] h-auto lg:inset-0 z-0 pointer-events-none ">
+      <div className="absolute w-[60%] sm:w-[70%] mx-auto h-auto lg:inset-0 z-0 pointer-events-none ">
         <Image
           src={worldMap}
           alt=""
