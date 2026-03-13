@@ -14,39 +14,7 @@ import crypto from "crypto";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
-import { z } from "zod";
-
-// Validation Schema matching the form
-const leadSchema = z.object({
-  tripType: z.enum(["domestic", "international"]),
-  departureCity: z.string().min(2),
-  destination: z.string().min(2),
-  travelDate: z.string(),
-  duration: z.string(),
-  guests: z.number().min(1),
-  budget: z.number().min(1),
-  specialRequests: z.string().optional(),
-  primaryContact: z.object({
-    firstName: z.string().min(2),
-    lastName: z.string().min(1),
-    age: z.number().min(1),
-    gender: z.enum(["male", "female", "other"]),
-    email: z.string().email(),
-    phone: z.string().min(10),
-  }),
-  travelers: z
-    .array(
-      z.object({
-        name: z.string().min(2),
-        age: z.number().min(0),
-        gender: z.enum(["male", "female", "other"]),
-        email: z.string().email().optional().or(z.literal("")),
-        phone: z.string().optional().or(z.literal("")),
-        memberId: z.string().optional(),
-      }),
-    )
-    .optional(),
-});
+import { leadSchema } from "@/lib/validations/booking";
 
 export async function POST(request: Request) {
   try {

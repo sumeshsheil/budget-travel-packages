@@ -173,7 +173,8 @@ export const DepartureCityCombobox: React.FC = () => {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-primary"
+          className="absolute right-1 top-1/2 -translate-y-1/2 text-primary p-2"
+          aria-label="Toggle city list"
         >
           <svg
             className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`}

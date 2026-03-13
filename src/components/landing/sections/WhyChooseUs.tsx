@@ -72,13 +72,13 @@ const WhyChooseUs: React.FC = () => {
               </div>
               {/* Header */}
               <div className="text-center order-2 md:order-2 md:w-full xl:w-auto">
-                <h4 className="text-3xl md:text-4xl lg:text-[40px] xl:text-[48px] font-inter font-semibold text-black leading-tight mb-6">
+                <h2 className="text-3xl md:text-4xl lg:text-[40px] xl:text-[48px] font-inter font-semibold text-black leading-tight mb-6">
                   Why Budget Travel Packages Is One Of
                   <br className="hidden md:block" /> The{" "}
                   <span className="text-primary">
                     Best Travel Companies In India?
                   </span>
-                </h4>
+                </h2>
                 
               </div>
             </div>

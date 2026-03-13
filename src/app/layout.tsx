@@ -1,5 +1,6 @@
-import { StoreProvider } from "@/lib/redux/StoreProvider";
+// import { StoreProvider } from "@/lib/redux/StoreProvider";
 import { Metadata, Viewport } from "next";
+import dynamic from "next/dynamic";
 import { Inter, Open_Sans } from "next/font/google";
 import "./globals.css";
 
@@ -15,16 +16,9 @@ const openSans = Open_Sans({
 
 import { AppThemeProvider } from "@/components/providers/AppThemeProvider";
 import SessionProvider from "@/components/providers/SessionProvider";
-import { Toaster } from "@/components/ui/sonner";
-import dynamic from "next/dynamic";
-
-const FloatingButtons = dynamic(
-  () =>
-    import("@/components/layout/FloatingButtons").then(
-      (mod) => mod.FloatingButtons,
-    ),
-  // { ssr: false }, // No need to server-side render floating lottie files
-);
+// import { Toaster } from "@/components/ui/sonner";
+import { ClientSideComponents } from "@/components/providers/ClientSideComponents";
+import Script from "next/script";
 export const viewport: Viewport = {
   themeColor: "#01FF70",
   width: "device-width",
@@ -102,7 +96,7 @@ export const metadata: Metadata = {
   },
 };
 
-import CookieConsent from "@/components/layout/CookieConsent";
+
 
 export default function RootLayout({
   children,
@@ -155,15 +149,23 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PP3L5HBW');`,
-          }}
-        />
+        <Script
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+    __html: `
+      (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),
+        dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+        f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PP3L5HBW');
+    `,
+  }}
+/>
       </head>
       <body className={`${inter.variable} ${openSans.variable} antialiased`}>
         <noscript>
@@ -179,14 +181,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <AppThemeProvider>
-          <StoreProvider>
-            <SessionProvider>
-                {children}
-                <CookieConsent />
-                <FloatingButtons />
-                <Toaster richColors position="top-right" />
-            </SessionProvider>
-          </StoreProvider>
+          <SessionProvider>
+            {children}
+            <ClientSideComponents />
+          </SessionProvider>
         </AppThemeProvider>
       </body>
     </html>

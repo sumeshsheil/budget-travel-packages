@@ -33,11 +33,12 @@ export const DurationSelect: React.FC<DurationSelectProps> = ({
   const trigger = (
     <SelectTrigger
       className={cn(
-        "h-11 w-full border-slate-200 dark:border-slate-800 focus:ring-emerald-500/20 bg-slate-50/50 dark:bg-slate-900/50 relative overflow-hidden flex",
+        "h-12 w-full border-slate-200 dark:border-slate-800 focus:ring-emerald-500/20 bg-slate-50/50 dark:bg-slate-900/50 relative overflow-hidden flex",
         showIcon && "pl-12",
         error && "border-red-500 focus:ring-red-500/20",
         className,
       )}
+      aria-label="Select trip duration"
     >
       {showIcon && (
         <div className="absolute left-6 top-1/2 -translate-y-1/2 pointer-events-none">

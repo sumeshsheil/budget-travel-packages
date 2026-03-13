@@ -52,9 +52,19 @@ export const Step1Form: React.FC = () => {
     }
   }, [budget, guests, days, tripType, minBudget, dispatch]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (validateStep1()) {
+    const isValid = await validateStep1({
+      tripType,
+      departureCity,
+      destination,
+      travelDate,
+      duration,
+      guests,
+      budget: parseFloat(budget) || 0,
+    });
+    
+    if (isValid) {
       dispatch(setCurrentStep(2));
     }
   };

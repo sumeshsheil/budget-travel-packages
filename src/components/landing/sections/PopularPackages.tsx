@@ -4,9 +4,9 @@ import { m } from "motion/react";
 import Image from "next/image";
 import React from "react";
 
-import adventureImg from "@/../public/images/banner/adventure.jpeg";
-import familyImg from "@/../public/images/banner/family.jpeg";
-import honeymoonImg from "@/../public/images/banner/honeymoon.jpeg";
+import adventureImg from "@/../public/images/banner/adventure.webp";
+import familyImg from "@/../public/images/banner/family.webp";
+import honeymoonImg from "@/../public/images/banner/honeymoon.webp";
 
 const packages = [
   {
@@ -42,14 +42,14 @@ const PopularPackages: React.FC = () => {
       <div className="container-box px-4">
         {/* Header */}
         <header className="text-center mb-12 md:mb-16">
-          <h3
+          <h2
             id="popular-packages-heading"
             className="text-3xl md:text-4xl lg:text-[40px] font-inter font-bold text-black mb-4 leading-tight"
           >
             Popular Travel Packages For
             <br className="hidden md:block" /> Every{" "}
             <span className="text-secondary">Purpose & Budget</span>
-          </h3>
+          </h2>
         </header>
 
         {/* Packages Grid */}
@@ -73,7 +73,7 @@ const PopularPackages: React.FC = () => {
                   src={pkg.image}
                   alt={pkg.alt}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
                   className="object-cover"
                   placeholder="blur"
                   loading="lazy"

@@ -1,7 +1,7 @@
 // Barrel export for booking module
 // Re-export main component for backward compatibility
 
-export { default as BookYourTrip, default } from "./BookYourTripSection";
+export { BookYourTrip, BookYourTrip as default } from "./BookYourTripWrapper";
 // Component exports
 export * from "./components/BookingFormCard";
 export * from "./components/DepartureCityCombobox";
@@ -18,8 +18,6 @@ export * from "./components/TripTypeSelector";
 // Hook exports
 export * from "./hooks/useBookingValidation";
 export * from "./hooks/useMinBudget";
-// Schema exports (for external validation if needed)
-export * from "./schemas";
 // Type exports
 export * from "./types";
 

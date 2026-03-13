@@ -77,9 +77,9 @@ const ServicesWeOffer: React.FC = () => {
       <div className="container-box relative z-10 px-4">
         {/* Header */}
         <div className="items-center gap-4 mb-12">
-          <h3 className="text-3xl md:text-4xl lg:text-[40px] font-inter font-bold text-secondary-text">
+          <h2 className="text-3xl md:text-4xl lg:text-[40px] font-inter font-bold text-secondary-text">
             What's included?
-          </h3>
+          </h2>
         </div>
 
         {/* Services Grid */}

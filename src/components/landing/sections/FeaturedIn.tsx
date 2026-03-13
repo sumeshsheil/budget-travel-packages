@@ -8,13 +8,13 @@ import dailyhunt from "@/../public/images/brands/dailyhunt.svg";
 import enterpreneur from "@/../public/images/brands/enterpreneur.svg";
 import hindustan from "@/../public/images/brands/hindustan.svg";
 // import trind from "@/../public/images/brands/trind.svg";
-import cityCarnival from "@/../public/images/brands/citycarnival.png";
-import googleNews from "@/../public/images/brands/google-news.png";
-import indianPublisher from "@/../public/images/brands/indian-publisher.png";
+import cityCarnival from "@/../public/images/brands/citycarnival.webp";
+import googleNews from "@/../public/images/brands/google-news.webp";
+import indianPublisher from "@/../public/images/brands/indian-publisher.webp";
 
-import businessUpdate from "@/../public/images/brands/business-update.png";
-import foxStory from "@/../public/images/brands/fox-story.png";
-import hindustanTimes from "@/../public/images/brands/hindustan-time.png";
+import businessUpdate from "@/../public/images/brands/business-update.webp";
+import foxStory from "@/../public/images/brands/fox-story.webp";
+import hindustanTimes from "@/../public/images/brands/hindustan-time.webp";
 const brands = [
   { name: "Dailyhunt", logo: dailyhunt },
   { name: "Entrepreneur Street", logo: enterpreneur },
@@ -35,13 +35,13 @@ const FeaturedIn: React.FC = () => {
       <div className="container-box px-4">
         {/* Header */}
         <header className="text-center mb-10">
-          <h5
+          <h2
             id="featured-in-heading"
             className="text-2xl md:text-3xl lg:text-4xl font-inter font-bold text-black"
           >
             Featured In Leading{" "}
             <span className="text-primary">Media Sites</span>
-          </h5>
+          </h2>
         </header>
 
         {/* Brand Carousel */}
@@ -111,9 +111,9 @@ const FeaturedIn: React.FC = () => {
 
         {/* Spotlight Badge */}
         <div className="flex justify-center mt-10">
-          <h5  className="inline-flex items-center px-6 py-2 bg-primary/16 text-black font-open-sans font-bold text-sm md:text-base lg:text-xl rounded-full">
+          <h3  className="inline-flex items-center px-6 py-2 bg-primary/16 text-black font-open-sans font-bold text-sm md:text-base lg:text-xl rounded-full">
             Our Brand In The Spotlight
-          </h5>
+          </h3>
         </div>
       </div>
     </section>

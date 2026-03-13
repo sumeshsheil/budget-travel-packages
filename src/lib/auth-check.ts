@@ -8,11 +8,6 @@ export type SessionUser = {
   role: "customer";
 };
 
-/**
- * Verifies the user is authenticated.
- * Used in Server Components and Server Actions.
- * Redirects to login if not authenticated.
- */
 export async function verifySession(): Promise<SessionUser> {
   const session = await auth();
 

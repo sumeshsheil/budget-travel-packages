@@ -10,6 +10,7 @@ import {
     ArrowRight, Calendar, FileText, Gift, Plane, Sparkles, User as UserIcon
 } from "lucide-react";
 import Link from "next/link";
+import { calculateProfileCompletion } from "@/lib/profile-utils";
 
 export default async function DashboardOverviewPage() {
   const session = await requireCustomerAuth();
@@ -26,9 +27,9 @@ export default async function DashboardOverviewPage() {
     return <div>User not found</div>;
   }
 
-  // Profile is complete when phone is verified AND aadhaar is uploaded
-  const isProfileComplete =
-    user.isPhoneVerified && (user.documents?.aadharCard?.length || 0) > 0;
+  // Profile is complete based on shared utility logic
+  const completenessScore = calculateProfileCompletion(user);
+  const isProfileComplete = completenessScore === 100;
 
   // Prepare user data for UI components
   const uiUser = {
@@ -41,12 +42,6 @@ export default async function DashboardOverviewPage() {
     isProfileComplete: !!isProfileComplete,
   };
 
-  // Calculate Profile Completeness
-  let completenessScore = 0;
-  if (user.name) completenessScore += 25;
-  if (user.isPhoneVerified) completenessScore += 25;
-  if (user.gender) completenessScore += 25;
-  if ((user.documents?.aadharCard?.length || 0) > 0) completenessScore += 25;
 
   const serialized = JSON.parse(JSON.stringify(leads));
 

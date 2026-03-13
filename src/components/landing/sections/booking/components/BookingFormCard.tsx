@@ -2,8 +2,9 @@
 
 import { useAppSelector } from "@/lib/redux/store";
 import React from "react";
-import { Step1Form } from "./Step1Form";
-import { Step2Form } from "./Step2Form";
+import dynamic from "next/dynamic";
+const Step1Form = dynamic(() => import("./Step1Form").then(mod => mod.Step1Form), { ssr: false });
+const Step2Form = dynamic(() => import("./Step2Form").then(mod => mod.Step2Form), { ssr: false });
 
 export const BookingFormCard: React.FC = () => {
   const currentStep = useAppSelector((state) => state.booking.currentStep);

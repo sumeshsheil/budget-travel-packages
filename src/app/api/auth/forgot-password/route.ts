@@ -3,12 +3,7 @@ import { connectDB } from "@/lib/db/mongoose";
 import { sendOtpEmail } from "@/lib/email";
 import crypto from "crypto";
 import { NextResponse } from "next/server";
-import { z } from "zod";
-
-const forgotPasswordSchema = z.object({
-  email: z.string().email("Invalid email address"),
-  isAdminFlow: z.boolean().optional(),
-});
+import { forgotPasswordSchema } from "@/lib/validations/auth";
 
 export async function POST(req: Request) {
   try {

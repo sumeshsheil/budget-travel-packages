@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "motion/react";
+import { m as motion } from "motion/react";
 import { ComponentProps, forwardRef } from "react";
 
 // Define the variant types logic manually since we don't have cva/clsx

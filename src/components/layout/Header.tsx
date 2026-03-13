@@ -1,6 +1,6 @@
 "use client";
 import {
-    AnimatePresence, motion, useMotionValueEvent, useScroll
+    AnimatePresence, m as motion, useMotionValueEvent, useScroll
 } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,7 +13,11 @@ import { Button } from "../ui/button";
 
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import LoginModal from "../auth/LoginModal";
+import dynamic from "next/dynamic";
+
+const LoginModal = dynamic(() => import("../auth/LoginModal"), {
+  ssr: false,
+});
 
 function SearchParamsHandler({ onOpenLogin }: { onOpenLogin: () => void }) {
   const searchParams = useSearchParams();
@@ -263,6 +267,7 @@ const Header: React.FC = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:scale-110 transition-transform transform-gpu"
+                      aria-label="Follow us on Facebook"
                     >
                       <Image
                         src="/images/footer/social/facebook.png"
@@ -277,6 +282,7 @@ const Header: React.FC = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:scale-110 transition-transform transform-gpu"
+                      aria-label="Follow us on Instagram"
                     >
                       <Image
                         src="/images/footer/social/instagram-2.png"
@@ -291,6 +297,7 @@ const Header: React.FC = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:scale-110 transition-transform transform-gpu"
+                      aria-label="Subscribe to our YouTube channel"
                     >
                       <YoutubeIcon className="w-auto h-6" />
                     </Link>

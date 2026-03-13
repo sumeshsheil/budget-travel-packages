@@ -1,11 +1,9 @@
-"use client";
-
-import delhiImg from "@/../public/images/city/delhi.png";
-import kolkataImg from "@/../public/images/city/kolkata.png";
-import mumbaiImg from "@/../public/images/city/mumbai.png";
+import delhiImg from "@/../public/images/city/delhi.webp";
+import kolkataImg from "@/../public/images/city/kolkata.webp";
+import mumbaiImg from "@/../public/images/city/mumbai.webp";
 import Image from "next/image";
 import React from "react";
-import Button from "../ui/button";
+import { ScrollToButton } from "@/components/ui/ScrollToButton";
 
 const cityData = [
   {
@@ -46,15 +44,10 @@ const cityData = [
 const CityOperations: React.FC = () => {
   return (
     <section className=" pb-10 relative overflow-hidden bg-white">
-      
-
       {/* City Content Blocks */}
       <div className="space-y-0">
         {cityData.map((city) => (
           <div key={city.id} id={city.id} className="relative w-full py-16 md:py-24 scroll-mt-24">
-            {/* {city.id === "kolkata" && (
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 container-box  w-full border-b-2 border-dashed border-secondary/50 z-20" />
-            )} */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 container-box  w-full border-b-2 border-dashed border-secondary/50 z-20" />
 
             <div
@@ -66,7 +59,7 @@ const CityOperations: React.FC = () => {
                 <Image
                   src={city.image}
                   alt={city.alt}
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 400px"
                   placeholder="blur"
                   loading="lazy"
                   className={`h-full w-auto object-contain object-bottom ${city.id === "delhi" ? "opacity-50" : ""}`}
@@ -89,17 +82,13 @@ const CityOperations: React.FC = () => {
                   <p className="font-open-sans text-black text-sm md:text-base leading-relaxed mb-9">
                     {city.description}
                   </p>
-                  <Button
-                    variant="primary"
+                  <ScrollToButton
+                    targetId="start-planning"
+                    variant="default"
                     className="bg-new-blue text-white  text-sm md:text-base px-8 lg:px-16 py-2 rounded-full transition-all"
-                    onClick={() => {
-                      document
-                        .getElementById("start-planning")
-                        ?.scrollIntoView({ behavior: "smooth" });
-                    }}
                   >
                     Customize My Trip
-                  </Button>
+                  </ScrollToButton>
                 </div>
               </div>
             </div>

@@ -1,6 +1,6 @@
 "use client";
 import YellowStar from "@/components/icons/YellowStar";
-import { motion } from "motion/react";
+import { m as motion } from "motion/react";
 import React from "react";
 const Marquee: React.FC = () => {
   const titles = [
@@ -43,7 +43,7 @@ const Marquee: React.FC = () => {
   ];
   return (
     <div
-      className="bg-secondary w-full py-2"
+      className="bg-secondary w-full py-2 pointer-events-none"
       role="region"
       aria-label="Our services marquee"
     >
@@ -53,13 +53,13 @@ const Marquee: React.FC = () => {
             initial={{ x: 0 }}
             animate={{ x: "-100%" }}
             transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            className="flex shrink-0 items-center group-hover:pause"
+            className="flex shrink-0 items-center pointer-events-none group-hover:pause"
           >
             {titles.map((title, index) => (
               <div key={`original-${index}`} className="flex items-center pr-8">
-                <h6 className="font-open-sans font-bold pr-10 text-white whitespace-nowrap text-lg md:text-xl lg:text-[20px]">
+                <p className="font-open-sans font-bold pr-10 text-white whitespace-nowrap text-lg md:text-xl lg:text-[20px]">
                   {title.title}
-                </h6>
+                </p>
                 {title.icon && <title.icon />}
               </div>
             ))}
@@ -68,7 +68,7 @@ const Marquee: React.FC = () => {
             initial={{ x: 0 }}
             animate={{ x: "-100%" }}
             transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            className="flex shrink-0 items-center group-hover:[animation-play-state:paused]"
+            className="flex shrink-0 items-center pointer-events-none group-hover:pause"
             aria-hidden="true"
           >
             {titles.map((title, index) => (
@@ -76,9 +76,9 @@ const Marquee: React.FC = () => {
                 key={`duplicate-${index}`}
                 className="flex items-center pr-8"
               >
-                <h6 className="font-open-sans font-bold pr-10 text-white whitespace-nowrap text-lg md:text-xl lg:text-[20px]">
+                <p className="font-open-sans font-bold pr-10 text-white whitespace-nowrap text-lg md:text-xl lg:text-[20px]">
                   {title.title}
-                </h6>
+                </p>
                 {title.icon && <title.icon />}
               </div>
             ))}

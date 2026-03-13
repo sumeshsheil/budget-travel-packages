@@ -1,19 +1,14 @@
 import User from "@/lib/db/models/User";
 import { connectDB } from "@/lib/db/mongoose";
 import { NextResponse } from "next/server";
-import { z } from "zod";
-
-const verifyOtpSchema = z.object({
-  email: z.string().email("Invalid email address"),
-  otp: z.string().length(6, "OTP must be 6 digits"),
-});
+import { otpVerificationSchema } from "@/lib/validations/auth";
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
 
     // Validate input
-    const validation = verifyOtpSchema.safeParse(body);
+    const validation = otpVerificationSchema.safeParse(body);
     if (!validation.success) {
       return NextResponse.json(
         {

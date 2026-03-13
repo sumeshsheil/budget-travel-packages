@@ -8,7 +8,9 @@ interface AppThemeProviderProps {
   children: React.ReactNode;
 }
 
-import { domAnimation, LazyMotion } from "motion/react";
+import { LazyMotion } from "motion/react";
+const loadFeatures = () =>
+  import("motion/react").then((res) => res.domAnimation);
 
 export function AppThemeProvider({ children }: AppThemeProviderProps) {
   const pathname = usePathname();
@@ -20,7 +22,7 @@ export function AppThemeProvider({ children }: AppThemeProviderProps) {
     !pathname?.startsWith("/dashboard") && !pathname?.startsWith("/admin");
 
   return (
-    <LazyMotion features={domAnimation}>
+    <LazyMotion features={loadFeatures}>
       <ThemeProvider
         attribute="class"
         defaultTheme="light"

@@ -2,13 +2,7 @@ import User from "@/lib/db/models/User";
 import { connectDB } from "@/lib/db/mongoose";
 import bcryptjs from "bcryptjs";
 import { NextResponse } from "next/server";
-import { z } from "zod";
-
-const resetPasswordSchema = z.object({
-  email: z.string().email("Invalid email address"),
-  otp: z.string().length(6, "OTP must be 6 digits"),
-  password: z.string().min(8, "Password must be at least 8 characters"),
-});
+import { resetPasswordSchema } from "@/lib/validations/auth";
 
 export async function POST(req: Request) {
   try {

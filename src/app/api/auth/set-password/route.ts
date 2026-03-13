@@ -3,18 +3,7 @@ import { connectDB } from "@/lib/db/mongoose";
 import bcryptjs from "bcryptjs";
 import crypto from "crypto";
 import { NextResponse } from "next/server";
-import { z } from "zod";
-
-const setPasswordSchema = z
-  .object({
-    token: z.string().min(1, "Token is required"),
-    password: z.string().min(8, "Password must be at least 8 characters"),
-    confirmPassword: z.string().min(8),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords do not match",
-    path: ["confirmPassword"],
-  });
+import { setPasswordSchema } from "@/lib/validations/auth";
 
 export async function POST(request: Request) {
   try {

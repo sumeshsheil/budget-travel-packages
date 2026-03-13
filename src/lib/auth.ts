@@ -8,6 +8,11 @@ import { z } from "zod";
 declare module "next-auth" {
   interface User {
     role: "admin" | "agent" | "customer";
+    firstName?: string;
+    lastName?: string;
+    phone?: string;
+    gender?: "male" | "female" | "other";
+    age?: number;
     mustChangePassword: boolean;
     isPhoneVerified: boolean;
     aadhaarNumber?: string;
@@ -20,6 +25,11 @@ declare module "next-auth" {
       id: string;
       email: string;
       name: string;
+      firstName?: string;
+      lastName?: string;
+      phone?: string;
+      gender?: "male" | "female" | "other";
+      age?: number;
       role: "admin" | "agent" | "customer";
       mustChangePassword: boolean;
       isPhoneVerified: boolean;
@@ -35,6 +45,11 @@ declare module "next-auth" {
   interface JWT {
     role: "admin" | "agent" | "customer";
     userId: string;
+    firstName?: string;
+    lastName?: string;
+    phone?: string;
+    gender?: "male" | "female" | "other";
+    age?: number;
     mustChangePassword: boolean;
     isPhoneVerified: boolean;
     aadhaarNumber?: string;
@@ -100,6 +115,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           id: user._id.toString(),
           email: user.email,
           name: user.name,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          phone: user.phone,
+          gender: user.gender,
+          age: user.age,
           role: user.role,
           mustChangePassword: user.mustChangePassword,
           isPhoneVerified: user.isPhoneVerified,
@@ -119,10 +139,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   // The proxy middleware handles admin login redirects for /admin routes,
   // and customer login is handled separately at /dashboard/login.
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
       if (user) {
         token.role = user.role;
         token.userId = user.id!;
+        token.name = user.name;
+        token.firstName = user.firstName;
+        token.lastName = user.lastName;
+        token.phone = user.phone;
+        token.gender = user.gender;
+        token.age = user.age;
         token.mustChangePassword = user.mustChangePassword;
         token.isPhoneVerified = user.isPhoneVerified;
         token.aadhaarNumber = user.aadhaarNumber;
@@ -131,19 +157,42 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         token.subscriptionStatus = (user as any).subscriptionStatus;
       }
 
-      // Re-read isPhoneVerified from DB on every token refresh so
-      // mid-session verification is reflected without re-login.
+      // If trigger is "update", prioritize data passed from the client for instant UI response
+      if (trigger === "update" && session) {
+        if (session.name) token.name = session.name;
+        if (session.firstName) token.firstName = session.firstName;
+        if (session.lastName) token.lastName = session.lastName;
+        if (session.phone) token.phone = session.phone;
+        if (session.image) token.image = session.image;
+        if (session.gender) token.gender = session.gender;
+        if (session.age) token.age = session.age;
+        return token;
+      }
+
+      // Refresh from DB if mid-session phone verification happens
       if (token.userId && !token.isPhoneVerified) {
         try {
           await connectDB();
           const dbUser = await User.findById(token.userId)
-            .select("isPhoneVerified")
+            .select("name firstName lastName phone gender age isPhoneVerified image aadhaarNumber passportNumber plan subscriptionStatus")
             .lean();
-          if (dbUser?.isPhoneVerified) {
-            token.isPhoneVerified = true;
+          
+          if (dbUser) {
+            token.name = dbUser.name;
+            token.firstName = dbUser.firstName;
+            token.lastName = dbUser.lastName;
+            token.phone = dbUser.phone;
+            token.gender = dbUser.gender;
+            token.age = dbUser.age;
+            token.isPhoneVerified = dbUser.isPhoneVerified;
+            token.image = dbUser.image;
+            token.aadhaarNumber = dbUser.aadhaarNumber;
+            token.passportNumber = dbUser.passportNumber;
+            token.plan = dbUser.plan;
+            token.subscriptionStatus = dbUser.subscriptionStatus;
           }
-        } catch {
-          // DB lookup failed; keep current token value
+        } catch (error) {
+          console.error("JWT Session refresh error:", error);
         }
       }
 
@@ -153,12 +202,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (session.user) {
         session.user.id = token.userId as string;
         session.user.role = token.role as "admin" | "agent" | "customer";
+        session.user.name = token.name as string;
+        session.user.firstName = token.firstName as string;
+        session.user.lastName = token.lastName as string;
+        session.user.phone = token.phone as string;
+        session.user.gender = token.gender as "male" | "female" | "other";
+        session.user.age = token.age as number;
         session.user.mustChangePassword = token.mustChangePassword as boolean;
         session.user.isPhoneVerified = token.isPhoneVerified as boolean;
         session.user.aadhaarNumber = token.aadhaarNumber as string;
         session.user.passportNumber = token.passportNumber as string;
         session.user.plan = token.plan as string;
         session.user.subscriptionStatus = token.subscriptionStatus as string;
+        (session.user as any).image = token.image as string;
       }
       return session;
     },

@@ -1,6 +1,6 @@
 "use client";
 
-import HeroBg from "@/../public/images/heros/hero-background.png";
+import HeroBg from "@/../public/images/heros/hero-background.webp";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -24,6 +24,7 @@ const HeroBackground: React.FC = () => {
         className="object-cover"
         priority
         sizes="100vw"
+        fetchPriority="high"
       />
 
       {/* Background Video - Fades in when ready, GPU Accelerated */}
@@ -34,7 +35,6 @@ const HeroBackground: React.FC = () => {
         loop
         playsInline
         preload="metadata" // Changed from auto: downloads metadata first, saving initial bandwidth
-        poster="/images/heros/hero-background.png"
         onCanPlayThrough={() => setVideoLoaded(true)}
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 transform-gpu will-change-opacity ${
           videoLoaded ? "opacity-100" : "opacity-0"

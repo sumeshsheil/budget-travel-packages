@@ -8,22 +8,21 @@ const INDIA_PHONE_REGEX = /^[6-9]\d{9}$/;
 
 import Button from "@/components/landing/ui/button";
 import {
-    resetForm, setCurrentStep, setPhoneVerified, setSpecialRequests,
-    updatePrimaryContact
+  resetForm, setCurrentStep, setPhoneVerified, setSpecialRequests,
+  updatePrimaryContact
 } from "@/lib/redux/features/bookingSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { useBookingValidation } from "../hooks/useBookingValidation";
-import { getInputClass, labelClass } from "../styles";
+import { labelClass } from "../styles";
 import type { Traveler } from "../types";
-import { FormInput } from "./FormInput";
-import { FormSelect } from "./FormSelect";
+import { ContactDetailsFields } from "./ContactDetailsFields";
 import { FormTextarea } from "./FormTextarea";
-import { OtpInput } from "./OtpInput";
+import { PhoneVerificationField } from "./PhoneVerificationField";
+import { TripSummary } from "./TripSummary";
 
 export const Step2Form: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -46,7 +45,6 @@ export const Step2Form: React.FC = () => {
   const [verificationId, setVerificationId] = useState("");
   const [cooldown, setCooldown] = useState(0);
   const [isShaking, setIsShaking] = useState(false);
-  const [showSummary, setShowSummary] = useState(false);
 
   // Refs
   const submitBtnRef = useRef<HTMLButtonElement>(null);
@@ -89,8 +87,41 @@ export const Step2Form: React.FC = () => {
   useEffect(() => {
     if (session?.user?.isPhoneVerified && !phoneVerified) {
       dispatch(setPhoneVerified(true));
+      // If we just verified via session, ensure the phone number is also synced
+      if (session.user.phone && primaryContact.phone !== session.user.phone) {
+        dispatch(updatePrimaryContact({ field: "phone", value: session.user.phone }));
+      }
     }
-  }, [session, phoneVerified, dispatch]);
+  }, [session, phoneVerified, dispatch, primaryContact.phone]);
+
+  // Pre-fill user details from session if available
+  useEffect(() => {
+    if (session?.user) {
+      const u = session.user;
+      
+      if (!primaryContact.firstName && u.firstName)
+        dispatch(updatePrimaryContact({ field: "firstName", value: u.firstName }));
+      if (!primaryContact.lastName && u.lastName)
+        dispatch(updatePrimaryContact({ field: "lastName", value: u.lastName }));
+      if (!primaryContact.email && u.email)
+        dispatch(updatePrimaryContact({ field: "email", value: u.email }));
+      if (!primaryContact.gender && u.gender)
+        dispatch(updatePrimaryContact({ field: "gender", value: u.gender }));
+      if (!primaryContact.age && u.age)
+        dispatch(updatePrimaryContact({ field: "age", value: u.age }));
+      if (!primaryContact.phone && u.phone)
+        dispatch(updatePrimaryContact({ field: "phone", value: u.phone }));
+        
+      // Also pre-fill name if firstName/lastName are missing but 'name' exists in session
+      if (!primaryContact.firstName && !primaryContact.lastName && u.name) {
+        const [first, ...rest] = u.name.split(" ");
+        dispatch(updatePrimaryContact({ field: "firstName", value: first }));
+        if (rest.length > 0) {
+          dispatch(updatePrimaryContact({ field: "lastName", value: rest.join(" ") }));
+        }
+      }
+    }
+  }, [session, dispatch]); // Removed primaryContact dependencies to avoid re-triggering unnecessarily
 
   // Cooldown timer
   useEffect(() => {
@@ -101,12 +132,15 @@ export const Step2Form: React.FC = () => {
 
   const handleChange = (field: keyof Traveler, value: string | number) => {
     dispatch(updatePrimaryContact({ field, value }));
-    // Phone change logic handled via explicit Change button now
   };
 
   const handleSendOtp = async () => {
     // Validate all fields in step 2 before sending OTP
-    if (!validateStep2()) {
+    const isValid = await validateStep2({
+      specialRequests,
+      primaryContact,
+    });
+    if (!isValid) {
       return;
     }
 
@@ -204,7 +238,11 @@ export const Step2Form: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateStep2()) return;
+    const isValid = await validateStep2({
+      specialRequests,
+      primaryContact,
+    });
+    if (!isValid) return;
 
     setIsSubmitting(true);
     try {
@@ -240,92 +278,10 @@ export const Step2Form: React.FC = () => {
     }
   };
 
-  const genderOptions = [
-    { value: "", label: "Gender", disabled: true },
-    { value: "male", label: "Male" },
-    { value: "female", label: "Female" },
-    { value: "other", label: "Other" },
-  ];
-
   return (
     <form className="space-y-6" onSubmit={handleSubmit}>
-      <style jsx>{`
-        @keyframes shake {
-          0%,
-          100% {
-            transform: translateX(0);
-          }
-          10%,
-          30%,
-          50%,
-          70%,
-          90% {
-            transform: translateX(-4px);
-          }
-          20%,
-          40%,
-          60%,
-          80% {
-            transform: translateX(4px);
-          }
-        }
-        .animate-shake {
-          animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-        }
-      `}</style>
-
-      {/* Trip Summary (Collapsible) */}
-      <div className="bg-primary/5 border border-primary/20 rounded-xl overflow-hidden transition-all duration-300">
-        <button
-          type="button"
-          onClick={() => setShowSummary(!showSummary)}
-          className="w-full flex items-center justify-between p-4 hover:bg-primary/5 transition-colors text-left cursor-pointer"
-        >
-          <span className="font-bold text-primary text-sm flex items-center gap-2">
-            <span className="text-lg">📋</span> Trip Summary
-          </span>
-          <span className="text-primary/60 text-xs font-medium">
-            {showSummary ? "Hide Details ▲" : "Show Details ▼"}
-          </span>
-        </button>
-
-        {showSummary && (
-          <div className="p-4 grid grid-cols-2 gap-4 text-xs sm:text-sm border-t border-primary/10 bg-white/50 animate-in slide-in-from-top-2">
-            <div>
-              <span className="block text-gray-500 text-[10px] uppercase tracking-wider">
-                Destination
-              </span>
-              <span className="font-semibold text-gray-800">
-                {step1.destination}
-              </span>
-            </div>
-            <div>
-              <span className="block text-gray-500 text-[10px] uppercase tracking-wider">
-                Dates
-              </span>
-              <span className="font-semibold text-gray-800">
-                {step1.travelDate} ({step1.duration})
-              </span>
-            </div>
-            <div>
-              <span className="block text-gray-500 text-[10px] uppercase tracking-wider">
-                Guests
-              </span>
-              <span className="font-semibold text-gray-800">
-                {step1.guests} People
-              </span>
-            </div>
-            <div>
-              <span className="block text-gray-500 text-[10px] uppercase tracking-wider">
-                Budget
-              </span>
-              <span className="font-semibold text-gray-800">
-                ₹{step1.budget}
-              </span>
-            </div>
-          </div>
-        )}
-      </div>
+      {/* Dynamic Summary */}
+      <TripSummary step1={step1} />
 
       {/* Special Requests */}
       <FormTextarea
@@ -340,185 +296,33 @@ export const Step2Form: React.FC = () => {
       />
 
       {/* Primary Contact Details */}
-      <div className="space-y-4">
-        <label className={labelClass}>Primary Contact Details *</label>
+      <ContactDetailsFields
+        primaryContact={primaryContact}
+        contactErrors={contactErrors}
+        onChange={handleChange}
+      />
 
-        <div className="border border-primary rounded-lg p-4 md:p-6 space-y-4 bg-white shadow-sm">
-          {/* Name Row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <FormInput
-              type="text"
-              value={primaryContact.firstName}
-              onChange={(e) => handleChange("firstName", e.target.value)}
-              placeholder="First Name"
-              error={contactErrors.firstName}
-            />
-            <FormInput
-              type="text"
-              value={primaryContact.lastName}
-              onChange={(e) => handleChange("lastName", e.target.value)}
-              placeholder="Last Name"
-              error={contactErrors.lastName}
-            />
-          </div>
-
-          {/* Details Row */}
-          <div className="grid grid-cols-2 gap-4">
-            <FormSelect
-              value={primaryContact.gender}
-              onChange={(e) => handleChange("gender", e.target.value as any)}
-              options={genderOptions}
-              error={contactErrors.gender}
-            />
-            <FormInput
-              type="number"
-              value={primaryContact.age || ""}
-              onChange={(e) =>
-                handleChange("age", parseInt(e.target.value) || 0)
-              }
-              placeholder="Age"
-              min="1"
-              max="120"
-              error={contactErrors.age}
-            />
-          </div>
-
-          {/* Contact Row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <FormInput
-              type="email"
-              value={primaryContact.email}
-              onChange={(e) => handleChange("email", e.target.value)}
-              placeholder="Email"
-              error={contactErrors.email}
-            />
-
-            <div className="space-y-1">
-              <div className="relative">
-                <div className="absolute left-3 top-1/2 -translate-y-1/2 z-10 font-medium text-gray-500 flex items-center gap-1.5 select-none pointer-events-none border-r border-gray-300 pr-2 h-5">
-                  <Image
-                    src="/images/flag/india.jpg"
-                    alt="India"
-                    width={20}
-                    height={14}
-                    className="rounded-sm object-cover"
-                  />
-                  <span className="text-sm">+91</span>
-                </div>
-                <input
-                  type="tel"
-                  value={primaryContact.phone}
-                  onChange={(e) => handleChange("phone", e.target.value)}
-                  placeholder="Phone Number"
-                  maxLength={10}
-                  disabled={otpSent || phoneVerified}
-                  className={`${getInputClass(!!contactErrors.phone)} pl-22 pr-24 h-12 transition-all ${
-                    otpSent || phoneVerified
-                      ? "bg-gray-50 text-gray-500 font-medium"
-                      : "bg-white"
-                  }`}
-                />
-
-                <div className="absolute right-1 top-1 bottom-1 flex items-center">
-                  {otpSent || phoneVerified ? (
-                    <button
-                      type="button"
-                      onClick={handleChangeNumber}
-                      disabled={phoneVerified && isSubmitting}
-                      className="h-full px-4 text-xs font-bold text-primary hover:bg-primary/5 rounded-md transition-all border border-transparent hover:border-primary/10 cursor-pointer"
-                    >
-                      Change
-                    </button>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={() => handleSendOtp()}
-                      disabled={isVerifying}
-                      className="h-full px-5 rounded-md bg-primary text-black font-bold text-xs hover:shadow-md hover:brightness-105 disabled:opacity-50 disabled:cursor-not-allowed transition-all cursor-pointer"
-                    >
-                      {isVerifying ? "Sending..." : "Verify"}
-                    </button>
-                  )}
-                </div>
-              </div>
-              {contactErrors.phone && (
-                <p className="text-red-500 text-xs pl-1" role="alert">
-                  {contactErrors.phone}
-                </p>
-              )}
-            </div>
-          </div>
-
-          {/* OTP Section or Success Status */}
-          {phoneVerified ? (
-            <div className="p-4 bg-primary/10 border border-primary/20 rounded-xl flex items-center gap-4 animate-in fade-in zoom-in duration-300">
-              <div className="w-10 h-10 min-w-[40px] rounded-full bg-primary flex items-center justify-center text-black font-bold text-xl shadow-sm">
-                ✓
-              </div>
-              <div>
-                <p className="text-black font-bold text-base">
-                  Verified Successfully
-                </p>
-                <p className="text-black/60 text-xs">
-                  Your contact number is confirmed.
-                </p>
-              </div>
-            </div>
-          ) : (
-            otpSent && (
-              <div className={`pt-2 ${isShaking ? "animate-shake" : ""}`}>
-                <div className="bg-yellow-50/50 border border-yellow-100 rounded-xl p-4 space-y-4">
-                  <div className="text-center">
-                    <p className="text-sm text-gray-600" role="status">
-                      Enter OTP sent to{" "}
-                      <span className="font-bold text-black">
-                        +91 {primaryContact.phone}
-                      </span>
-                    </p>
-                  </div>
-
-                  <div className="flex justify-center">
-                    <OtpInput
-                      value={otp}
-                      onChange={(val) => {
-                        setOtp(val);
-                        setOtpError("");
-                        if (val.length === OTP_LENGTH) handleVerifyOtp(val);
-                      }}
-                      length={OTP_LENGTH}
-                      error={otpError}
-                      disabled={isVerifying}
-                    />
-                  </div>
-
-                  <div className="flex items-center justify-between px-2 pt-1">
-                    <div className="flex-1">
-                      {/* Empty or auxiliary content */}
-                    </div>
-                    <div className="flex-1 text-right">
-                      {cooldown > 0 ? (
-                        <span
-                          className="text-xs text-gray-400 font-medium tabular-nums"
-                          role="timer"
-                        >
-                          Resend in {cooldown}s
-                        </span>
-                      ) : (
-                        <button
-                          type="button"
-                          onClick={() => handleSendOtp()}
-                          disabled={isVerifying}
-                          className="text-xs text-primary font-bold hover:underline disabled:opacity-50 transition-colors cursor-pointer"
-                        >
-                          Resend Code
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )
-          )}
+      {/* Phone Verification */}
+      <div className="border border-primary rounded-lg p-4 md:p-6 bg-white shadow-sm">
+        <label className={labelClass}>Phone Verification *</label>
+        <div className="mt-4">
+          <PhoneVerificationField
+            phone={primaryContact.phone}
+            phoneVerified={phoneVerified}
+            otpSent={otpSent}
+            isVerifying={isVerifying}
+            isShaking={isShaking}
+            cooldown={cooldown}
+            otp={otp}
+            otpError={otpError}
+            contactError={contactErrors.phone}
+            onPhoneChange={(val) => handleChange("phone", val)}
+            onSendOtp={handleSendOtp}
+            onVerifyOtp={handleVerifyOtp}
+            onChangeNumber={handleChangeNumber}
+            setOtp={setOtp}
+            setOtpError={setOtpError}
+          />
         </div>
       </div>
 

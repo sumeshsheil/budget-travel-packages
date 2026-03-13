@@ -61,8 +61,9 @@ export const GuestCounter: React.FC<GuestCounterProps> = ({
         type="button"
         variant="ghost"
         size="icon"
-        className="h-8 w-8 rounded-md text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-700 dark:hover:text-emerald-300 bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700 shrink-0 transition-all active:scale-95"
+        className="h-10 w-10 rounded-md text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-700 dark:hover:text-emerald-300 bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700 shrink-0 transition-all active:scale-95"
         onClick={handleDecrement}
+        aria-label="Decrease guest count"
       >
         <Minus className="h-4 w-4" />
       </Button>
@@ -71,6 +72,7 @@ export const GuestCounter: React.FC<GuestCounterProps> = ({
           type="number"
           className="h-8 border-none bg-transparent text-center font-bold text-lg text-slate-900 dark:text-white focus-visible:ring-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none w-full p-0"
           value={value}
+          aria-label="Number of guests"
           onChange={(e) => {
             const val = parseInt(e.target.value);
             if (e.target.value === "") onChange("");
@@ -87,8 +89,9 @@ export const GuestCounter: React.FC<GuestCounterProps> = ({
         type="button"
         variant="ghost"
         size="icon"
-        className="h-8 w-8 rounded-md text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-700 dark:hover:text-emerald-300 bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700 shrink-0 transition-all active:scale-95"
+        className="h-10 w-10 rounded-md text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-700 dark:hover:text-emerald-300 bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700 shrink-0 transition-all active:scale-95"
         onClick={handleIncrement}
+        aria-label="Increase guest count"
       >
         <Plus className="h-4 w-4" />
       </Button>

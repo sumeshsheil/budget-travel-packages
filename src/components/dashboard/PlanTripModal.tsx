@@ -41,7 +41,6 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { calculateAge, cn } from "@/lib/utils";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import {
     CalendarIcon, Check,
@@ -52,7 +51,6 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import * as z from "zod";
 
 const DEPARTURE_CITIES = [
   "Agartala",
@@ -133,18 +131,16 @@ const DEPARTURE_CITIES = [
   "Warangal",
 ];
 
-const tripFormSchema = z.object({
-  tripType: z.enum(["domestic", "international"]),
-  departureCity: z.string().min(2, "Departure city is required"),
-  destination: z.string().min(2, "Destination is required"),
-  travelDate: z.date().refine((val) => !!val, "Travel date is required") as any,
-  duration: z.string().min(1, "Duration is required"),
-  guests: z.coerce.number().min(1, "At least 1 guest is required"),
-  budget: z.coerce.number().min(1, "Budget is required"),
-  specialRequests: z.string().optional(),
-});
-
-type TripFormValues = z.infer<typeof tripFormSchema>;
+interface TripFormValues {
+  tripType: "domestic" | "international";
+  departureCity: string;
+  destination: string;
+  travelDate: Date;
+  duration: string;
+  guests: number;
+  budget: number;
+  specialRequests?: string;
+}
 
 interface PlanTripModalProps {
   isOpen: boolean;
@@ -170,7 +166,6 @@ export const PlanTripModal: React.FC<PlanTripModalProps> = ({
   const [isDurationLoading, setIsDurationLoading] = useState(false);
 
   const form = useForm<TripFormValues>({
-    resolver: zodResolver(tripFormSchema) as any,
     defaultValues: {
       tripType: "domestic",
       departureCity: "",
@@ -201,7 +196,37 @@ export const PlanTripModal: React.FC<PlanTripModalProps> = ({
   const userAge = user.birthDate ? calculateAge(user.birthDate) : null;
   const isUnderage = userAge === null || userAge < 18;
 
+  const validateForm = (values: TripFormValues) => {
+    if (!values.departureCity || values.departureCity.length < 2) {
+      form.setError("departureCity", { message: "Departure city is required" });
+      return false;
+    }
+    if (!values.destination || values.destination.length < 2) {
+      form.setError("destination", { message: "Destination is required" });
+      return false;
+    }
+    if (!values.travelDate) {
+      form.setError("travelDate", { message: "Travel date is required" });
+      return false;
+    }
+    if (!values.duration) {
+      form.setError("duration", { message: "Duration is required" });
+      return false;
+    }
+    if (values.guests < 1) {
+      form.setError("guests", { message: "At least 1 guest is required" });
+      return false;
+    }
+    if (values.budget < 1) {
+      form.setError("budget", { message: "Budget is required" });
+      return false;
+    }
+    return true;
+  };
+
   const onSubmit = async (values: TripFormValues) => {
+    if (!validateForm(values)) return;
+
     setIsSubmitting(true);
     try {
       const names = user.name.split(" ");

@@ -186,7 +186,8 @@ export const TravelDatePicker: React.FC = () => {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-primary"
+          className="absolute right-1 top-1/2 -translate-y-1/2 text-primary p-2"
+          aria-label="Toggle calendar"
         >
           <svg
             className="w-5 h-5"
@@ -215,6 +216,7 @@ export const TravelDatePicker: React.FC = () => {
                 className={`p-1 rounded hover:bg-gray-100 ${
                   !canGoPrevious ? "opacity-30 cursor-not-allowed" : ""
                 }`}
+                aria-label="Previous month"
               >
                 <svg
                   className="w-5 h-5"
@@ -240,6 +242,7 @@ export const TravelDatePicker: React.FC = () => {
                 className={`p-1 rounded hover:bg-gray-100 ${
                   !canGoNext ? "opacity-30 cursor-not-allowed" : ""
                 }`}
+                aria-label="Next month"
               >
                 <svg
                   className="w-5 h-5"

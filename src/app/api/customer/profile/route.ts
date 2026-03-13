@@ -192,8 +192,7 @@ export async function PATCH(request: Request) {
 
     // User is verified if they have provided all mandatory fields
     const isVerified =
-      !!finalFirstName &&
-      !!finalLastName &&
+      (!!finalFirstName && !!finalLastName || !!updates.name || !!currentUser.name) &&
       !!finalBirthDate &&
       !!finalGender &&
       !!currentUser.email &&

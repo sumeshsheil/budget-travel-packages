@@ -1,5 +1,6 @@
 import { DashboardHeader } from "@/components/dashboard/layout/DashboardHeader";
 import { DashboardSidebar } from "@/components/dashboard/layout/DashboardSidebar";
+import "../dashboard.css";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { requireCustomerAuth } from "@/lib/customer-auth-guard";
 import { Metadata } from "next";

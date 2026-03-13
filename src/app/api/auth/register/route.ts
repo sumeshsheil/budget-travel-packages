@@ -4,11 +4,7 @@ import { sendSetPasswordEmail, sendWelcomeEmail } from "@/lib/email";
 import bcryptjs from "bcryptjs";
 import crypto from "crypto";
 import { NextResponse } from "next/server";
-import { z } from "zod";
-
-const registerSchema = z.object({
-  email: z.string().email("Invalid email address"),
-});
+import { registerSchema } from "@/lib/validations/auth";
 
 export async function POST(req: Request) {
   try {

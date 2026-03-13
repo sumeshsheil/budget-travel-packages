@@ -36,6 +36,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import MembersSection from "./MembersSection";
+import { calculateProfileCompletion } from "@/lib/profile-utils";
 
 const OTP_LENGTH = 4;
 const INDIA_PHONE_REGEX = /^[6-9]\d{9}$/;
@@ -203,7 +204,15 @@ export default function ProfilePage() {
         setProfile(data.user);
         toast.success("Profile updated successfully");
         setEditingField(null);
-        await update();
+        // Update session instantly with the new data
+        await update({
+          name: data.user.name,
+          firstName: data.user.firstName,
+          lastName: data.user.lastName,
+          phone: data.user.phone,
+          gender: data.user.gender,
+          image: data.user.image,
+        });
       }
     } catch (error) {
       toast.error("Something went wrong");
@@ -287,7 +296,8 @@ export default function ProfilePage() {
         console.error("Failed to save phone to profile");
       }
 
-      await update(); // Update session
+      // Update session with the verified phone
+      await update({ phone, isPhoneVerified: true });
     } catch (err: any) {
       setOtpError(err.message || "Invalid OTP.");
     } finally {
@@ -295,24 +305,7 @@ export default function ProfilePage() {
     }
   };
 
-  // Calculation for profile completion
-  const calculateCompletion = () => {
-    if (!profile) return 0;
-    let points = 0;
-    if (profile.firstName && profile.lastName) points += 10;
-    if (profile.email) points += 10;
-    if (profile.phone) points += 10;
-    if (profile.isPhoneVerified) points += 20;
-    if (profile.image) points += 10;
-    if (profile.gender) points += 10;
-    if (profile.birthDate) points += 10;
-    if (profile.aadhaarNumber && /^\d{12}$/.test(profile.aadhaarNumber))
-      points += 10;
-    if (profile.documents?.aadharCard?.length) points += 10;
-    return points;
-  };
-
-  const completionPercent = calculateCompletion();
+  const completionPercent = calculateProfileCompletion(profile);
 
   if (loading) {
     return (
@@ -480,7 +473,7 @@ export default function ProfilePage() {
                 </Button>
               </div>
             )}
-            {profile?.isVerified && (
+            {(profile?.isVerified || completionPercent === 100) && (
               <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 mb-4 py-1.5 px-8 flex items-center gap-1.5 mx-auto w-fit">
                 <ShieldCheck className="h-4 w-4" /> Verified
               </Badge>
@@ -755,7 +748,7 @@ export default function ProfilePage() {
                     Verification
                   </dt>
                   <dd className="text-base font-medium">
-                    {profile?.isVerified ? (
+                    {profile?.isVerified || completionPercent === 100 ? (
                       <span className="text-emerald-500 dark:text-emerald-400 flex items-center gap-1 text-sm">
                         <ShieldCheck className="w-4 h-4" /> Verified
                       </span>

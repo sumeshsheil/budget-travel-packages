@@ -2,18 +2,13 @@ import User from "@/lib/db/models/User";
 import { connectDB } from "@/lib/db/mongoose";
 import bcryptjs from "bcryptjs";
 import { NextResponse } from "next/server";
-import { z } from "zod";
-
-const validateLoginSchema = z.object({
-  email: z.string().email("Invalid email address"),
-  password: z.string().min(1, "Password is required"),
-});
+import { loginSchema } from "@/lib/validations/auth";
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    const validation = validateLoginSchema.safeParse(body);
+    const validation = loginSchema.safeParse(body);
     if (!validation.success) {
       return NextResponse.json(
         {

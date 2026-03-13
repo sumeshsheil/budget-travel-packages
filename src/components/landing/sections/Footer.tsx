@@ -1,4 +1,3 @@
-"use client";
 import YoutubeIcon from "@/components/icons/Youtube";
 import { SOCIAL_LINKS } from "@/lib/constants";
 import Image from "next/image";
@@ -88,9 +87,9 @@ const Footer: React.FC = () => {
 
               <div className="pt-4 flex flex-col gap-3">
                 <div className="flex flex-col gap-3 text-secondary-text text-sm font-open-sans">
-                  <h3 className="font-bold text-black text-base tracking-tight leading-tight">
-                    Get Travel Services at Flat 9% of Total Cost*
-                  </h3>
+                  <h6 className="font-bold text-black text-base tracking-tight leading-tight">
+                    Additional Services at Flat 9%
+                  </h6>
 
                   <div className="flex flex-col gap-2 w-full max-w-[280px]">
                     <button className="bg-white border border-primary text-new-blue hover:bg-primary hover:text-white font-semibold py-2.5 px-4 rounded-lg text-xs xl:text-sm transition-all  w-full cursor-pointer text-center">
@@ -111,7 +110,7 @@ const Footer: React.FC = () => {
 
               {/* Col 3: Recent Blogs */}
               <div className="pt-4">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.1061147562764!2d88.42702700075614!3d22.57513417882024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0275f5973f2ae9%3A0x76145337c0904cd9!2sBudget%20Travel%20Packages!5e0!3m2!1sen!2sbd!4v1773083654340!5m2!1sen!2sbd" width="250" height="250" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                <iframe title="Office Location Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.1061147562764!2d88.42702700075614!3d22.57513417882024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0275f5973f2ae9%3A0x76145337c0904cd9!2sBudget%20Travel%20Packages!5e0!3m2!1sen!2sbd!4v1773083654340!5m2!1sen!2sbd" width="250" height="250" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
               </div>
 
               {/* Col 4: Office Address & Social */}
@@ -138,6 +137,7 @@ const Footer: React.FC = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="transition-transform hover:scale-110 hover:opacity-80 p-1"
+                      aria-label="Follow us on Facebook"
                     >
                       <Image
                         src="/images/footer/social/facebook.png"
@@ -152,6 +152,7 @@ const Footer: React.FC = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="transition-transform hover:scale-110 hover:opacity-80 p-1"
+                      aria-label="Follow us on Instagram"
                     >
                       <Image
                         src="/images/footer/social/instagram-2.png"
@@ -166,6 +167,7 @@ const Footer: React.FC = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="transition-transform hover:scale-110 hover:opacity-80 p-1"
+                      aria-label="Subscribe to our YouTube channel"
                     >
                       <YoutubeIcon className="w-auto h-5" />
                     </Link>
@@ -220,9 +222,9 @@ const Footer: React.FC = () => {
 
                 {/* Services & Payment (Mobile) */}
                 <div className="flex flex-col text-center items-center md:items-center justify-center gap-3 bg-gray-50/50 p-6 rounded-2xl border border-dashed border-gray-200 h-full">
-                  <h3 className="font-bold text-black text-xl md:text-lg">
-                    Get Travel Services at Flat 9% of Total Cost*
-                  </h3>
+                  <h6 className="font-bold text-black text-xl md:text-lg">
+                    Additional Services at Flat 9%
+                  </h6>
 
                   <div className="flex flex-col gap-2 w-full max-w-[240px]">
                     <button className="bg-white border border-primary text-new-blue hover:bg-primary hover:text-white font-semibold py-2.5 px-4 rounded-lg text-sm transition-all shadow-sm w-full cursor-pointer">
@@ -245,7 +247,7 @@ const Footer: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 {/* Recent Blogs (Mobile) */}
                 <div className="flex flex-col items-center sm:items-start">
-                   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.1061147562764!2d88.42702700075614!3d22.57513417882024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0275f5973f2ae9%3A0x76145337c0904cd9!2sBudget%20Travel%20Packages!5e0!3m2!1sen!2sbd!4v1773083654340!5m2!1sen!2sbd" width="300" height="350" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                   <iframe title="Office Location Map Mobile" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.1061147562764!2d88.42702700075614!3d22.57513417882024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0275f5973f2ae9%3A0x76145337c0904cd9!2sBudget%20Travel%20Packages!5e0!3m2!1sen!2sbd!4v1773083654340!5m2!1sen!2sbd" width="300" height="350" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                 </div>
 
                 {/* Office Address & Social */}
@@ -271,6 +273,7 @@ const Footer: React.FC = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="transition-transform hover:scale-110"
+                        aria-label="Follow us on Facebook"
                       >
                         <Image
                           src="/images/footer/social/facebook.png"
@@ -285,6 +288,7 @@ const Footer: React.FC = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="transition-transform hover:scale-110"
+                        aria-label="Follow us on Instagram"
                       >
                         <Image
                           src="/images/footer/social/instagram-2.png"
@@ -299,6 +303,7 @@ const Footer: React.FC = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="transition-transform hover:scale-110"
+                        aria-label="Subscribe to our YouTube channel"
                       >
                         <YoutubeIcon className="w-auto h-5" />
                       </Link>

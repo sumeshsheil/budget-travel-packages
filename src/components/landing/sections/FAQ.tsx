@@ -214,12 +214,12 @@ const FAQ: React.FC = () => {
       <div className="container-box px-4 relative z-10">
         {/* Header */}
         <header className="text-center mb-12">
-          <h2
+          <h4
             id="faq-heading"
             className="text-2xl md:text-3xl lg:text-[40px] font-inter font-semibold text-secondary-text"
           >
             Frequently Asked Questions
-          </h2>
+          </h4>
         </header>
 
         {/* FAQ Accordion */}
@@ -254,7 +254,7 @@ const FAQ: React.FC = () => {
                       : "text-secondary-text border-primary"
                   }`}
                 >
-                  <span className="pr-4">{faq.question}</span>
+                  <h5 className="pr-4">{faq.question}</h5>
                   <span
                     className={`shrink-0 w-8 h-8 flex items-center justify-center rounded ${
                       isOpen ? "text-black" : "text-primary"
@@ -282,9 +282,9 @@ const FAQ: React.FC = () => {
                       transition={{ duration: 0.2, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 py-4 text-secondary-text text-sm md:text-base leading-relaxed">
+                      <p className="px-6 py-4 text-secondary-text text-sm md:text-base leading-relaxed">
                         {faq.answer}
-                      </div>
+                      </p>
                     </m.div>
                   )}
                 </AnimatePresence>
